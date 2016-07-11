@@ -13,7 +13,7 @@ Browser support: IE10 or later, Chrome, Safari, Firefox.
 Mobile browser support: Chrome for Android 44+, iOS Safari 7+, Microsoft Edge 12+.
 
 ##Installation
-This component collection has been implemented following Biovia/Accelrys' application packaging guidelines and should be installed with PkgUtil or PkgUtil.exe on the Pipeline Pilot server. Follow instructions in this [PDF doc](https://semanticplp.s3.amazonaws.com/Installation%20Instructions%20%28Semantic%29.pdf?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=2332202592&Signature=QDD8UlFQKEIHVQTIeMtPpnRGEyA%3D).
+This component collection has been implemented following Biovia/Accelrys' application packaging guidelines and should be installed with PkgUtil or PkgUtil.exe on the Pipeline Pilot server. Follow instructions in this [PDF doc](https://semanticplp.s3.amazonaws.com/Installation%20Instructions%20%28Semantic%29.pdf?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1554516856&Signature=qhT5dZtYnDiihNX6PyvTxcAZATc%3D).
 
 When the installation completes, the server must be restarted. 
 
