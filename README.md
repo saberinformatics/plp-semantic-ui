@@ -1,7 +1,7 @@
 # Semantic UI components for Pipeline Pilot
-Build beautiful interactive web reports and web apps. Click to visit the [main project site](https://saberinformatics.github.io/plp-semantic-ui).
+Build beautiful interactive web reports and web apps. Leverage the power of [Semantic UI](http://semantic-ui.com) from Pipeline Pilot.
 
-Co-developed and extensively stress-tested in a pharma environment by the famed QuickHits team at AbbVie and Saber Informatics. 
+Co-developed and extensively stress-tested in a pharma environment by the famed QuickHits team at AbbVie and Saber Informatics. Click to visit the [main project site](https://saberinformatics.github.io/plp-semantic-ui).
 
 The components are available to the community as open-source code under the MIT license. For those users who require additional assurance, commercial support contracts are available directly from [Saber Informatics](https://saberinformatics.com).
 
