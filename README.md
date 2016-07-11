@@ -1,5 +1,6 @@
 # Semantic UI components for Pipeline Pilot
-##[Project pages](https://saberinformatics.github.io/plp-semantic-ui)
+[Visit project pages](https://saberinformatics.github.io/plp-semantic-ui)
+
 Build beautiful interactive web reports and web apps. Developed and extensively stress-tested in a pharma environment by AbbVie and Saber Informatics. 
 
 The components are available to the community as open-source code under the MIT license. For those users who require additional assurance, commercial support contracts are available directly from [Saber Informatics](https://saberinformatics.com).
