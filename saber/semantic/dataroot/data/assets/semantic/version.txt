@@ -1,0 +1,5 @@
+Semantic UI release history with detailed notes:
+
+https://github.com/Semantic-Org/Semantic-UI/releases
+
+The Default folder contains the release 2.1.8 02/2016
