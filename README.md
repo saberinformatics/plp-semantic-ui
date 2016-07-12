@@ -1,7 +1,7 @@
 ![abbvie logo](https://semanticplp.s3.amazonaws.com/abbvie-logo.png?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1554519025&Signature=ihnpBTf8SeldUlLqTtTuBvNCneI%3D "AbbVie")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![saberinformatics logo](https://semanticplp.s3.amazonaws.com/saber-logo.png?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1554519078&Signature=1WeBrrgUmdH%2F4AFQGrArcegFTJI%3D "Saber Informatics")
 
 # Semantic UI components for Pipeline Pilot
-Build beautiful web reports and web apps. Leverage the power of [Semantic UI](http://semantic-ui.com) from Pipeline Pilot.
+Build beautiful web reports and web apps. Leverage the power of [Semantic UI](http://semantic-ui.com/kitchen-sink.html) from Pipeline Pilot.
 
 Co-developed and extensively stress-tested in a pharma environment by the famed QuickHits team at AbbVie and Saber Informatics. Click to visit the [main project site](https://saberinformatics.github.io/plp-semantic-ui).
 
