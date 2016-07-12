@@ -20,3 +20,7 @@ This component collection has been implemented following Biovia/Accelrys' applic
 When the installation completes, the server must be restarted. 
 
 In the Pro client you will find example protocols in the Protocols tab: `Protocols/Examples/Semantic UI/` and the components in the Components tab: `Components/Semantic UI/`.
+
+
+##Package Contents
+![components screenshot](https://github.com/saberinformatics/plp-semantic-ui/raw/gh-pages/components.png "components")
