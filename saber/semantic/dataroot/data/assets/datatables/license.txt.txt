@@ -1,0 +1,10 @@
+http://datatables.net/license
+
+
+DataTables | Licensing
+Licensing is an important part of software licensing, particularly when using open source libraries such as DataTables.
+
+DataTables
+DataTables 1.10 and newer is available under the terms MIT license. This places almost no restrictions on what you can do with DataTables, and you are free to use it in any way (including commercial projects), as long as the copyright header is left intact. Please see the MIT license page for the complete license.
+
+https://opensource.org/licenses/MIT

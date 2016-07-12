@@ -1,0 +1,3 @@
+http://jqueryvalidation.org
+
+https://opensource.org/licenses/MIT
