@@ -1,0 +1,10 @@
+
+
+
+
+Semantic UI pages have a sleek, subtle, stylishly flat, understated look that provides a lightweight user experience. Drag and drop components in pipeline pilot to completely transform the design exactly as you want it, while preserving the professional look and feel of your pages. Automatically generate responsive HTML pages that will self-adjust to the viewer's screen size.
+
+
+Co-developed and extensively stress-tested in a pharma environment by the famed QuickHits team at AbbVie and Saber Informatics. The components are available to the community as open-source code under the MIT license. For those users who require additional assurance, commercial support contracts are available directly from Saber Informatics.
+
+https://saberinformatics.github.io/plp-semantic-ui

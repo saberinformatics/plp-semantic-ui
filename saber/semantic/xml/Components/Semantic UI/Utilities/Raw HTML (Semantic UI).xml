@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sci:data xmlns:sci="http://www.SciTegic.com/" object="SciTegic.Protocol.1" format="8.0.0">
+	<sci:dbitem>
+		<sci:component name="Raw HTML (Semantic UI)" version="2">
+			<sci:arg name="HTML" type="TextType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+				<sci:help>Raw HTML text.</sci:help>
+				<sci:value>&lt;style type=&quot;text/css&quot;&gt;
+  /* Your CSS snippet goes here. */
+&lt;/style&gt;
+
+&lt;script&gt;
+  // Your JS script snippet goes here.
+&lt;/script&gt;
+</sci:value>
+			</sci:arg>
+			<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+				<sci:member>RunToCompletion Categorize Using</sci:member>
+				<sci:legalval selected="true">False</sci:legalval>
+				<sci:legalval>True - For Each Data Record</sci:legalval>
+				<sci:legalval>True - For Each Category</sci:legalval>
+			</sci:arg>
+			<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+				<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+				<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+				<sci:member>Parallel Processing Options Batch Size</sci:member>
+				<sci:member>Parallel Processing Options Server</sci:member>
+				<sci:member>Parallel Processing Options Preserve Order</sci:member>
+				<sci:legalval>True</sci:legalval>
+				<sci:legalval selected="true">False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+				<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="true">
+				<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+				<sci:member>Parallel Processing Options Server Processes</sci:member>
+				<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+				<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+				<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+				<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+				<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>Run subprotocol on grid engine if available.</sci:help>
+				<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+				<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+				<sci:legalval selected="true">True</sci:legalval>
+				<sci:legalval>False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+				<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+				<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+				<sci:legalval selected="true">True</sci:legalval>
+				<sci:legalval>False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+				<sci:help>Component Attributes</sci:help>
+				<sci:legalval>ComponentTakesInput</sci:legalval>
+				<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+				<sci:legalval>ComponentReturnsFail</sci:legalval>
+				<sci:legalval>ComponentRunsLocal</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>Raw HTML (Semantic UI)</sci:value>
+			</sci:arg>
+			<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol AutoLayout</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+				<sci:value>ReportTextNode</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+				<sci:help>Component Revision</sci:help>
+				<sci:value>790</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>{D257B36C-6670-4D92-8489-8A5E09C04D4D}</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>90 -895</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+				<sci:value>100</sci:value>
+				<sci:value>Raw HTML (Semantic UI).</sci:value>
+				<sci:value>Type raw HTML code into this component. It will be inserted unchanged and unwrapped into the final Semantic UI HTML report. Any tags are allowed. Pipeline Pilot global variables in the $() notation are allowed.</sci:value>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>Generic</sci:value>
+				<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+				<sci:value>None</sci:value>
+				<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The server version when this component was registered</sci:help>
+				<sci:value>16.1.0.1140</sci:value>
+			</sci:arg>
+			<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Sticky Notes</sci:help>
+			</sci:arg>
+			<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Scale</sci:help>
+				<sci:value>100</sci:value>
+			</sci:arg>
+			<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Options</sci:help>
+				<sci:legalval>Owner Access Only</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The user who registered this component.</sci:help>
+				<sci:value>bondadx2</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The date this component was registered.</sci:help>
+				<sci:value>Tue Jun 14 10:59:21 2016</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Local Component Identifier</sci:help>
+				<sci:value>6</sci:value>
+			</sci:arg>
+			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Processing Order</sci:help>
+				<sci:value>DrainTopDown</sci:value>
+			</sci:arg>
+			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>OriginalPackage</sci:help>
+				<sci:value>scitegic/coreutils</sci:value>
+			</sci:arg>
+			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>By Ref</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The original path within the database of this component.</sci:help>
+				<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
+			</sci:arg>
+		</sci:component>
+		<sci:protocol>
+			<sci:data object="SciTegic.ComponentJavaPlugin.1">
+				<sci:component name="HTML Template" version="2">
+					<sci:arg name="Template" type="TextType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The HTML to run data substitution on.&lt;/p&gt;</sci:help>
+						<sci:value>$(HTML)</sci:value>
+					</sci:arg>
+					<sci:arg name="Output To Property" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;If specified, the output HTML will be output to a property on the output data record with the specified name. If left blank, the output will be on a reporting node which can be combined with other reporting components in a report.&lt;/p&gt;
+
+&lt;p&gt;By specifying a property name, you can combine this component with a Text Writer to process arbitrary text templates, or to output an entire HTML document.&lt;/p&gt;
+</sci:help>
+					</sci:arg>
+					<sci:arg name="Output Velocity.Log" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;If true, a velocity.log file will be output to the job directory. This may contain information that will be useful in debugging templates.&lt;/p&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Fix Array to List Behavior" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:legalval selected="true">True</sci:legalval>
+					</sci:arg>
+					<sci:arg name="DateTime Values as Dates" type="BoolType" required="false" visibility="nevershow" multi="false" legalvalsenforced="false">
+						<sci:help>If set to &lt;i&gt;True&lt;/i&gt;, property values of DateTime type will be converted to &lt;code&gt;java.util.Date&lt;/code&gt; objects, otherwise, such values will be converted to &lt;code&gt;java.util.GregorianCalendar&lt;/code&gt; objects.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Base64 Encoded ByteArray Values" type="BoolType" required="false" visibility="nevershow" multi="false" legalvalsenforced="false">
+						<sci:help>If set to &lt;i&gt;True&lt;/i&gt;, property values of ByteArray value type will be converted to base64 encoded strings, otherwise, such values will be returned as arrays of integers.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="JavaClass" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>com.scitegic.report.component.HtmlTemplateComponent</sci:value>
+					</sci:arg>
+					<sci:arg name="CaptureStdoutStderr" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:help>CaptureStdoutStderr</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/reportadv</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Apr 19 15:21:42 2013</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>HTML Template</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>90 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>REPORTTEXTNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{9E66B268-9762-46EF-BD1D-3F5C7B92CE16}</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Plug In</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Outputs raw HTML generated by running a template through Velocity, performing data substitution</sci:value>
+						<sci:value>&lt;p&gt;Velocity is a Java-based template engine that allows easy merging of a template document with a dataset, as well as useful programming constructs like looping and conditionals. This component ensures that global and record properties are made available to the template engine so that they can be inserted into the template using the Velocity variable notation (e.g., &lt;code&gt;$variableName&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;This component is intended to be used for generating HTML fragments to be combined with other reporting content in an HTML report. However it can also be used as a general-purpose template engine. Use the &lt;i&gt;Output to Property&lt;/i&gt; parameter to cause the results of template processing to be stored in a property rather than on a reporting node. This can then be written out using a Text Writer or other appropriate component.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;javascript:DoLink(&apos;http://velocity.apache.org/engine/releases/velocity-1.5/user-guide.html&apos;)&quot;&gt;Velocity 1.5 User Guide&lt;/a&gt; provides a good introduction to the commands available for use in template documents.&lt;/p&gt;
+
+&lt;p&gt;An extra directive has been added for this component: &lt;b&gt;&lt;code&gt;#foreachDataRecord&lt;/code&gt;&lt;/b&gt; allows iteration over each incoming data records. It should be matched by a corresponding &lt;b&gt;&lt;code&gt;#endDataRecord&lt;/code&gt;&lt;/b&gt; directive. Within intra-record sections (parts of the template which are between these two directives), a &lt;code&gt;$ppRecordCount&lt;/code&gt; variable can be used to get the current record index. This variable starts with a value of 0.&lt;/p&gt;
+
+&lt;p&gt;The template document is divided up into intra-record sections (marked by the &lt;b&gt;&lt;code&gt;#foreachDataRecord&lt;/code&gt;&lt;/b&gt; directive), and extra-record sections. All extra-record sections are evaluated at component initialization, and all global variables at the time of component initialization are available using the &lt;code&gt;$variableName&lt;/code&gt; syntax. Within intra-record sections, all variable references will first be resolved against the set of properties on the current data record, and if no match is found, they will then be resolved against the global variables, evaluated at the time the data record is processed.&lt;/p&gt;
+
+&lt;p&gt;To allow simple reflection (e.g., looking up properties whose name is only known at runtime), the full set of global properties is made available in a &lt;code&gt;java.util.Map&lt;/code&gt; instance named &lt;code&gt;$ppGlobalProperties&lt;/code&gt;, and the full set of record properties is made available in a &lt;code&gt;java.util.Map&lt;/code&gt; instance named &lt;code&gt;$ppDataProperties&lt;/code&gt;. To get the set of record property names, use &lt;code&gt;$ppDataProperties.keySet()&lt;/code&gt;. To get the value of a named property, use &lt;code&gt;$ppDataProperties.get($propName)&lt;/code&gt;. To get the value of a deep property, use &lt;code&gt;$ppDataProperties.getProperty($deepPropName)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To allow iteration over nodes and properties a &lt;code&gt;$ppDataRoot&lt;/code&gt; variable can be used to access the root node of a data record. Each node variable exposes the following properties:
+&lt;ul&gt;
+	&lt;li&gt;&lt;i&gt;Name&lt;/i&gt; - returns the name of the node.&lt;/li&gt;
+	&lt;li&gt;&lt;i&gt;Properties&lt;/i&gt; - returns &lt;code&gt;java.util.Map&lt;/code&gt; instance containing node properties.&lt;/li&gt;
+	&lt;li&gt;&lt;i&gt;Children&lt;/i&gt; - returns &lt;code&gt;java.util.List&lt;/code&gt; instance containing node children. Each element in the list can be further manipulated using the above-mentioned properties.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Arrays of strings, booleans, numbers, dates and mixed type data can be iterated over using Velocity&apos;s &lt;code&gt;#foreach ( $var in $list )&lt;/code&gt; syntax, or accessed using list methods, e.g., &lt;code&gt;$list.get(0)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The template is split up into intra- and extra-record sections, which are processed separately by Velocity. All control structures must therefore be confined to each section. The following table shows correct and incorrect ways of conditionally outputting an entire set of data record data.&lt;/p&gt;
+
+&lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;3&quot;&gt;
+	&lt;tr&gt;
+		&lt;th width=&quot;50%&quot; style=&quot;vertical-align: top;&quot;&gt;INCORRECT. The &lt;code&gt;#if&lt;/code&gt; and &lt;code&gt;#end&lt;/code&gt; are in different template sections after splitting out the intra-record section.&lt;/th&gt;
+		&lt;td&gt;&lt;pre&gt;#if ( true)
+#foreachDataRecord
+	...
+#endDataRecord
+#end&lt;/pre&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th style=&quot;vertical-align: top;&quot;&gt;CORRECT. The &lt;code&gt;#if&lt;/code&gt; and &lt;code&gt;#end&lt;/code&gt; are in a single (intra-record) section.&lt;/th&gt;
+		&lt;td&gt;&lt;pre&gt;#foreachDataRecord
+#if ( true)
+	...
+#end
+#endDataRecord&lt;/pre&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;This component will not work when piped to non-HTML (e.g., PDF, Office) report writers.&lt;/li&gt;
+	&lt;li&gt;The &lt;code&gt;$velocityCount&lt;/code&gt; variable, which is defined by default within &lt;code&gt;#foreach&lt;/code&gt; loops is 0-based, not 1-based, which is the default for Velocity. This makes pulling items out of arrays easier.&lt;/li&gt;
+	&lt;li&gt;Property values of the DateTime type will be converted to &lt;code&gt;java.util.Date&lt;/code&gt; objects.&lt;/li&gt;
+	&lt;li&gt;Property values of the Byte type will be converted to integers.&lt;/li&gt;
+	&lt;li&gt;This component will convert property values of non-common data types to strings and will print out a debug message.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>A single data record containing the HTML Template to be included in the HTML report.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>9.0.1.28</sci:value>
+					</sci:arg>
+					<sci:arg name="Use Package" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>2</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Reporting and Visualization\Web Application Development\HTML Elements\HTML Template</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:version iVal="7"/>
+		</sci:protocol>
+	</sci:dbitem>
+<!-- Exported protocol -->
+<sci:component name="8.0 Protocol Warning" version="2">
+<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+<sci:help>Component Icon</sci:help>
+<sci:value>PROTOCOLNODE</sci:value>
+</sci:arg>
+<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+<sci:help>Protocol Sticky Notes</sci:help>
+<sci:value>%VERSION 3%</sci:value>
+<sci:value>400 -219 1222 221</sci:value>
+<sci:value>250 120 20</sci:value>
+<sci:value>WARNING! This is a Pipeline Pilot protocol written in version 8.0 or later. It contains features that are not supported in earlier versions of Pipeline Pilot.</sci:value>
+</sci:arg>
+</sci:component>
+</sci:data>

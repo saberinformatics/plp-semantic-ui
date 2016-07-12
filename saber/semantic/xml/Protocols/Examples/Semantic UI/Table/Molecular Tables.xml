@@ -1,0 +1,2795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sci:data xmlns:sci="http://www.SciTegic.com/" object="SciTegic.Protocol.1" format="8.0.0">
+	<sci:dbitem>
+		<sci:component name="Molecular Tables" version="2">
+			<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;/p&gt;
+
+&lt;p&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Form" type="ProtocolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;The path to a protocol that will render an HTML user interface for this protocol.  This optional parameter is used by Web Port to provide a custom user interface for a protocol.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="true">
+				<sci:member>__PoolID</sci:member>
+				<sci:member>Http Cookie Handling</sci:member>
+			</sci:arg>
+			<sci:arg name="__PoolID" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; is a case insensitive string that can optionally be set to optimize the speed of execution for quick running protocols.  Multiple protocols with the same value for &lt;i&gt;__PoolID&lt;/i&gt; can share expensive resources such as database connections, Java VMs, memory, etc. reducing the execution time by 1 to 2 seconds per run.  This can give a large speed improvement to protocols that run in a few seconds such as web applications and interactive reports.  Longer running protocols will not see much benefit.  Generally, it is a good idea to use the same &lt;i&gt;__PoolID&lt;/i&gt; for all protocols within a single application such as an interactive report since many of the components, databases, and data structures will be similar.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; can also be specified by the client when the protocol is launched.  If &lt;i&gt;__PoolID&lt;/i&gt; is specified both as a parameter by the client and as a parameter stored within the protocol, the client&apos;s value overrides the stored value.&lt;/p&gt;
+
+&lt;p&gt;To disable pooling entirely for this particular protocol, set &lt;i&gt;__PoolID&lt;/i&gt; to &lt;b&gt;&amp;lt;Disable&amp;gt;&lt;/b&gt;&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Http Cookie Handling" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;Http Cookie Handling&lt;/i&gt; provides a mechanism to control the handling of Http cookies within components that access remote resources via Http and Https.  These include the &lt;a href=&quot;javascript:DoLink(&apos;{8A25024A-C274-485B-BB99-8570DCC4C075}&apos;)&quot;&gt;HTTP Connector&lt;/a&gt;, Data readers such as &lt;a href=&quot;javascript:DoLink(&apos;{8056E8AD-33EA-42BB-9099-EAB24C3D08E6}&apos;)&quot;&gt;Text Reader&lt;/a&gt;, &lt;a href=&quot;javascript:DoLink(&apos;{93C4D73F-0B4D-03F4-B0E3-D82C4FE04C6F}&apos;)&quot;&gt;XML Reader (Generic)&lt;/a&gt;, etc., and custom Java, Perl, and .Net components that use the available APIs for accessing remote servers.  By default, New Protocols will have this setting enabled and set to &quot;Protocol Scope&quot;.  This means that Http cookies obtained from a remote server within any component in the protocol or any of its subprotocols will be parsed and appropriately sent back on subsequent requests from the same component or any other component.   The handling of the cookies is based on the IETF standard as specified in &lt;a href=&quot;javascript:DoLink(&apos;http://tools.ietf.org/html/rfc6265&apos;)&quot;&gt;http://tools.ietf.org/html/rfc6265&lt;/a&gt;.  Setting the parameter to Disabled will prevent components from parsing and returning cookies to the remote servers.&lt;/p&gt;
+
+&lt;p&gt;Persistence of cookies is not supported, so scoping of Http cookies is entirely within the context of a single protocol execution.&lt;/p&gt;
+
+&lt;p&gt;Older protocols that do not have the &lt;i&gt;Http Cookie Handling&lt;/i&gt; parameter will behave as though it had been set to &quot;Disabled&quot;.  To enable cookie handling in these protocols, copy this parameter from a New Protocol to the older protocol and set the parameter as desired.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">Protocol Scoped</sci:legalval>
+				<sci:legalval>Disabled</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Reporting" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>This group contains parameters specific to protocols containing Reporting components.</sci:help>
+				<sci:member>Reporting Stylesheet</sci:member>
+			</sci:arg>
+			<sci:arg name="Reporting Stylesheet" type="StylesheetType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>Specifies the name of a Stylesheet to be used by this protocol if any of the Reporting components have a Style selected in the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.</sci:help>
+				<sci:value>{44C6ECA7-D7C8-4BD8-A0C6-450FF605F58B}</sci:value>
+			</sci:arg>
+			<sci:arg name="Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>The Run On Grid parameter tells the server to run the protocol on the grid engine if SES is configured to run with grid integration.</sci:help>
+				<sci:member>Queue Name</sci:member>
+				<sci:member>Grid Options</sci:member>
+				<sci:legalval>True</sci:legalval>
+				<sci:legalval selected="true">False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>The Queue Name allows you to specify the name of the queue on the grid engine to submit the job to. Leave blank to specify the default queue.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Grid Options" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>Grid Options allows you to specify options to the grid engine submit command. Leave blank to specify the default options.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+				<sci:help>Component Attributes</sci:help>
+				<sci:legalval>ComponentTakesInput</sci:legalval>
+				<sci:legalval>ComponentReturnsPass</sci:legalval>
+				<sci:legalval>ComponentReturnsFail</sci:legalval>
+				<sci:legalval>ComponentRunsLocal</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="WebExports" type="StringType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties which will be automatically 
+exported if this protocol is published as a web service.&lt;/p&gt;
+
+&lt;p&gt;Each global property in the list is created with an empty value at the start of the protocol run.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Keep Alive" type="BoolType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;Specifies if the process where this protocol is run should stay around for later use.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">True</sci:legalval>
+				<sci:legalval>False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The user who registered this component.</sci:help>
+				<sci:value>bondadx2</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The date this component was registered.</sci:help>
+				<sci:value>Tue Jun 14 10:32:18 2016</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The server version when this component was registered</sci:help>
+				<sci:value>16.1.0.1140</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>molecular tables</sci:value>
+			</sci:arg>
+			<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol AutoLayout</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+				<sci:value>PROTOCOLNODE</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+				<sci:help>Component Revision</sci:help>
+				<sci:value>790</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>{8F9D2DFD-092E-4C38-9C6D-B59BC7689D74}</sci:value>
+			</sci:arg>
+			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>By Ref</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+				<sci:value>100</sci:value>
+				<sci:value>Molecular Tables</sci:value>
+				<sci:value>An example of interactive data visualization.</sci:value>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+			</sci:arg>
+			<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Scale</sci:help>
+				<sci:value>100</sci:value>
+			</sci:arg>
+			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Sticky Notes</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Options</sci:help>
+				<sci:legalval>Owner Access Only</sci:legalval>
+			</sci:arg>
+			<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Local Component Identifier</sci:help>
+				<sci:value>-1</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>50 -50</sci:value>
+			</sci:arg>
+			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>OriginalPackage</sci:help>
+				<sci:value>scitegic/coreutils</sci:value>
+			</sci:arg>
+			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The original path within the database of this component.</sci:help>
+				<sci:value>Protocols\Examples\Semantic UI\Table\Molecular Tables</sci:value>
+			</sci:arg>
+		</sci:component>
+		<sci:protocol>
+			<sci:data object="SciTegic.ComponentJavaPlugin.1">
+				<sci:component name="Image from Molecule" version="2">
+					<sci:arg name="Include Live Molecule" type="BoolType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;If the &lt;i&gt;Include Live Molecule&lt;/i&gt; parameter is set to True and this component is piped into an HTML report, the image will be backed by live molecular data, so that double-clicking will open the chemistry in 3rd party sketcher software like Accelrys Draw (or ISIS/Draw) or ChemDraw. With &lt;i&gt;Include Live Molecule&lt;/i&gt; set to True, this component is equivalent to the read-only version of the &lt;a href=&quot;javascript:DoLink(&apos;{7415B28B-1606-4F6A-88B4-4BD4F5B1E1AD}&apos;)&quot;&gt;Chemistry Sketcher&lt;/a&gt; component. Its main advantage is scalability: multiple instances of this component may be included in a single HTML report without significantly affecting browser performance. Unlike the Chemistry Sketcher component, this component should not be used in forms, as the chemistry is not editable.&lt;/p&gt;
+
+&lt;p&gt;You can right-click on the output image to copy the currently displayed chemistry to the clipboard or to change the preferred sketcher software to be opened when the image is double-clicked.&lt;/p&gt;
+
+&lt;p&gt;This component uses a signed Java applet to launch 3rd party sketcher software. You will need to have the Java plug-in installed in your browser and will need to accept the Accelrys security certificate before using the applet. Whichever chemistry sketcher you are using (Accelrys Draw or ChemDraw) must be installed on the client machine in order to edit the molecule.&lt;/p&gt;
+
+&lt;p&gt;When true, the image type will always be PNG, and the &lt;i&gt;Image Map Name&lt;/i&gt; and most of the &lt;i&gt;Links and Actions&lt;/i&gt; will be disabled.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Users with more than one of the Accelrys Draw or ISIS/Draw sketchers installed will see Accelrys Draw launched in preference to ISIS/Draw. Those sketchers should be run from the desktop at least once before the applet can properly launch them to display a molecule.&lt;/li&gt;
+	&lt;li&gt;To create live, embedded chemistry in Office documents, use &lt;a href=&quot;javascript:DoLink(&apos;{DAA51EC2-CF25-48EA-A905-4004BE152BA1}&apos;)&quot;&gt;Office Chemistry Sketcher&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:member>Sketch Tool</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Sketch Tool" type="StringType" required="true" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;The default sketcher application to launch when the user double clicks on the molecule.&lt;/p&gt;
+
+&lt;p&gt;The sketcher type can be changed in the final report by right-clicking on the molecule image. Once a user has chosen a preferred sketcher via the right-click menu, their preference is stored in a cookie, and it supersedes what may be specified on this component.&lt;/p&gt;
+
+&lt;p&gt;The sketcher type is global across all instances of this component in a report, and the default value will be taken from the first instance in the protocol.&lt;/p&gt;
+
+&lt;p&gt;Users with more than one of the Accelrys Draw or ISIS/Draw sketchers installed will see Accelrys Draw launched in preference to ISIS/Draw. Those sketchers should be run from the desktop at least once before the applet can properly launch them to display a molecule.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>enabled := Parameter(&quot;Include Live Molecule&quot;) EQ &apos;True&apos;;
+IF (NOT enabled) THEN
+     SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to True.&apos;);
+END IF;
+enabled;</sci:enabledscript>
+						<sci:legalval selected="true">Accelrys Draw or ISIS/Draw</sci:legalval>
+						<sci:legalval>ChemDraw</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Image Type" type="StringType" required="true" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Format to use to represent the molecular image.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PNG&lt;/strong&gt;: Portable Network Graphics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JPEG&lt;/strong&gt;: Joint Photographic Experts Group.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SVG&lt;/strong&gt;: Scalable Vector Graphics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EMF&lt;/strong&gt;: Windows Enhanced Meta File.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BMP&lt;/strong&gt;: Windows Bitmap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TIFF&lt;/strong&gt;: Tagged Image File Format.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that SVG may give the best results if outputting to a PDF document.&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">PNG</sci:legalval>
+						<sci:legalval>JPEG</sci:legalval>
+						<sci:legalval>SVG</sci:legalval>
+						<sci:legalval>EMF</sci:legalval>
+						<sci:legalval>BMP</sci:legalval>
+						<sci:legalval>TIFF</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ImageSize" type="LongType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>Size of the square image, in pixels</sci:help>
+						<sci:enabledscript>parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size&apos; or
+parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size with Fixed Bond Length&apos;</sci:enabledscript>
+						<sci:value>256</sci:value>
+					</sci:arg>
+					<sci:arg name="Format" type="FormatType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Formatting to be applied to the reporting element produced by this component.
+Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, Color, 
+and Background Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;li&gt;Background Image: Allows you to select a background image for the reporting element. 
+This image must be accessible to the Pipeline Pilot server to be used (for example, 
+you can copy images to the apps\scitegic\core\dataroot\data\Images folder in your 
+Pipeline Pilot installation to make them available). Supported image types include 
+.gif, .jpg, .png, and .bmp.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Position" type="PositionType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies how the element is positioned. Editing this parameter opens the Position dialog, which enables you to change margins, paddings, width, and height.</sci:help>
+					</sci:arg>
+					<sci:arg name="Image Map Name" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;When used in conjunction with an Image Map component, the name of the image map to be used by the generated image. This parameter should match the &lt;i&gt;Name&lt;/i&gt; parameter of the corresponding Image Map component.&lt;/p&gt;
+
+</sci:help>
+						<sci:enabledscript>enabled := Parameter(&quot;Include Live Molecule&quot;) EQ &apos;False&apos;;
+IF (NOT enabled) THEN
+     SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+END IF;
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Caption Property" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>The property used to display a caption for the picture. If this parameter is 
+not defined, a caption is not displayed.
+&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;The caption does not utilize any &lt;i&gt;Format&lt;/i&gt; settings. If you want to control formatting of the caption, use a &lt;a href=&quot;javascript:DoLink(&apos;{34E6C845-4ACB-4212-BBA3-7422213D458F}&apos;)&quot;&gt;Text&lt;/a&gt; component for the caption, in combination with this component, in a Run-to-Completion subprotocol.&lt;/li&gt;
+</sci:help>
+						<sci:value>Name</sci:value>
+					</sci:arg>
+					<sci:arg name="Molecule Scaling" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>How to scale the molecule to the desired image size.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed Image Size&lt;/strong&gt;: the size of the images is the same for all the input molecules. The size of the image (in pixels) is controlled by &lt;i&gt;ImageSize&lt;/i&gt;, which specifies the width and height. The aspect ratio is set to 1 by default, but can be modified by &lt;i&gt;WidthToHeightRatio&lt;/i&gt; which sets the width as the height multiplied by the ratio. &lt;i&gt;MaximumBondLengthSize&lt;/i&gt; can be used to define a maximum limit for the length of the lines used to draw the bonds (to prevent very small molecules such as ethane to be drawn disproportionally big).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed Bond Length&lt;/strong&gt;: all the molecules are drawn with the same bond length, specified by &lt;i&gt;BondLengthSize&lt;/i&gt;. The image size depends on the size of the molecule. Small molecules create small images and big molecules create big images. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed Image Size with Fixed Bond Length&lt;/strong&gt;: the size of the images , specified by &lt;i&gt;ImageSize&lt;/i&gt;, is the same for all the input molecules but, if possible, the molecules are drawn using the bond length specified by &lt;i&gt;BondLengthSize&lt;/i&gt;. If the molecule can be drawn within the specified image size using the desired bond length, it is drawn like that, padding with white space as necessary. if the molecule is too big to be drawn with the desired bond length, it is scaled down to fit in the dimensions specified by image size. &lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:member>BondLengthSize</sci:member>
+						<sci:member>WidthToHeightRatio</sci:member>
+						<sci:member>MaximumBondLengthSize</sci:member>
+						<sci:member>MaximumImageSize</sci:member>
+						<sci:legalval selected="true">Fixed Image Size</sci:legalval>
+						<sci:legalval>Fixed Bond Length</sci:legalval>
+						<sci:legalval>Fixed Image Size with Fixed Bond Length</sci:legalval>
+					</sci:arg>
+					<sci:arg name="MaximumBondLengthSize" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Maximum size allowed for the lines used to draw the bonds in the molecule, in pixels. This parameter is used in conjunction with &lt;i&gt;ImageSize&lt;/i&gt; to set a limit to how long the bonds in the molecule can be. This is useful to prevent small molecules, such as ethane, to be drawn disproportionally big.
+&lt;br&gt;
+Leave empty if you don&apos;t want to set a limit to the bond length.</sci:help>
+						<sci:enabledscript>parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size&apos;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="MaximumImageSize" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Maximum size allowed for the image, in pixels. This parameter is used in conjunction with &lt;i&gt;BondLengthSize&lt;/i&gt; to set a limit to how big the image can be.
+&lt;br&gt;
+Leave empty if you don&apos;t want to set a limit to the image size.</sci:help>
+						<sci:enabledscript>parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Bond Length&apos;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="BondLengthSize" type="LongType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;Size of the average bond length, in pixels.&lt;/p&gt;
+&lt;p&gt;
+This parameter is used when &lt;i&gt;Molecule Scaling&lt;/i&gt; is set to &quot;Fixed Bond Length&quot; or &quot;Fixed Image Size with Fixed Bond Length&quot;.
+&lt;p&gt;
+The size of the image will not be constant. Bigger molecules generate larger images; smaller molecules generate smaller images.</sci:help>
+						<sci:enabledscript>parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Bond Length&apos; or
+parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size with Fixed Bond Length&apos;</sci:enabledscript>
+						<sci:value>35</sci:value>
+					</sci:arg>
+					<sci:arg name="WidthToHeightRatio" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>The ratio of the width to the height.  When not equal to 1.0, the image height is given by &lt;i&gt;ImageSize&lt;/i&gt; and the image width is scaled to fit the given &lt;i&gt;WidthToHeightRatio&lt;/i&gt;.</sci:help>
+						<sci:enabledscript>parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size&apos; or
+parameter(&apos;Molecule Scaling&apos;) eq &apos;Fixed Image Size with Fixed Bond Length&apos;</sci:enabledscript>
+						<sci:value>1.0</sci:value>
+					</sci:arg>
+					<sci:arg name="Use Global Depiction Settings" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>When set to True, the depiction options are set based on the settings specified by &lt;i&gt;Global Depiction Settings&lt;/i&gt; and not from the component parameters.</sci:help>
+						<sci:member>Global Depiction Settings</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Global Depiction Settings" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Name of the XML file in the /apps/chemistry/xml/Objects folder with the global depiction settings.
+        &lt;p&gt;
+        The default XML file, with the same depiction settings as the default values of the component parameters, is &lt;i&gt;PPDepictionSettings_Defaults.xml&lt;/i&gt;.
+        &lt;p&gt;
+        Use &lt;a href=&quot;javascript:DoLink(&apos;{F8ED93E4-528D-43E7-A6E1-9D4A7EB161F9}&apos;)&quot;&gt;Export Depiction Parameters&lt;/a&gt; to modify and save depiction settings to use them as global settings.
+      </sci:help>
+						<sci:enabledscript>parameter(&quot;Use Global Depiction Settings&quot;) eq true</sci:enabledscript>
+						<sci:legalvalscript>if @PPDepictionSettingsXML is not defined then
+        @PPDepictionSettingsXML := RunProtocol(
+        &apos;Components/Chemistry/Utilities/Internals/Reference Components/List Global Depiction Settings (Dynamic Parameter)&apos;,
+        &apos;PPDepictionSettingsXML&apos;);
+        end if;
+
+        SetLegalValues(@PPDepictionSettingsXML);</sci:legalvalscript>
+					</sci:arg>
+					<sci:arg name="Depiction Options" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Options that control the molecular depictions</sci:help>
+						<sci:member>Atoms</sci:member>
+						<sci:member>Bonds</sci:member>
+						<sci:member>Colors</sci:member>
+						<sci:member>Fonts</sci:member>
+						<sci:member>General</sci:member>
+						<sci:member>Haptic/Markush</sci:member>
+						<sci:member>Reactions</sci:member>
+						<sci:member>Rgroups</sci:member>
+						<sci:member>Sequences</sci:member>
+						<sci:member>Sgroups</sci:member>
+						<sci:member>StereoChemistry</sci:member>
+						<sci:member>Zero Order Bonds</sci:member>
+						<sci:enabledscript>parameter(&quot;Use Global Depiction Settings&quot;) eq False</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Atoms" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of atoms and atom labels</sci:help>
+						<sci:member>AtomLabelsScaleFactor</sci:member>
+						<sci:member>DisplayHighlightedAtomsAs</sci:member>
+						<sci:member>DrawImplicitHydrogens</sci:member>
+						<sci:member>AtomLabelPadding</sci:member>
+						<sci:member>Display Charge</sci:member>
+						<sci:member>Display Valence</sci:member>
+						<sci:member>Display Star Atoms As</sci:member>
+						<sci:member>Display &apos;Pol&apos; Atoms As Circles</sci:member>
+						<sci:member>Display Hydrogen Isotopes as 2H and 3H</sci:member>
+					</sci:arg>
+					<sci:arg name="AtomLabelsScaleFactor" type="DoubleType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>Factor to scale the size of the atom labels (atom type, atom number, valence, value, charge). Set this factor to the default value of 1.0 to use the font size determined internally by PipelinePilot. Values greater than 1.0 will increase the font size. Values smaller than 1.0 will decrease the font size.  </sci:help>
+						<sci:value>1.0</sci:value>
+					</sci:arg>
+					<sci:arg name="DisplayHighlightedAtomsAs" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Select how to highlight selected atoms.
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;ColoredBlocks:&lt;/b&gt;  Display a colored block superimposed on all the selected atoms.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;ColoredLabels:&lt;/b&gt;  Color all the selected atom labels with the same highlight color.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval>ColoredBlocks</sci:legalval>
+						<sci:legalval selected="true">ColoredLabels</sci:legalval>
+					</sci:arg>
+					<sci:arg name="DrawImplicitHydrogens" type="StringType" required="false" visibility="visible" multi="true" uimpl="false">
+						<sci:help>Defines which implicit Hydrogen atoms to draw:
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;AllHydrogens:&lt;/b&gt;  Displays all implicit Hydrogen atoms (this option overrides the other options).&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;HeteroHydrogens:&lt;/b&gt;  Displays implicit Hydrogen atoms on heteroatoms.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;TerminalCarbonHydrogens:&lt;/b&gt;  Displays implicit Hydrogen atoms on terminal Carbon atoms.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval>AllHydrogens</sci:legalval>
+						<sci:legalval selected="true">HeteroHydrogens</sci:legalval>
+						<sci:legalval>TerminalCarbonHydrogens</sci:legalval>
+					</sci:arg>
+					<sci:arg name="AtomLabelPadding" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Padding size, in percentage of the average bond length, to use around atom type labels in the molecular image. This parameter controls how much white space to leave between atom type labels and the lines representing bonds.</sci:help>
+						<sci:value>8</sci:value>
+					</sci:arg>
+					<sci:arg name="Display Charge" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specify whether or not to display non-zero atom charges</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Valence" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specify whether or not to display non-standard atom valences</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Star Atoms As" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>How to display unknown star (*) atoms
+&lt;ul&gt;
+&lt;li&gt;As a star (*).&lt;/li&gt;
+&lt;li&gt;As a zigzag line.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval>Zigzag Line</sci:legalval>
+						<sci:legalval selected="true">Star (*)</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display &apos;Pol&apos; Atoms As Circles" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Whether or not to display &apos;Pol&apos; atom types as a circle. When set to False, these atoms are displayed using a &apos;Pol&apos; label.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Hydrogen Isotopes as 2H and 3H" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>When set to True, Hydrogen isotopes are displayed as &apos;2H&apos; and &apos;3H&apos; instead of &apos;D&apos; and &apos;T&apos;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Bonds" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of bonds and bond labels</sci:help>
+						<sci:member>DrawAromaticRings</sci:member>
+						<sci:member>DisplayHighlightedBondsAs</sci:member>
+						<sci:member>Draw Bond Query Labels</sci:member>
+						<sci:member>Position of Bond Labels</sci:member>
+						<sci:member>Bond Thickness</sci:member>
+						<sci:member>Double Bond Width</sci:member>
+						<sci:member>Wedge Bond Width</sci:member>
+						<sci:member>Spacing of Down Bond Hashes</sci:member>
+						<sci:member>DrawUnknownDoubleBonds</sci:member>
+					</sci:arg>
+					<sci:arg name="DrawAromaticRings" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>How to draw aromatic rings.
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;UsingSingleDoubleBonds:&lt;/b&gt;  A kekule representation using alternating single and double bonds.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;AsSolidCircles:&lt;/b&gt;  A solid circle is drawn inside the aromatic ring.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">UsingSingleDoubleBonds</sci:legalval>
+						<sci:legalval>AsSolidCircles</sci:legalval>
+					</sci:arg>
+					<sci:arg name="DisplayHighlightedBondsAs" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>
+        Select how to highlight selected bonds.
+        &lt;ul&gt;
+        &lt;li&gt;&lt;b&gt;ColoredLines:&lt;/b&gt;  Color all the selected bonds with the specified highlight color.&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;ThickLines:&lt;/b&gt;  Use a thicker line to draw the selected bonds.&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;ThickColoredLines:&lt;/b&gt;  Use a thicker line and the highlight color to draw the selected bonds.&lt;/li&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval selected="true">ColoredLines</sci:legalval>
+						<sci:legalval>ThickLines</sci:legalval>
+						<sci:legalval>ThickColoredLines</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Draw Bond Query Labels" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Whether or not to draw labels indicating the bond query types (s/d, s/a, d/a, ...)</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Position of Bond Labels" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies the position of bond labels, such as query bond types (any, s/d, s/a, d/a), topologies (Ch, Rn), or bond numbers. The labels are placed either at one side of the bond or on top of the bond.</sci:help>
+						<sci:legalval>At One Side of the Bond</sci:legalval>
+						<sci:legalval selected="true">On Top of the Bond</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Bond Thickness" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specify the thickness of the lines used to represent bonds</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="Double Bond Width" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies the width of double bonds, as a fraction of the bond length</sci:help>
+						<sci:value>0.2</sci:value>
+					</sci:arg>
+					<sci:arg name="Wedge Bond Width" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies the width of stereo bond wedges, as a fraction of the bond length (including Either bonds)</sci:help>
+						<sci:value>0.08</sci:value>
+					</sci:arg>
+					<sci:arg name="Spacing of Down Bond Hashes" type="DoubleType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>Specifies the spacing between the lines of down bond wedges</sci:help>
+						<sci:value>4.0</sci:value>
+					</sci:arg>
+					<sci:arg name="DrawUnknownDoubleBonds" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>How to draw double bonds with unknown stereochemistry (such as in molecules read from SMILES); 
+either &lt;b&gt;AsStandardDoubleBond&lt;/b&gt; or &lt;b&gt;AsCrossedLines&lt;/b&gt;.</sci:help>
+						<sci:member>Include Double Bonds in Small Rings</sci:member>
+						<sci:legalval>AsStandardDoubleBond</sci:legalval>
+						<sci:legalval selected="true">AsCrossedLines</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Include Double Bonds in Small Rings" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>If &lt;i&gt;False&lt;/i&gt; (the default), double bonds in small rings (size 7 or less) are never displayed as cross lines even if they are marked as unknown cis/trans stereo.</sci:help>
+						<sci:enabledscript>parameter(&apos;DrawUnknownDoubleBonds&apos;) eq &apos;AsCrossedLines&apos;</sci:enabledscript>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Colors" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the selection of colors to draw the structures</sci:help>
+						<sci:member>UseColor</sci:member>
+						<sci:member>Background Color</sci:member>
+						<sci:member>Foreground Color</sci:member>
+						<sci:member>Elements</sci:member>
+					</sci:arg>
+					<sci:arg name="UseColor" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>If set to true, the molecular image will be colored according to atom types.  If false, the image will be black and white only.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Background Color" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specify the background color to use to draw the image.
+&lt;br&gt;
+&lt;i&gt;Transparent&lt;/i&gt; should be set to &apos;False&apos; for this parameter to be active.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>White</sci:value>
+					</sci:arg>
+					<sci:arg name="Foreground Color" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specify the foreground color to use to draw the image.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) eq true</sci:enabledscript>
+						<sci:value>Black</sci:value>
+					</sci:arg>
+					<sci:arg name="Elements" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:member>H</sci:member>
+						<sci:member>Li</sci:member>
+						<sci:member>B</sci:member>
+						<sci:member>C</sci:member>
+						<sci:member>N</sci:member>
+						<sci:member>O</sci:member>
+						<sci:member>F</sci:member>
+						<sci:member>Na</sci:member>
+						<sci:member>Mg</sci:member>
+						<sci:member>Al</sci:member>
+						<sci:member>Si</sci:member>
+						<sci:member>P</sci:member>
+						<sci:member>S</sci:member>
+						<sci:member>Cl</sci:member>
+						<sci:member>K</sci:member>
+						<sci:member>Ca</sci:member>
+						<sci:member>Se</sci:member>
+						<sci:member>Br</sci:member>
+						<sci:member>Sn</sci:member>
+						<sci:member>I</sci:member>
+						<sci:member>Fe</sci:member>
+						<sci:member>Cu</sci:member>
+						<sci:member>Ag</sci:member>
+						<sci:member>Cd</sci:member>
+						<sci:member>Au</sci:member>
+						<sci:member>Hg</sci:member>
+						<sci:member>Other</sci:member>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) eq true</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="H" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw H atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#00006E</sci:value>
+					</sci:arg>
+					<sci:arg name="Li" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Li atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#C87DF5</sci:value>
+					</sci:arg>
+					<sci:arg name="B" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw B atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#F0AA6E</sci:value>
+					</sci:arg>
+					<sci:arg name="C" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw C atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#6E6E6E</sci:value>
+					</sci:arg>
+					<sci:arg name="N" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw N atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#3250FF</sci:value>
+					</sci:arg>
+					<sci:arg name="O" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw O atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#F00A0A</sci:value>
+					</sci:arg>
+					<sci:arg name="F" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw F atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#8CD24B</sci:value>
+					</sci:arg>
+					<sci:arg name="Na" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Na atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#A050DC</sci:value>
+					</sci:arg>
+					<sci:arg name="Mg" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Mg atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#87FA00</sci:value>
+					</sci:arg>
+					<sci:arg name="Al" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Al atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#AF96A0</sci:value>
+					</sci:arg>
+					<sci:arg name="Si" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Si atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#F0C8A0</sci:value>
+					</sci:arg>
+					<sci:arg name="P" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw P atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#E67800</sci:value>
+					</sci:arg>
+					<sci:arg name="S" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw S atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#FFAF00</sci:value>
+					</sci:arg>
+					<sci:arg name="Cl" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Cl atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#1EE11E</sci:value>
+					</sci:arg>
+					<sci:arg name="K" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw K atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#9646D2</sci:value>
+					</sci:arg>
+					<sci:arg name="Ca" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Ca atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#32DC00</sci:value>
+					</sci:arg>
+					<sci:arg name="Se" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Se atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#FFAF28</sci:value>
+					</sci:arg>
+					<sci:arg name="Br" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Br atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#A02828</sci:value>
+					</sci:arg>
+					<sci:arg name="Sn" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Sn atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#5A6E6E</sci:value>
+					</sci:arg>
+					<sci:arg name="I" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw I atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#960096</sci:value>
+					</sci:arg>
+					<sci:arg name="Fe" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Fe atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#AF5A00</sci:value>
+					</sci:arg>
+					<sci:arg name="Cu" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Cu atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#C8823C</sci:value>
+					</sci:arg>
+					<sci:arg name="Ag" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Ag atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#B9B9B9</sci:value>
+					</sci:arg>
+					<sci:arg name="Cd" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Cd atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#FAD28C</sci:value>
+					</sci:arg>
+					<sci:arg name="Au" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Au atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#F0C81E</sci:value>
+					</sci:arg>
+					<sci:arg name="Hg" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw Hg atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>#AFAFC8</sci:value>
+					</sci:arg>
+					<sci:arg name="Other" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Color to use to draw all other atoms.</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>Black</sci:value>
+					</sci:arg>
+					<sci:arg name="Fonts" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the selection of fonts to draw the structures</sci:help>
+						<sci:member>TrueType Font File</sci:member>
+						<sci:member>SVG Font</sci:member>
+						<sci:member>FixedFontSizeToDrawLabels</sci:member>
+						<sci:member>MinimumFontSizeToDrawLabels</sci:member>
+						<sci:member>Caption Font Size</sci:member>
+						<sci:member>Chemistry Labels Font</sci:member>
+						<sci:member>Captions Font</sci:member>
+						<sci:member>Stereo Configuration Font</sci:member>
+						<sci:member>Sequence Label Font</sci:member>
+					</sci:arg>
+					<sci:arg name="TrueType Font File" type="URLType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Path of the TrueType font to use to display the labels in the picture. Leave empty to use the default font.</sci:help>
+					</sci:arg>
+					<sci:arg name="SVG Font" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Font family to use to draw text in SVG images.
+&lt;br&gt;
+Enter any valid SVG font-family specification.
+&lt;br&gt;
+Leave empty to use default font (Arial, Helvetica)</sci:help>
+					</sci:arg>
+					<sci:arg name="FixedFontSizeToDrawLabels" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specify a fixed font size to be used to draw the text labels in the molecular image. Text labels include atom labels (atom type, charge, isotope, implicit hydrogens, query features and custom labels and numbers), bond labels (query features, custom labels and numbers), molecule caption, chiral flag and custom labels.
+&lt;p&gt;
+If a fixed font size is specified, the labels are always drawn with the same size, irrespective of the molecule size.
+&lt;p&gt;
+Leave blank to scale the font size based on the size of the molecule. </sci:help>
+					</sci:arg>
+					<sci:arg name="MinimumFontSizeToDrawLabels" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies the minimum font size required to draw text labels for atoms, bonds and for the entire molecule (caption, chiral flag, etc). The font size used to draw these labels is calculated based on the size of the molecule. If it is smaller than the value of this parameter, labels are not drawn and heteroatoms are represented by circles with the color of the corresponding atom.
+&lt;p&gt;
+Leave blank to force the drawing of the text labels, even at very small font sizes.</sci:help>
+						<sci:enabledscript>parameter(&apos;FixedFontSizeToDrawLabels&apos;) &lt;= 0</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Caption Font Size" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Font size to use to draw the captions.
+&lt;p&gt;
+Leave blank to calculate the size automatically based on the image size and the length of the caption</sci:help>
+					</sci:arg>
+					<sci:arg name="Chemistry Labels Font" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Font to use to draw the structure labels for atoms, bonds, abbreviations and Sgroup data.
+        &lt;p&gt;
+        &lt;strong&gt;Note:&lt;/strong&gt;
+        &lt;ul&gt;
+        &lt;li&gt;On Windows systems, text labels are drawn differently for each of the fonts in the dropdown list. On Linux systems, the same font family is used for groups of fonts:
+        &lt;ul&gt;
+        &lt;li&gt;Arial&lt;/li&gt;
+        &lt;li&gt;Bookman Old Style&lt;/li&gt;
+        &lt;li&gt;Calibri, Cambria, Century Schoolbook, Garamond, Goudy Old Style, Lucida Console, MS Sans Serif, System, Tahoma, Verdana&lt;/li&gt;
+        &lt;li&gt;Courier New&lt;/li&gt;
+        &lt;li&gt;Times New Roman&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval selected="true">Arial</sci:legalval>
+						<sci:legalval>Bookman Old Style</sci:legalval>
+						<sci:legalval>Calibri</sci:legalval>
+						<sci:legalval>Cambria</sci:legalval>
+						<sci:legalval>Century Schoolbook</sci:legalval>
+						<sci:legalval>Courier New</sci:legalval>
+						<sci:legalval>Garamond</sci:legalval>
+						<sci:legalval>Goudy Old Style</sci:legalval>
+						<sci:legalval>Lucida Console</sci:legalval>
+						<sci:legalval>MS Sans Serif</sci:legalval>
+						<sci:legalval>System</sci:legalval>
+						<sci:legalval>Tahoma</sci:legalval>
+						<sci:legalval>Times New Roman</sci:legalval>
+						<sci:legalval>Verdana</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Captions Font" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Font to use to draw the caption label
+        &lt;p&gt;
+        &lt;strong&gt;Note:&lt;/strong&gt;
+        &lt;ul&gt;
+        &lt;li&gt;On Windows systems, text labels are drawn differently for each of the fonts in the dropdown list. On Linux systems, the same font family is used for groups of fonts:
+        &lt;ul&gt;
+        &lt;li&gt;Arial&lt;/li&gt;
+        &lt;li&gt;Bookman Old Style&lt;/li&gt;
+        &lt;li&gt;Calibri, Cambria, Century Schoolbook, Garamond, Goudy Old Style, Lucida Console, MS Sans Serif, System, Tahoma, Verdana&lt;/li&gt;
+        &lt;li&gt;Courier New&lt;/li&gt;
+        &lt;li&gt;Times New Roman&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval selected="true">Arial</sci:legalval>
+						<sci:legalval>Bookman Old Style</sci:legalval>
+						<sci:legalval>Calibri</sci:legalval>
+						<sci:legalval>Cambria</sci:legalval>
+						<sci:legalval>Century Schoolbook</sci:legalval>
+						<sci:legalval>Courier New</sci:legalval>
+						<sci:legalval>Garamond</sci:legalval>
+						<sci:legalval>Goudy Old Style</sci:legalval>
+						<sci:legalval>Lucida Console</sci:legalval>
+						<sci:legalval>MS Sans Serif</sci:legalval>
+						<sci:legalval>System</sci:legalval>
+						<sci:legalval>Tahoma</sci:legalval>
+						<sci:legalval>Times New Roman</sci:legalval>
+						<sci:legalval>Verdana</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Stereo Configuration Font" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Font to use to draw the stereochemistry labels
+        &lt;p&gt;
+        &lt;strong&gt;Note:&lt;/strong&gt;
+        &lt;ul&gt;
+        &lt;li&gt;On Windows systems, text labels are drawn differently for each of the fonts in the dropdown list. On Linux systems, the same font family is used for groups of fonts:
+        &lt;ul&gt;
+        &lt;li&gt;Arial&lt;/li&gt;
+        &lt;li&gt;Bookman Old Style&lt;/li&gt;
+        &lt;li&gt;Calibri, Cambria, Century Schoolbook, Garamond, Goudy Old Style, Lucida Console, MS Sans Serif, System, Tahoma, Verdana&lt;/li&gt;
+        &lt;li&gt;Courier New&lt;/li&gt;
+        &lt;li&gt;Times New Roman&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval selected="true">Arial</sci:legalval>
+						<sci:legalval>Bookman Old Style</sci:legalval>
+						<sci:legalval>Calibri</sci:legalval>
+						<sci:legalval>Cambria</sci:legalval>
+						<sci:legalval>Century Schoolbook</sci:legalval>
+						<sci:legalval>Courier New</sci:legalval>
+						<sci:legalval>Garamond</sci:legalval>
+						<sci:legalval>Goudy Old Style</sci:legalval>
+						<sci:legalval>Lucida Console</sci:legalval>
+						<sci:legalval>MS Sans Serif</sci:legalval>
+						<sci:legalval>System</sci:legalval>
+						<sci:legalval>Tahoma</sci:legalval>
+						<sci:legalval>Times New Roman</sci:legalval>
+						<sci:legalval>Verdana</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Sequence Label Font" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>
+        Font to use to draw the sequence labels
+        &lt;p&gt;
+        &lt;strong&gt;Note:&lt;/strong&gt;
+        &lt;ul&gt;
+        &lt;li&gt;On Windows systems, text labels are drawn differently for each of the fonts in the dropdown list. On Linux systems, the same font family is used for groups of fonts:
+        &lt;ul&gt;
+        &lt;li&gt;Arial&lt;/li&gt;
+        &lt;li&gt;Bookman Old Style&lt;/li&gt;
+        &lt;li&gt;Calibri, Cambria, Century Schoolbook, Garamond, Goudy Old Style, Lucida Console, MS Sans Serif, System, Tahoma, Verdana&lt;/li&gt;
+        &lt;li&gt;Courier New&lt;/li&gt;
+        &lt;li&gt;Times New Roman&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval>Arial</sci:legalval>
+						<sci:legalval>Bookman Old Style</sci:legalval>
+						<sci:legalval>Calibri</sci:legalval>
+						<sci:legalval>Cambria</sci:legalval>
+						<sci:legalval>Century Schoolbook</sci:legalval>
+						<sci:legalval selected="true">Courier New</sci:legalval>
+						<sci:legalval>Garamond</sci:legalval>
+						<sci:legalval>Goudy Old Style</sci:legalval>
+						<sci:legalval>Lucida Console</sci:legalval>
+						<sci:legalval>MS Sans Serif</sci:legalval>
+						<sci:legalval>System</sci:legalval>
+						<sci:legalval>Tahoma</sci:legalval>
+						<sci:legalval>Times New Roman</sci:legalval>
+						<sci:legalval>Verdana</sci:legalval>
+					</sci:arg>
+					<sci:arg name="General" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control general image settings</sci:help>
+						<sci:member>Transparent</sci:member>
+						<sci:member>Antialiasing</sci:member>
+					</sci:arg>
+					<sci:arg name="Transparent" type="BoolType" required="true" visibility="visible" multi="false">
+						<sci:help>If set to true, the image will be transparent. If false, the image will have a white background.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Antialiasing" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Whether or not to use antialiasing when drawing graphic objects in the molecular image</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Haptic/Markush" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of Markush bonds and Pi systems</sci:help>
+						<sci:member>Haptic Bond Display</sci:member>
+						<sci:member>Markush Attachment Point Shape</sci:member>
+						<sci:member>Markush Color1</sci:member>
+						<sci:member>Markush Color2</sci:member>
+						<sci:member>Markush Color3</sci:member>
+						<sci:member>Markush Color4</sci:member>
+					</sci:arg>
+					<sci:arg name="Haptic Bond Display" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Type of line to use to display Pi systems
+&lt;ul&gt;
+&lt;li&gt;Solid line.&lt;/li&gt;
+&lt;li&gt;Dotted line.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">Solid Line</sci:legalval>
+						<sci:legalval>Dotted Line</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Markush Attachment Point Shape" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Type of symbol to use to display the atoms representing Markush attachment points
+&lt;ul&gt;
+&lt;li&gt;Circle&lt;/li&gt;
+&lt;li&gt;Square&lt;/li&gt;
+&lt;li&gt;Star (*)&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">Circle</sci:legalval>
+						<sci:legalval>Square</sci:legalval>
+						<sci:legalval>Star (*)</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Markush Color1" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use for the atoms that would be attached to the first Markush bond (will cycle after the fourth Markush bond)</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>Red</sci:value>
+					</sci:arg>
+					<sci:arg name="Markush Color2" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use for the atoms that would be attached to the second Markush bond (will cycle after the fourth Markush bond)</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>Blue</sci:value>
+					</sci:arg>
+					<sci:arg name="Markush Color3" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use for the atoms that would be attached to the third Markush bond (will cycle after the fourth Markush bond)</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>Green</sci:value>
+					</sci:arg>
+					<sci:arg name="Markush Color4" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use for the atoms that would be attached to the fourth Markush bond (will cycle after the fourth Markush bond)</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) = &quot;True&quot;</sci:enabledscript>
+						<sci:value>Orange</sci:value>
+					</sci:arg>
+					<sci:arg name="Reactions" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of reactions</sci:help>
+						<sci:member>Display Atom-Atom Mapping</sci:member>
+						<sci:member>Display Reacting Center Marks</sci:member>
+						<sci:member>Display Stereo Markers</sci:member>
+					</sci:arg>
+					<sci:arg name="Display Atom-Atom Mapping" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies whether or not to display the atom-atom mappings when depicting reactions</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Reacting Center Marks" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies how to display the reacting center marks of reactants and products when depicting reactions
+&lt;ul&gt;
+&lt;li&gt;Hash Marks (For Change)&lt;/li&gt;
+&lt;li&gt;Color (For Change)&lt;/li&gt;
+&lt;li&gt;Thicker (For Change)&lt;/li&gt;
+&lt;li&gt;All Marks&lt;/li&gt;
+&lt;li&gt;Off&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">Hash Marks (For Change)</sci:legalval>
+						<sci:legalval>Color (For Change)</sci:legalval>
+						<sci:legalval>Thicker (For Change)</sci:legalval>
+						<sci:legalval>All Marks</sci:legalval>
+						<sci:legalval>Off</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Stereo Markers" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies whether or not to display the stereo inversion and/or retention marks when depicting reactions</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Rgroups" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of Rgroups</sci:help>
+						<sci:member>Display Attachment Points As</sci:member>
+						<sci:member>Maximum Number of Members to Display</sci:member>
+					</sci:arg>
+					<sci:arg name="Display Attachment Points As" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies how to display the attachment points in Rgroup fragments
+&lt;ul&gt;
+&lt;li&gt;Template (Z) Atoms&lt;/li&gt;
+&lt;li&gt;Arrow and Star (*)&lt;/li&gt;
+&lt;li&gt;Line and Zigzag line&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">Template (Z) Atoms</sci:legalval>
+						<sci:legalval>Arrow and Star (*)</sci:legalval>
+						<sci:legalval>Line and Zigzag Line</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Maximum Number of Members to Display" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies maximum number of Rgroup members to be defined. If the RG structure includes more members, it will simply display numbers of members.</sci:help>
+						<sci:value>20</sci:value>
+					</sci:arg>
+					<sci:arg name="Sequences" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Depiction options that control the drawing of biological sequences</sci:help>
+						<sci:member>Show Sequence View</sci:member>
+						<sci:member>Chain Color - First</sci:member>
+						<sci:member>Chain Color - Second</sci:member>
+						<sci:member>Chain Color - Other</sci:member>
+						<sci:member>Mutations Color</sci:member>
+						<sci:member>Modifications Color</sci:member>
+						<sci:member>Crosslinks Color - Default</sci:member>
+						<sci:member>Crosslinks Color - Disulfide</sci:member>
+						<sci:member>Crosslinks Color - Lactam</sci:member>
+						<sci:member>Crosslinks Color - Lactone</sci:member>
+						<sci:member>Sequence Block Size</sci:member>
+						<sci:member>Sequence Wrap Length</sci:member>
+						<sci:member>Spacing between Sequence Labels</sci:member>
+						<sci:member>Spacing between Sequence Blocks</sci:member>
+						<sci:member>Spacing between Sequence Lines</sci:member>
+						<sci:member>Display Sequence Block Numbers</sci:member>
+						<sci:member>Display Sequence Line Numbers</sci:member>
+						<sci:member>Show Expanded Sequence Structure</sci:member>
+					</sci:arg>
+					<sci:arg name="Show Sequence View" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Shows sequence structure in the sequence view</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Chain Color - First" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Color of the chain in Sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>144,238,144</sci:value>
+					</sci:arg>
+					<sci:arg name="Chain Color - Second" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Alternate color of the chain in Sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>173,216,230</sci:value>
+					</sci:arg>
+					<sci:arg name="Chain Color - Other" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Color of other chain types like Signal Peptides in Sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>245,222,179</sci:value>
+					</sci:arg>
+					<sci:arg name="Mutations Color" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>
+        Color to use to draw mutated residues in the biopolymer sequence.
+        &lt;br&gt;
+        The color can be defined as a string with three comma-separated integers between 0 and 255 representing the RGB numbers (example: 200,0,0) or as one of the predefined color names (Red, Green, Blue, Yellow, Cyan, Magenta, Black).
+      </sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>0,0,255</sci:value>
+					</sci:arg>
+					<sci:arg name="Modifications Color" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>
+        Color to use to draw modified residues in the biopolymer sequence.
+        &lt;br&gt;
+        The color can be defined as a string with three comma-separated integers between 0 and 255 representing the RGB numbers (example: 200,0,0) or as one of the predefined color names (Red, Green, Blue, Yellow, Cyan, Magenta, Black).
+      </sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>255,0,0</sci:value>
+					</sci:arg>
+					<sci:arg name="Crosslinks Color - Default" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Color of the crosslink in sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>0,0,0</sci:value>
+					</sci:arg>
+					<sci:arg name="Crosslinks Color - Disulfide" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Color of the disulfide bridges in the sequence
+        &lt;br&gt;
+        The color can be defined as a string with three comma-separated integers between 0 and 255 representing the RGB numbers (example: 200,0,0) or as one of the predefined color names (Red, Green, Blue, Yellow, Cyan, Magenta, Black).
+      </sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>255,0,0</sci:value>
+					</sci:arg>
+					<sci:arg name="Crosslinks Color - Lactam" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Color of the crosslink that forms lactam bridge in sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>0,0,255</sci:value>
+					</sci:arg>
+					<sci:arg name="Crosslinks Color - Lactone" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Color of the crosslink that forms lactone bridge in sequence</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>0,255,0</sci:value>
+					</sci:arg>
+					<sci:arg name="Sequence Block Size" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>If this value is greater than 0, sequence structure will be displayed as the sequence labels blocked in this size. &apos;0&apos; means no blocking.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>10</sci:value>
+					</sci:arg>
+					<sci:arg name="Sequence Wrap Length" type="LongType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>If this value is greater than 0, the sequence wraps to the next line after this number of sequence labels. &apos;0&apos; means no wrapping. </sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>40</sci:value>
+					</sci:arg>
+					<sci:arg name="Spacing between Sequence Labels" type="DoubleType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>Specifies spacing between sequence labels.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>12.0</sci:value>
+					</sci:arg>
+					<sci:arg name="Spacing between Sequence Blocks" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies spacing between sequence blocks.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>20.0</sci:value>
+					</sci:arg>
+					<sci:arg name="Spacing between Sequence Lines" type="DoubleType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies spacing between sequence lines.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:value>24.0</sci:value>
+					</sci:arg>
+					<sci:arg name="Display Sequence Block Numbers" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>If this setting is true and there is sequence block size set, colume number at the end of each block is displayed at the top of the sequence.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Sequence Line Numbers" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>If this setting is true, multiple line Sequence is displayed with starting number at the beginning of each row of sequences. </sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Show Expanded Sequence Structure" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>If this setting is true, expanded sequence residue shows its explicit structure instead of label.</sci:help>
+						<sci:enabledscript>parameter(&quot;Show Sequence View&quot;) eq true</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Sgroups" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of Sgroups</sci:help>
+						<sci:member>DrawFunctionalGroups</sci:member>
+						<sci:member>FunctionalGroupsQueries</sci:member>
+					</sci:arg>
+					<sci:arg name="DrawFunctionalGroups" type="BoolType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;Draw specific functional groups as text instead of the actual atoms and bonds.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The functional groups to draw are defined using substructure searching with queries contained in the directory specified by &lt;i&gt;FunctionalGroupsQueries&lt;/i&gt;. The default location of the functional group queries is /data/Queries/FunctionalGroups.&lt;/li&gt;
+&lt;li&gt;Each functional group query mol file must define the text to be drawn, the text color, and the core atom that connects the functional group to the rest of the molecule. Only functional groups with a single core atom are allowed.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="FunctionalGroupsQueries" type="URLType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Location of the functional group queries. </sci:help>
+						<sci:value>data\Queries\FunctionalGroups\*.mol</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereochemistry" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Depiction options that control the drawing of stereochemistry labels</sci:help>
+						<sci:member>Chirality Label Options</sci:member>
+						<sci:member>Chirality Labels</sci:member>
+						<sci:member>Color of Absolute Centers</sci:member>
+						<sci:member>Color of AND Centers</sci:member>
+						<sci:member>Color of OR Centers</sci:member>
+						<sci:member>Display Labels for Stereogenic Centers</sci:member>
+						<sci:member>Display Labels for Absolute Centers</sci:member>
+						<sci:member>Color Stereogenic Centers</sci:member>
+						<sci:member>Stereo Label for R at Absolute Centers</sci:member>
+						<sci:member>Stereo Label for R at AND Centers</sci:member>
+						<sci:member>Stereo Label for R at OR Centers</sci:member>
+						<sci:member>Stereo Label for S at Absolute Centers</sci:member>
+						<sci:member>Stereo Label for S at AND Centers</sci:member>
+						<sci:member>Stereo Label for S at OR Centers</sci:member>
+					</sci:arg>
+					<sci:arg name="Chirality Label Options" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>
+        Specify the labels to use to identify the stereo configuration of the molecule. The chirality label is drawn at the top of the molecular image.
+        &lt;ul&gt;
+        &lt;li&gt;&lt;b&gt;Pipeline Pilot Defaults&lt;/b&gt;
+        &lt;ul&gt;
+        &lt;li&gt;All marked centers in one AND Enantiomer group: &apos;&apos; (no label).&lt;/li&gt;
+        &lt;li&gt;All marked centers in one absolute group: &apos;Chiral&apos;.&lt;/li&gt;
+        &lt;li&gt;All marked centers in one OR Enantiomer group: &apos;Chiral Unknown&apos;.&lt;/li&gt;
+        &lt;li&gt;Marked centers in more than one stereogroup type: &apos;Relative&apos;.&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;Accelrys Draw Defaults&lt;/b&gt;
+        &lt;ul&gt;
+        &lt;li&gt;All marked centers in one AND Enantiomer group: &apos;AND Enantiomer&apos;.&lt;/li&gt;
+        &lt;li&gt;All marked centers in one absolute group: &apos;&apos; (no label).&lt;/li&gt;
+        &lt;li&gt;All marked centers in one OR Enantiomer group: &apos;OR Enantiomer&apos;.&lt;/li&gt;
+        &lt;li&gt;Marked centers in more than one stereogroup type: &apos;Mixed&apos;.&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;Custom Labels&lt;/b&gt;
+        &lt;br&gt;
+        Comma-separated strings with the labels to use to identify the chiral state of molecule. Four strings should be defined, with labels corresponding to the chiral states described above for the Pipeline Pilot and Accelrys Draw defaults.
+        &lt;ul&gt;
+      </sci:help>
+						<sci:legalval>Pipeline Pilot Defaults</sci:legalval>
+						<sci:legalval selected="true">Accelrys Draw Defaults</sci:legalval>
+						<sci:legalval>Custom Labels</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Chirality Labels" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>
+        Comma-separated strings with the labels to use to identify the chiral state of molecule. Four strings should be defined, with labels corresponding to the following chiral states:
+        &lt;ul&gt;
+        &lt;li&gt;All marked centers in one AND Enantiomer group.&lt;/li&gt;
+        &lt;li&gt;All marked centers in one absolute group.&lt;/li&gt;
+        &lt;li&gt;All marked centers in one OR Enantiomer group.&lt;/li&gt;
+        &lt;li&gt;Marked centers in more than one stereogroup type.&lt;/li&gt;
+        &lt;/ul&gt;
+
+      </sci:help>
+						<sci:validscript>#n := 0;
+        #s := parameter();
+        #len := stringlen(#s);
+        for #i in 1 .. #len loop
+        if substring(#s, #i, 1) eq &apos;,&apos; then
+        #n++;
+        end if;
+        end loop;
+
+        SetInvalidDetails(&apos;Must define four labels separated by commas&apos;);
+
+        parameter(&apos;Chirality Label Options&apos;) eq &apos;Custom Labels&apos; and (#n eq 3)</sci:validscript>
+						<sci:enabledscript>parameter(&apos;Chirality Label Options&apos;) eq &apos;Custom Labels&apos;</sci:enabledscript>
+						<sci:value>AND Enantiomer,,OR Enantiomer, Mixed</sci:value>
+					</sci:arg>
+					<sci:arg name="Color of Absolute Centers" type="ColorType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+						<sci:help>Specifies the color in which the stereo bonds, the stereo group labels or both are displayed at absolute stereogenic centers</sci:help>
+						<sci:value>Red</sci:value>
+					</sci:arg>
+					<sci:arg name="Color of AND Centers" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Specifies the color in which the stereo bonds, the stereo group labels or both are displayed at AND stereogenic centers</sci:help>
+						<sci:value>MediumBlue</sci:value>
+					</sci:arg>
+					<sci:arg name="Color of OR Centers" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Specifies the color in which the stereo bonds, the stereo group labels or both are displayed at OR stereogenic centers</sci:help>
+						<sci:value>ForestGreen</sci:value>
+					</sci:arg>
+					<sci:arg name="Display Labels for Stereogenic Centers" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Specify whether or not to display labels for the stereogenic centers (Abs, AND, OR)</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Display Labels for Absolute Centers" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>
+        Specify whether or not to display labels for the absolute stereogenic centers (Abs).
+        &lt;p&gt;
+        This parameter controls the display of Abs labels only. Use &lt;i&gt;Display Labels for Stereogenic Centers&lt;/&gt; to control the display of all labels (Abs, AND, OR)
+      </sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Color Stereogenic Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>
+        Specify how to color the stereogenic centers with the colors specified by &lt;i&gt;Color of Absolute Centers&lt;/i&gt;, &lt;i&gt;Color of AND Centers&lt;/i&gt;, &lt;i&gt;Color of OR Centers&lt;/i&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;b&gt;Labels Only:&lt;/b&gt; color only the atom labels (Abs, AND, OR)&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;Bonds Only:&lt;/b&gt; color only the stereo bonds&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;Labels and Bonds:&lt;/b&gt; color both atom labels and stereo bonds&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;No Color:&lt;/b&gt; don&apos;t color the stereogenic centers&lt;/li&gt;
+        &lt;/ul&gt;
+      </sci:help>
+						<sci:legalval selected="true">Labels Only</sci:legalval>
+						<sci:legalval>Bonds Only</sci:legalval>
+						<sci:legalval>Labels and Bonds</sci:legalval>
+						<sci:legalval>No Color</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Stereo Label for R at Absolute Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for R Chirality at absolute stereogenic centers</sci:help>
+						<sci:value>R</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereo Label for R at AND Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for R Chirality at AND stereogenic centers</sci:help>
+						<sci:value>R*</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereo Label for R at OR Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for R Chirality at OR stereogenic centers</sci:help>
+						<sci:value>(R)</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereo Label for S at Absolute Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for S Chirality at absolute stereogenic centers</sci:help>
+						<sci:value>S</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereo Label for S at AND Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for S Chirality at AND stereogenic centers</sci:help>
+						<sci:value>S*</sci:value>
+					</sci:arg>
+					<sci:arg name="Stereo Label for S at OR Centers" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Label to use for S Chirality at OR stereogenic centers</sci:help>
+						<sci:value>(S)</sci:value>
+					</sci:arg>
+					<sci:arg name="Zero Order Bonds" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Depiction options that control the drawing of zero-order bonds (hydrogen and dative bonds)</sci:help>
+						<sci:member>Hydrogen Bonds Color</sci:member>
+						<sci:member>Dative Bonds Color</sci:member>
+					</sci:arg>
+					<sci:arg name="Hydrogen Bonds Color" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use to draw the lines that represent Hydrogen bonds</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) eq true</sci:enabledscript>
+						<sci:value>Black</sci:value>
+					</sci:arg>
+					<sci:arg name="Dative Bonds Color" type="ColorType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Specifies the color to use to draw the lines that represent Dative bonds</sci:help>
+						<sci:enabledscript>parameter(&quot;UseColor&quot;) eq true</sci:enabledscript>
+						<sci:value>Black</sci:value>
+					</sci:arg>
+					<sci:arg name="Links and Actions" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Links and actions to be applied to the report element produced by this component.</sci:help>
+						<sci:member>Link</sci:member>
+						<sci:member>Link Target</sci:member>
+						<sci:member>HTML Attributes</sci:member>
+						<sci:member>Tooltip</sci:member>
+						<sci:member>Protocol Link</sci:member>
+						<sci:member>Link Options</sci:member>
+					</sci:arg>
+					<sci:arg name="Link" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;An optional parameter specifying a link for the reporting element produced by this component. The &lt;i&gt;Link&lt;/i&gt; value can be an internal report link or an external URL.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Internal: A string that points to a &lt;i&gt;Link Target&lt;/i&gt; in the report. Both the &lt;i&gt;Link&lt;/i&gt; and &lt;i&gt;Link Target&lt;/i&gt; values need to match for an internal link to work.&lt;/li&gt;
+&lt;li&gt;External: A string that points to an external URL such as &apos;http://www.sitename.com&apos;, &apos;ftp://www.sitename.com&apos;, or a file URL. A file URL can be in one of these forms:
+	&lt;ul&gt;
+	&lt;li&gt;&apos;file:///C:/.../scitegic root/.../document.pdf&apos; - when using an absolute path within the Pipeline Pilot installation folder&lt;/li&gt;
+ 	&lt;li&gt;&apos;file://///machine_name/C/.../document.pdf&apos; - when using a Windows UNC path visible to the Pipeline Pilot server&lt;/li&gt;
+	&lt;li&gt;&apos;file:///relative_path/document.pdf&apos; - when using a path, relative to &lt;i&gt;@SciTegicRoot&lt;/i&gt;&lt;/li&gt;
+	&lt;li&gt;&apos;file://machine_name.domain_name.com/C/.../document.pdf&apos; - when using a path with a fully qualified machine name&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:enabledscript>prefixLength := StringLen(&apos;Link&apos;);
+fullLength := StringLen(ParameterName());
+prefix := SubString(ParameterName(), 1, fullLength - prefixLength); 
+protocolLinkParameterName := prefix.&apos;Protocol Link&apos;;
+enabled := true;
+IF (Parameter(&quot;Include Live Molecule&quot;) EQ &quot;True&quot;) THEN
+	enabled := false;
+	SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+ELSIF (parameter(protocolLinkParameterName) IS DEFINED ) THEN 
+	enabled := Parameter(protocolLinkParameterName) EQ &apos;&apos;;
+	IF (NOT enabled) THEN
+		 SetDisabledDetails(&apos;This parameter is enabled only when Protocol Link is not set&apos;);
+	END IF;
+END IF;	
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Protocol Link" type="ProtocolLinkType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;Specifies a link that runs a protocol.  Editing this parameter opens up the Protocol Link Dialog.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>prefixLength := StringLen(&apos;Protocol Link&apos;);
+fullLength := StringLen(ParameterName());
+prefix := SubString(ParameterName(), 1, fullLength - prefixLength); 
+linkParameterName := prefix.&apos;Link&apos;;
+enabled := true;
+IF (Parameter(&quot;Include Live Molecule&quot;) EQ &quot;True&quot;) THEN
+	enabled := false;
+	SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+ELSIF (parameter(linkParameterName) IS DEFINED ) THEN 
+	enabled := Parameter(linkParameterName) EQ &apos;&apos;;
+	IF (NOT enabled) THEN
+		 SetDisabledDetails(&apos;This parameter is enabled only when Link is not set&apos;);
+	END IF;
+END IF;	
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Link Options" type="LinkOptionsType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Specifies how to display pages linked to the reporting element. 
+Applies only if &lt;i&gt;Link&lt;/i&gt; or &lt;i&gt;Protocol Link&lt;/i&gt; are set for the component.</sci:help>
+						<sci:enabledscript>enabled := Parameter(&quot;Include Live Molecule&quot;) EQ &apos;False&apos;;
+IF (NOT enabled) THEN
+     SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+END IF;
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Link Target" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Sets this element as the destination for links from other elements in the report. The value of &lt;i&gt;Link Target&lt;/i&gt; can be text or a property name, and should match the value of &lt;i&gt;Link&lt;/i&gt; in another report component.  In the resulting report, when the element with &lt;i&gt;Link&lt;/i&gt; is clicked, the element with the matching &lt;i&gt;Link Target&lt;/i&gt; is brought to the top of the report page.</sci:help>
+					</sci:arg>
+					<sci:arg name="Tooltip" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>An optional tooltip for this reporting element.</sci:help>
+						<sci:enabledscript>enabled := Parameter(&quot;Include Live Molecule&quot;) EQ &apos;False&apos;;
+IF (NOT enabled) THEN
+     SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+END IF;
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="HTML Attributes" type="HTMLAttributesType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Defines attributes for the reporting element. These attributes can be used by JavaScript code that is &lt;a href=&quot;javascript:DoLink(&apos;{262A8E5D-BB8E-4dc4-A6F5-A61FC6047EC8}&apos;)&quot;&gt;embedded in&lt;/a&gt; or &lt;a href=&quot;javascript:DoLink(&apos;{6DF7D4FA-28BC-453b-8882-DE55C7CFFBF9}&apos;)&quot;&gt;included by&lt;/a&gt; the HTML report. One very common attribute is &quot;id&quot; which allows access to the element using the document.getElementById(id) method. Event handlers such as &quot;onclick&quot; and &quot;onmouseover&quot; are also common attributes.</sci:help>
+						<sci:enabledscript>enabled := Parameter(&quot;Include Live Molecule&quot;) EQ &apos;False&apos;;
+IF (NOT enabled) THEN
+     SetDisabledDetails(&apos;This parameter is enabled only when Include Live Molecule is set to False.&apos;);
+END IF;
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Column Settings" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Column settings control how the element appears when it is used inside a table.</sci:help>
+						<sci:member>Column Settings Header Format</sci:member>
+						<sci:member>Column Settings Cell Format</sci:member>
+						<sci:member>Column Settings Cell Position</sci:member>
+						<sci:member>Column Settings Header Text</sci:member>
+						<sci:member>Column Settings Header Position</sci:member>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Text" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the text displayed at the top of its column.</sci:help>
+						<sci:value>Molecule</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;Formatting to be applied to the reporting element produced by this component.
+Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, Color, 
+and Background Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;li&gt;Background Image: Allows you to select a background image for the reporting element. 
+This image must be accessible to the Pipeline Pilot server to be used (for example, 
+you can copy images to the apps\scitegic\core\dataroot\data\Images folder in your 
+Pipeline Pilot installation to make them available). Supported image types include 
+.gif, .jpg, .png, and .bmp.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the text displayed at the top of its column.</sci:help>
+						<sci:value>500</sci:value>
+						<sci:value>100.0</sci:value>
+						<sci:value>Percent</sci:value>
+						<sci:value>100.0</sci:value>
+						<sci:value>Percent</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+						<sci:value>0.0</sci:value>
+						<sci:value>Pixels</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;Formatting to be applied to the reporting element produced by this component.
+Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, Color, 
+and Background Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;li&gt;Background Image: Allows you to select a background image for the reporting element. 
+This image must be accessible to the Pipeline Pilot server to be used (for example, 
+you can copy images to the apps\scitegic\core\dataroot\data\Images folder in your 
+Pipeline Pilot installation to make them available). Supported image types include 
+.gif, .jpg, .png, and .bmp.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the cells in the column.</sci:help>
+					</sci:arg>
+					<sci:arg name="Optimize Using Globals" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Defines if the image calculation data will be stored on each data record or in 
+globals. Storing the image calculation data in globals generally improves the performance 
+since less data is passed on data records. However, if data records that passed through the component are written into a cache that is reused outside of the current protocol you need to set this parameter to False.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Plug In</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Creates an image of a molecule for use in reports</sci:value>
+						<sci:value>&lt;p&gt;The component generates a graphical representation of the input molecule as a report element. Supported image formats include PNG, JPEG, SVG, EMF, BMP and TIFF. SVG output may be the best choice if outputting to a PDF document. The image will be shown if the pipeline feeds into a writer or viewer from the reporting collection.&lt;/p&gt;
+
+&lt;b&gt;Including Live Molecular Data&lt;/b&gt;
+
+With &lt;i&gt;Include Live Molecule&lt;/i&gt; set to True, this component is equivalent to the read-only version of the &lt;a href=&quot;javascript:DoLink(&apos;{7415B28B-1606-4F6A-88B4-4BD4F5B1E1AD}&apos;)&quot;&gt;Chemistry Sketcher&lt;/a&gt; component. See parameter-level help for more details.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;For generated molecular images, use &lt;i&gt;ImageSize&lt;/i&gt; and &lt;i&gt;WidthToHeightRatio&lt;/i&gt; to modify the size and aspect ratio.  The &lt;i&gt;Position&lt;/i&gt; parameter should not be used to set the width and height dimensions.  Using &lt;i&gt;Position&lt;/i&gt; will stretch the image using a linear scaling in each direction that invariably looks poor.&lt;/li&gt;
+	&lt;li&gt; The component does not check or calculate 2D coordinates for the input molecules. You can use &lt;a href=&quot;javascript:DoLink(&apos;{9164525E-5964-47A2-82D9-B8155B215724}&apos;)&quot;&gt;2D Coords&lt;/a&gt; to generate the coordinates. You could also use &lt;a href=&quot;javascript:DoLink(&apos;{62ADBA86-60B1-4777-986A-209CFA6584F5}&apos;)&quot;&gt;Ensure Molecule Coordinates&lt;/a&gt; to automatically check the coordinates and generate them if necessary.&lt;/li&gt;
+	&lt;li&gt;Users with more than one of the Accelrys Draw or ISIS/Draw sketchers installed will see Accelrys Draw launched in preference to ISIS/Draw. Those sketchers should be run from the desktop at least once before the applet can properly launch them to display a molecule.&lt;/li&gt;
+	&lt;li&gt;To create live, embedded chemistry in Office documents, use &lt;a href=&quot;javascript:DoLink(&apos;{DAA51EC2-CF25-48EA-A905-4004BE152BA1}&apos;)&quot;&gt;Office Chemistry Sketcher&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;{EB41879F-CB96-4E25-8BE7-D9C4C23083B9}&apos;)&quot;&gt;Molecule to Image&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</sci:value>
+						<sci:value>Molecule</sci:value>
+						<sci:value>A molecular data record,</sci:value>
+						<sci:value>Molecule</sci:value>
+						<sci:value>A new image report element is added to the data record.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>2</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Image from Molecule</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>9.0.1.28</sci:value>
+					</sci:arg>
+					<sci:arg name="JavaClass" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>com.scitegic.report.component.ImageFromDataComponent</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>426 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>REPORTNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="Property Location" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Describes whether to look for this property name on the current data record or the global data.</sci:help>
+						<sci:legalval selected="true">Data Record</sci:legalval>
+						<sci:legalval>Global</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Property" type="StringType" required="false" visibility="nevershow" multi="false" expanded="true">
+						<sci:help>&lt;p&gt;The name of the property to display. This will typically be &quot;PNG_Image&quot; if the image was calculated using the Molecule to PNG component.&lt;/p&gt;
+
+&lt;p&gt;The value of &lt;i&gt;Property Type&lt;/i&gt; determines if this is interpreted as a local property on a data record or a global property. (If global property, do not include the &apos;@&apos; prefix in the Property parameter.)&lt;/p&gt;</sci:help>
+						<sci:value>$(image type)_Image</sci:value>
+					</sci:arg>
+					<sci:arg name="Use Package" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="CaptureStdoutStderr" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:help>CaptureStdoutStderr</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ErrorIfAlreadyLoaded" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/chemistry</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Wed Jul 10 09:37:55 2013</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{5DF8055A-FF6E-4a31-A70C-5C9E94335D50}</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Chemistry\Data Access and Manipulation\Viewers\Reporting Tools\Image from Molecule</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.ComponentJavaPlugin.1">
+				<sci:component name="Column" version="2">
+					<sci:arg name="Header Text" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>The text displayed at the top of the column.</sci:help>
+						<sci:member>Header Format</sci:member>
+						<sci:member>Header Position</sci:member>
+						<sci:value>structure</sci:value>
+					</sci:arg>
+					<sci:arg name="Header Format" type="FormatType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Formatting to be applied to this reporting element.&lt;/p&gt;
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Header Position" type="PositionType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies how the header is positioned. Editing this parameter opens up the Position Dialog, which enables you to change margins, paddings, width, and height.</sci:help>
+					</sci:arg>
+					<sci:arg name="Cell Options" type="GroupType" required="false" visibility="visible" multi="false">
+						<sci:help>Includes options to control the formatting and position of the cells of the column.</sci:help>
+						<sci:member>Cell Position</sci:member>
+						<sci:member>Cell Format</sci:member>
+					</sci:arg>
+					<sci:arg name="Cell Format" type="FormatType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Formatting to be applied to this reporting element.&lt;/p&gt;
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Cell Position" type="PositionType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies how the cells are positioned. Editing this parameter opens up the Position Dialog, which enables you to change margins, paddings, width, and height.</sci:help>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="JavaClass" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>com.scitegic.report.component.ColumnComponent</sci:value>
+					</sci:arg>
+					<sci:arg name="CaptureStdoutStderr" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:help>CaptureStdoutStderr</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Feb 12 10:00:00 2010</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Column</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>714 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>REPORTCOLUMNNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{EB2E16E8-D13E-4C7F-BB46-0E06502A6833}</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Plug In</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Creates a column for a table in a report</sci:value>
+						<sci:value>&lt;p&gt;Column components take Reporting objects as input (e.g., from a &lt;a href=&quot;javascript:DoLink(&apos;{34E6C845-4ACB-4212-BBA3-7422213D458F}&apos;)&quot;&gt;Text&lt;/a&gt; component) to create a table in a report. Typically, the data source for the table is branched and fed into Reporting components (such as a Text) which specify the data to go into each column of the table.  The output of each Reporting component is fed into an individual Column component (i.e., one Column component per column of the table) which controls the formatting and position of each column in the table.  The output of all of the Column components is sent into a single Table component.&lt;/p&gt;
+
+&lt;p&gt;Each column is added to the table in the order it is placed in the protocol.  Each column in a table must have the same number of rows.
+Valid input for this component is a reporting data record (e.g., output from a &lt;a href=&quot;javascript:DoLink(&apos;{34E6C845-4ACB-4212-BBA3-7422213D458F}&apos;)&quot;&gt;Text&lt;/a&gt; component). The first data record that enters the Column component represents the first cell in the column, and each additional record makes up the subsequent cells in the column. 
+
+&lt;p&gt;&lt;i&gt;Header Text&lt;/i&gt; is the label displayed in the header at the top of the column.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;Cell Options&lt;/i&gt; parameters control the formatting and position of the cells of the table, which hold the data.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As of Pipeline Pilot 6.0, tables can be generated from Reporting objects without Column components by placing the Reporting components that specify the table data in sequence (rather than branched).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For more assistance in creating tables, see &lt;a href=&quot;javascript:DoLink(&apos;{8DD32465-CB99-4A1E-870D-1A2F56D2C249}&apos;)&quot;&gt;Table&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/report/docs/reporting_basic.pdf&apos;)&quot;&gt;Report Design Essentials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>A data record representing the column is sent to the pass port.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>The input data records are all sent to the fail port.</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>8.0.0.14</sci:value>
+					</sci:arg>
+					<sci:arg name="Link Options Mapping" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Mapping of the Format parameter name to the Link Options parameter name.</sci:help>
+					</sci:arg>
+					<sci:arg name="Use Package" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Reporting and Visualization\Basic Reporting\Elements\Column</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.MDLSDReader.1">
+				<sci:component name="Asinex Reader" version="2">
+					<sci:arg name="Source" type="URLType" required="true" visibility="visible" multi="false" expanded="true">
+						<sci:help>The file or URL source to read</sci:help>
+						<sci:member>Maximum</sci:member>
+						<sci:member>SourceTag</sci:member>
+						<sci:member>Keep Properties</sci:member>
+						<sci:value>data\Asinex\asinex_sd.zip</sci:value>
+					</sci:arg>
+					<sci:arg name="Maximum" type="LongType" required="false" visibility="visible" multi="false">
+						<sci:help>The maximum number of data records to read (all if value is empty)</sci:help>
+						<sci:value>50</sci:value>
+					</sci:arg>
+					<sci:arg name="SourceTag" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The type of tag to create to identify the source of data records. A property called 
+
+&lt;b&gt;SourceTag&lt;/b&gt; is created and holds the value indicated.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;None&lt;/b&gt;: 
+
+No SourceTag property is created and any existing ones are removed.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Filename&lt;/b&gt;: 
+
+The name of the file read.&lt;/li&gt;&lt;li&gt;&lt;b&gt;FilenameAndExtension&lt;/b&gt;: The name of 
+the 
+file read with its file extension.&lt;/li&gt;&lt;li&gt;&lt;b&gt;FullFilename&lt;/b&gt;: The name 
+of the 
+file read, including the directory path.&lt;/li&gt;&lt;li&gt;&lt;b&gt;ZipFilename&lt;/b&gt;: 
+When reading 
+a compressed zip file, the filename within the compressed archive.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Number&lt;/b&gt;: 
+
+When multiple files are read in this component, they are numbered 1,2,3...&lt;/li&gt;&lt;li&gt;&lt;b&gt;Letter&lt;/b&gt;: 
+
+When multiple files are read in this component, they are lettered A, B, C...&lt;/li&gt;&lt;li&gt;&lt;b&gt;KeepCurrent&lt;/b&gt;: 
+
+Keeps the current value of SourceTag.&lt;/li&gt;&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">None</sci:legalval>
+						<sci:legalval>Filename</sci:legalval>
+						<sci:legalval>FilenameAndExtension</sci:legalval>
+						<sci:legalval>FullFilename</sci:legalval>
+						<sci:legalval>ZipFilename</sci:legalval>
+						<sci:legalval>Number</sci:legalval>
+						<sci:legalval>Letter</sci:legalval>
+						<sci:legalval>KeepCurrent</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Keep Properties" type="PropertyPreviewType" required="false" visibility="visible" multi="false">
+						<sci:help>A list of properties the reader should retain for each data record that is output. If a value is not defined, retains all properties. If the parameter contains the value &quot;-&quot; (minus sign), properties are not retained.</sci:help>
+					</sci:arg>
+					<sci:arg name="Additional Options" type="GroupType" required="false" visibility="visible" multi="false">
+						<sci:help>Contains less commonly used parameters</sci:help>
+						<sci:member>ReadProperties</sci:member>
+						<sci:member>PutNameInProperty</sci:member>
+						<sci:member>ReadQueryInfo</sci:member>
+						<sci:member>PutCommentInProperty</sci:member>
+						<sci:member>SD Format Options</sci:member>
+						<sci:member>Global Templates</sci:member>
+					</sci:arg>
+					<sci:arg name="SD Format Options" type="StringType" required="false" visibility="visible" multi="true">
+						<sci:help>&lt;p&gt;Options available for the SD Reader:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Properties 
+Can Contain $$$$:&lt;/b&gt;  By the CTFile standard, a property can contain a &apos;$$$$&apos;-line.  
+
+Properties or data field values are terminated by a blank line.  Only then will the &apos;$$$$&apos;-line 
+
+terminate the full data block.  Setting this option off will terminate the data block upon any read 
+of 
+a &apos;$$$$&apos;-line.  This option is available to provide compatibility with some 3rd Party SD 
+files.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;One-space Lines Terminate Properties:&lt;/b&gt;  By the CTFile 
+standard, properties or data fields values are 
+terminated by a blank line. Selecting this option will 
+terminate the data block when encountering a line 
+containing a space as the only character in the line.  
+This option is available to provide compatibility 
+with some 3rd Party SD files.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Unwrap 
+Long Property Lines:&lt;/b&gt;  By the CTFile standard, lines in property fields cannot exceed 200 
+characters.  When this option is selected and a property line of exactly 200 characters is found, the 
+newline character will be ignored and property string will continue on the next line.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Read 
+Unknown Stereo Parity:&lt;/b&gt;  When selected, the SD Reader will use the &apos;Atom Parity&apos; value 
+(parity of 
+&apos;3&apos;) to mark unknown stereo centers in 3D mol files.  This will leave these atoms 
+marked as 
+&apos;unknown stereo&apos; and will not calculate the stereo from the coordinates.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Process 
+Complex Data Header Lines:&lt;/b&gt; Data header lines are the lines in the SD format that precede 
+the actual data. They can contain the data field name (enclosed in angular brackets &lt;&gt;), the data 
+field number (as DTn), the external registry number (enclosed in parentheses), and other optional information. 
+When this parameter is set to False, only the data field name is parsed and used to set the corresponding 
+property name. All the other information in the line is ignored. When the parameter is set to true, all 
+the information is parsed. The property name is set from either the field name in &lt;&gt; or the DTn. 
+If both are present the field name takes priority and the DTn number is saved as an additional property 
+named &lt;b&gt;FieldName#DTn&lt;/b&gt;. The external registry number is saved as &lt;b&gt;FieldName#ExtRegNum&lt;/b&gt; 
+and any other information is saved as &lt;b&gt;FieldName#OtherDataFieldInfo&lt;/b&gt;. When the molecules 
+are written to an SD file, the data header lines are reconstructed from these properties. The default 
+state of this parameter is False, as parsing, preserving, and eventually writing all the information 
+in the data header lines can be costly, specially for SD files with many data fields.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Convert 
+From H2 And H+ Atom Types:&lt;/b&gt; &apos;H2&apos; and &apos;H+&apos; are two non-standard element types 
+that can be assigned to atoms by the Accelrys Draw sketcher. They represent unattached Hydrogen (a Hydrogen molecule) 
+and charged Hydrogen (a proton), respectively. When this parameter is selected, these atom types are 
+converted to standard hydrogen atoms upon reading, with charges of 0 for H2 and +1 for H+. Otherwise, 
+these atoms are read and perceived as unknown atom types, with &apos;H2&apos; and &apos;H+&apos; as the 
+atom labels.&lt;/li&gt; 
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">Properties Can Contain $$$$</sci:legalval>
+						<sci:legalval>One-space Lines Terminate Properties</sci:legalval>
+						<sci:legalval selected="true">Unwrap Long Property Lines</sci:legalval>
+						<sci:legalval>Read Unknown Stereo Parity</sci:legalval>
+						<sci:legalval>Process Complex Data Header Lines</sci:legalval>
+						<sci:legalval selected="true">Convert From H2 And H+ Atom Types</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ReadProperties" type="BoolType" required="true" visibility="visible" multi="false">
+						<sci:help>Select True to read the properties for each molecule (in addition to the structures)</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ReadQueryInfo" type="BoolType" required="true" visibility="visible" multi="false">
+						<sci:help>If properties starting with &quot;QueryInfo&quot; are present, use them to set up query information on the atoms and bonds. (This is how, for example, SMARTS query information can be preserved when writing to an SD format file.) This information only contains information that cannot be written out in MOL/SD format.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="PutNameInProperty" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>What to call the property that holds the name of each molecule</sci:help>
+						<sci:value>Name</sci:value>
+					</sci:arg>
+					<sci:arg name="PutCommentInProperty" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>What to call the property that holds the comment associated with each molecule</sci:help>
+					</sci:arg>
+					<sci:arg name="Global Templates" type="URLType" required="false" visibility="visible" multi="false">
+						<sci:help>V3000 SD or MOL files containing template definitions for amino acid, nucleic acid or other residues or monomers. These templates can then be refered to by molecules read by the SD reader.&lt;p&gt;
+The default template file included in the Chemistry collection, &lt;i&gt;data\Direct\Direct_templates.mol&lt;/i&gt; contains definitions for 22 amino acids and 8 DNA and RNA templates.</sci:help>
+						<sci:value>data\Direct\Direct_templates.mol</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="AllowUnknownDoubleBondsFromCoordinates" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>According to the CTfile specifications, the cis/trans character of double bonds with bond stereo set to zero is determined from the coordinates. This parameter controls whether or not to assign unknown bond stereo to double bonds for which the stereo could not be determined from the coordinates, either because there are no coordinates or because of colinearity issues.  When the parameter is set to False and the stereo could not be determined, no specific stereo configuration is assigned to the double bond, but it is not marked as unknown stereo.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/chemistry</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Jul 13 10:29:50 2012</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Asinex Reader</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>DOCUMENTNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{6719DB99-1BD7-4B22-8FF8-B06F469B1A5C}</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>SD Reader</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>90 -320</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Loads 137,000 compounds from the Asinex vendor catalog</sci:value>
+						<sci:value>&lt;p&gt;Reads molecules and property data from a zipped SD file containing approximately 137,000 compounds from Asinex.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a specific instance of the &lt;a href=&quot;javascript:DoLink(&apos;{CA65B896-4FE6-4E3A-B884-DC16B53B8D26}&apos;)&quot;&gt;SD Reader&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>Molecule</sci:value>
+						<sci:value>Data fields in the SD file will be added to the property fields</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>9.0.0.1</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Chemistry\Utilities\Demo Sources\Asinex Reader</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="Table (Semantic UI)" version="2">
+					<sci:arg name="Show Table Header" type="BoolType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Show Table Header</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Specifies whether table headers should be visible or not.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Basic" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A basic table has no special formatting.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Appearance" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+						<sci:member>Colored</sci:member>
+						<sci:member>Definition</sci:member>
+						<sci:member>Single Line</sci:member>
+						<sci:member>Fixed</sci:member>
+						<sci:member>Selectable Rows</sci:member>
+						<sci:member>Inverted</sci:member>
+						<sci:member>Striped</sci:member>
+						<sci:member>Celled</sci:member>
+						<sci:member>Column Count</sci:member>
+						<sci:member>Collapsing</sci:member>
+						<sci:member>Padded</sci:member>
+						<sci:member>Size</sci:member>
+						<sci:member>Sortable</sci:member>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Basic to &quot;False&quot;&apos;);
+not Parameter(&apos;Basic&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Sortable" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table may allow a user to sort contents by clicking on a table header.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Show Table Header to true.&apos;);
+Parameter(&apos;Show Table Header&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Colored" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A table can be given a color to distinguish it from other tables. &lt;p&gt;These colors can be Inverted to become background colors.&lt;/p&gt;</sci:help>
+						<sci:legalval/>
+						<sci:legalval>red</sci:legalval>
+						<sci:legalval>orange</sci:legalval>
+						<sci:legalval>yellow</sci:legalval>
+						<sci:legalval>olive</sci:legalval>
+						<sci:legalval>green</sci:legalval>
+						<sci:legalval>teal</sci:legalval>
+						<sci:legalval>blue</sci:legalval>
+						<sci:legalval>violet</sci:legalval>
+						<sci:legalval>purple</sci:legalval>
+						<sci:legalval>pink</sci:legalval>
+						<sci:legalval>brown</sci:legalval>
+						<sci:legalval>grey</sci:legalval>
+						<sci:legalval>black</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Definition" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table may be formatted to emphasize a first column that defines a rows content.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Single Line" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>&lt;p&gt;A table can specify that its cell contents should remain on a single line, and not wrap. &lt;b&gt;If cell contents are very long the column may become very wide and push all the columns to the right of it off screen. In that case, set Fixed.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Fixed single line tables will automatically ensure content that does not fit in a single line will receive &quot;...&quot; ellipsis.&lt;/p&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Fixed" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A special faster form of table rendering that does not resize table cells based on content. &lt;p&gt;Fixed single line tables will automatically ensure content that does not fit in a single line will receive &quot;...&quot; ellipsis.&lt;/p&gt;</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;A table can be &apos; . ParameterName() . &apos; or Collapsing but not both at the same time.&apos;);
+not (Parameter(&apos;Collapsing&apos;) and Parameter())</sci:validscript>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Selectable Rows" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table can have its rows appear selectable.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Inverted" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table&apos;s colors can be inverted.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Striped" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table can stripe alternate rows of content with a darker color to increase contrast.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Celled" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table may be divided each row into separate cells.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Column Count" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A table can specify its column count to divide its content evenly.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>one</sci:legalval>
+						<sci:legalval>two</sci:legalval>
+						<sci:legalval>three</sci:legalval>
+						<sci:legalval>four</sci:legalval>
+						<sci:legalval>five</sci:legalval>
+						<sci:legalval>six</sci:legalval>
+						<sci:legalval>seven</sci:legalval>
+						<sci:legalval>eight</sci:legalval>
+						<sci:legalval>nine</sci:legalval>
+						<sci:legalval>ten</sci:legalval>
+						<sci:legalval>eleven</sci:legalval>
+						<sci:legalval>twelve</sci:legalval>
+						<sci:legalval>thirteen</sci:legalval>
+						<sci:legalval>fourteen</sci:legalval>
+						<sci:legalval>fifteen</sci:legalval>
+						<sci:legalval>sixteen</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Collapsing" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A table can be collapsing, taking up only as much space as its rows.&lt;p&gt;A table can either be Fixed or Collapsing but not both at the same time.&lt;/p&gt;</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;A table can be Fixed or &apos; . ParameterName() . &apos; but not both at the same time.&apos;);
+not (Parameter(&apos;Fixed&apos;) and Parameter())</sci:validscript>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Padded" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Rows in a table may sometimes need to be more compact or more padded for legibility.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>very compact</sci:legalval>
+						<sci:legalval>compact</sci:legalval>
+						<sci:legalval>padded</sci:legalval>
+						<sci:legalval>very padded</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Size" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A table can have small or large font.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>small</sci:legalval>
+						<sci:legalval>large</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+						<sci:value>classes_, guid</sci:value>
+					</sci:arg>
+					<sci:arg name="Constant GUID" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Override an automatically set GUID inside the component with this value.&lt;/p&gt; &lt;p&gt;If set, HTML element(s) will have their IDs set using this value instead of a randomly generated one.&lt;/p&gt;&lt;p&gt;Spaces or special characters are not allowed, only alphanumeric. The ID is case-sensitive.&lt;/p&gt;
+</sci:help>
+						<sci:validscript>SetInvalidDetails(ParameterName() . &apos; must be alphanumeric. Spaces or special characters are not allowed.&apos;);
+numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;</sci:validscript>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="false">
+						<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid Grid Options</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Grid Options" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Use this to specify grid engine specific command line parameters to the job submission command. Leave blank to use defaults.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Table (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportTableNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{7DB736DB-2B9F-43E6-9B58-2DDD938BF8D3}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>1098 -320</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Table (Semantic UI).</sci:value>
+						<sci:value>&lt;p&gt;A formatted table.&lt;/p&gt;</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>9.2.0.484</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>3</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalComponentGUID</sci:help>
+						<sci:value>{50AA3464-23DE-4DB1-B92E-2382849BF616}</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Tables\Table (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="DataTable (Semantic UI)" version="2">
+					<sci:arg name="Exclude Properties" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Exclude Properties</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;A comma-delimited list of properties which will not be rendered in an autogenerated table.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Order" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Column Order</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;A comma-separated list of Header Text names (which may differ from the corresponding property names), indicating the order the columns should appear. Any non-listed properties will be added as subsequent columns.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The column names are case-sensitive&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Show Entries Choices" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>Choices on the &quot;Show ... entries&quot; pulldown menu above the table. The first choice is used to initially display the table. Use a comma to separate the choices.</sci:help>
+						<sci:value>10,25,50</sci:value>
+					</sci:arg>
+					<sci:arg name="Array Value Display" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Array Value Display</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Determines how array values are separated when they are displayed in an autogenerated table.&lt;/p&gt;</sci:help>
+						<sci:legalval>Separate by Commas</sci:legalval>
+						<sci:legalval selected="true">Separate by Newlines</sci:legalval>
+						<sci:legalval>One Array Element per Cell</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Data Connector" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Data Connector</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>Parameters related to the Data Connector interactivity model.</sci:help>
+						<sci:member>Subscriber Event Handling</sci:member>
+						<sci:member>Publisher Event Handling</sci:member>
+						<sci:member>Publisher Subscriber Model</sci:member>
+					</sci:arg>
+					<sci:arg name="Publisher Subscriber Model" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Publisher Subscriber Model</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Whether the component is a publisher, subscriber or both. Setting to &apos;None&apos; bypasses any Data Connector node.</sci:help>
+						<sci:legalval selected="true">Publisher and Subscriber</sci:legalval>
+						<sci:legalval>Publisher</sci:legalval>
+						<sci:legalval>Subscriber</sci:legalval>
+						<sci:legalval>None</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Subscriber Event Handling" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Subscriber Event Handling</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Setting the on subscription event handling method.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;The publisher component always highlights.</sci:help>
+						<sci:enabledscript>ModelParameterName := StrReplace(ParameterName(), &quot;Subscriber Event Handling&quot;, &quot;Publisher Subscriber Model&quot;);
+enabled := Parameter(ModelParameterName) not EQ &apos;Publisher&apos; AND Parameter(ModelParameterName) not EQ &apos;None&apos;;
+if (not enabled) then
+     SetDisabledDetails(&apos;This parameter is not enabled when the Publisher Subscriber Model is set to &quot;Publisher&quot; only or &quot;None&quot;&apos;);
+End if;
+enabled;</sci:enabledscript>
+						<sci:legalval selected="true">Highlight</sci:legalval>
+						<sci:legalval>Filter</sci:legalval>
+						<sci:legalval>Reverse Filter</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Publisher Event Handling" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Publisher Event Handling</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Setting the publishing event type.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>ModelParameterName := StrReplace(ParameterName(), &quot;Publisher Event Handling&quot;, &quot;Publisher Subscriber Model&quot;);
+enabled := Parameter(ModelParameterName) not EQ &apos;Subscriber&apos; AND Parameter(ModelParameterName) not EQ &apos;None&apos;;
+if (not enabled) then
+     SetDisabledDetails(&apos;This parameter is not enabled when the Publisher Subscriber Model is set to &quot;Subscriber&quot; only or &quot;None&quot;&apos;);
+End if;
+enabled;</sci:enabledscript>
+						<sci:legalval selected="true">On Click</sci:legalval>
+						<sci:legalval>On Mouse Over</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma-delimited list of global properties, each of which is automatically populated with the name of a file in the job&apos;s temporary folder, which always has a unique name.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold only the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;
+
+&lt;p&gt;Any global property not declared in this way is created on the top-level global property list and is accessible from all subprotocols, but breaks the encapsulation of the subprotocol and may collide with another property of the same name.&lt;/p&gt;
+
+&lt;p&gt;Therefore, you should always declare a new global property in the &lt;i&gt;DeclareLocal&lt;/i&gt; parameter, to scope the global property to the subprotocol where it is used.&lt;/p&gt;</sci:help>
+						<sci:value>guid</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allows the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running locally or remotely.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option with care, since it will not increase throughput in all circumstances. Generally speaking, it yields improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+end if;
+#parallel;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+A comma-separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (that is, server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be useful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>A comma-separated list of the maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid Grid Options</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Grid Options" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Use this to specify grid engine specific command line parameters to the job submission command. Leave blank to use defaults.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Constant GUID" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Override an automatically set GUID inside the component with this value.&lt;/p&gt; &lt;p&gt;If set, HTML element(s) will have their IDs set using this value instead of a randomly generated one.&lt;/p&gt;&lt;p&gt;Spaces or special characters are not allowed, only alphanumeric. The ID is case-sensitive.&lt;/p&gt;
+</sci:help>
+						<sci:validscript>SetInvalidDetails(ParameterName() . &apos; must be alphanumeric. Spaces or special characters are not allowed.&apos;);
+numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;</sci:validscript>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DataTable (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportTableNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{E77A1652-6E9C-4995-A388-087355A11D06}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>1434 -320</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>DataTable (Semantic UI).</sci:value>
+						<sci:value>DataTable implements interactive HTML table display using code copied from http://datatables.net.</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>9.2.0.484</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>5</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Tables\DataTable (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="HTML Report Viewer (Semantic UI)" version="2">
+					<sci:arg name="Title" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The optional title of the HTML document. The title is also used as part of the report&apos;s file name.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Permanent URL" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Display this protocol&apos;s starter URL in the browser address bar. Users will be able to bookmark the start protocol page that way. &lt;p&gt;&lt;strong&gt;Note: the protocol must be saved in Pipeline Pilot for this to work.&lt;/strong&gt;&lt;/p&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false">
+						<sci:member>Include Format and Position CSS</sci:member>
+						<sci:member>Animate Link Underlines</sci:member>
+						<sci:member>Theme</sci:member>
+					</sci:arg>
+					<sci:arg name="Theme" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Choose a visual theme for the content.&lt;/p&gt;
+To add a new theme: do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
+						<sci:legalvalscript>SetLegalValues(&apos;Default&apos;);
+//SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
+						<sci:value>Default</sci:value>
+					</sci:arg>
+					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
+						<sci:member>Add Page Margins</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Add Page Margins" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>When not using native Scitegic CSS, add page margins. This will add small margins on each side of the page. Scitegic styles already include this.</sci:help>
+						<sci:enabledscript>not Parameter(&apos;Include Format and Position CSS&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Animate Link Underlines" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>When hovering over a link, the link&apos;s underline is revealed by animating it out from the center.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Output Mode" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Allows some alternative formatting and position settings to be used that may cause the HTML report output to behave and look more like the HTML generated with previous versions of Pipeline Pilot. This parameter is intended to be set on writers in protocols developed with previous versions of Pipeline Pilot where the output looks or behaves differently when run with the current version.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Always use the value of &quot;Default&quot; for new protocols or protocols under active development. The latest Reporting components may not behave correctly in HTML reports written with a non-default mode.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When set to &quot;Pipeline Pilot 7.5&quot;, this parameter rolls back some of the improvements made in the name of standards compliance and formatting consistency, including:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;The report will not include the HTML 4.01 Doctype declaration, which will cause Internet Explorer to render the report using quirks mode.&lt;/li&gt;
+	&lt;li&gt;Position rules will not be strictly enforced, so Internet Explorer 6 will render borders and padding outside the specified width.&lt;/li&gt;
+	&lt;li&gt;Horizontal alignment of block objects will not be supported, so you will not be able to, for example, center-align a table.&lt;/li&gt;
+	&lt;li&gt;The page margins will not be set.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:legalval selected="true">Default</sci:legalval>
+						<sci:legalval>Pipeline Pilot 7.5</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists the set of temporary files which will be converted by the network to true temporary file names</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists a set of properties (without the @) to be created on the property list for this protocol.
+Other properties are created on the global property list
+and so are accessible from all protocols.</sci:help>
+						<sci:value>ServerFilePath, ServerFilePathZIP, ServerFilePathForwardSlashes</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="BoolType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>When the network is run, whether we process once or until done for each process call</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Accept Bootstrap" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Allow the use of Web Design (Bootstrap) collection components with the Semantic UI viewer? Generally speaking, this parameter should always be set to False to prevent the inadvertent mixing of the two frameworks.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval>ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval selected="true">Make Shortcut by Default</sci:legalval>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>dbondarev</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Apr 08 15:19:56 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportViewerNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>SubProtocol</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>1722 -320</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Displays the results of a reporting protocol in HTML5 format</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>This component accepts reporting objects as input.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>4</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:connectid from="2" to="1" type="true"/>
+			<sci:connectid from="1" to="3" type="true"/>
+			<sci:connectid from="0" to="2" type="true"/>
+			<sci:connectid from="0" to="3" type="true"/>
+			<sci:connectid from="3" to="5" type="true"/>
+			<sci:connectid from="5" to="4" type="true"/>
+			<sci:version iVal="1"/>
+		</sci:protocol>
+	</sci:dbitem>
+<!-- Exported protocol -->
+<sci:component name="8.0 Protocol Warning" version="2">
+<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+<sci:help>Component Icon</sci:help>
+<sci:value>PROTOCOLNODE</sci:value>
+</sci:arg>
+<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+<sci:help>Protocol Sticky Notes</sci:help>
+<sci:value>%VERSION 3%</sci:value>
+<sci:value>400 -219 1222 221</sci:value>
+<sci:value>250 120 20</sci:value>
+<sci:value>WARNING! This is a Pipeline Pilot protocol written in version 8.0 or later. It contains features that are not supported in earlier versions of Pipeline Pilot.</sci:value>
+</sci:arg>
+</sci:component>
+</sci:data>
