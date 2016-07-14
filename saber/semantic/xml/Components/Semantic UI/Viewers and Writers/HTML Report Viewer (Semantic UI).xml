@@ -5353,7 +5353,7 @@ use the &lt;a href=&quot;javascript:DoLink(&apos;{BF2A2E90-418A-4C0B-8550-B2C4D5
 						<sci:member>Initial Expression</sci:member>
 						<sci:member>Final Expression</sci:member>
 						<sci:member>Keep Calculated Properties</sci:member>
-						<sci:value>if findSubstring(Text, &apos;israwhtmlcode=&quot;True&quot;&apos;) &gt; 0 then
+						<sci:value>if findSubstring(Text, &apos;israwhtmlcode=&quot;true&quot;&apos;) &gt; 0 then
 	error(&apos;Generally speaking, Bootstrap and Semantic UI components should not be used together. If you must, set the &quot;Accept Bootstrap&quot; parameter to True in the Implementation tab of the HTML Report Viewer (Semantic UI) component.&apos;);
 end if;</sci:value>
 					</sci:arg>
