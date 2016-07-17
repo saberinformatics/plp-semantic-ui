@@ -29,7 +29,7 @@ Semantic UI release history with detailed notes:
 To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
 				<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
 SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-				<sci:value>2.2.1</sci:value>
+				<sci:value>Default</sci:value>
 			</sci:arg>
 			<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 				<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
@@ -116,7 +116,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Jul 07 15:14:54 2016</sci:value>
+				<sci:value>Sat Jul 16 23:45:56 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -143,7 +143,7 @@ and so are accessible from all protocols.</sci:help>
 				<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>2826 -220</sci:value>
+				<sci:value>2538 -695</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -174,7 +174,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>0</sci:value>
+				<sci:value>163</sci:value>
 			</sci:arg>
 			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>OriginalPackage</sci:help>
@@ -2735,7 +2735,7 @@ end if;</sci:value>
 						<sci:value>HTML Report Writer</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>714 -445</sci:value>
+						<sci:value>1002 -445</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 						<sci:value>REPORTWRITERNODE</sci:value>
@@ -2794,6 +2794,153 @@ end if;</sci:value>
 						<sci:value>Components\Reporting and Visualization\Basic Reporting\Writers\HTML Report Writer</sci:value>
 					</sci:arg>
 				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.EvaluateExpression.1">
+				<sci:component name="Custom Filter (PilotScript)" version="2">
+					<sci:arg name="Expression" type="ExpressionType" required="true" visibility="visible" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
+						<sci:help>The PilotScript expression used to filter the data.</sci:help>
+						<sci:member>Initial Expression</sci:member>
+						<sci:member>Final Expression</sci:member>
+						<sci:member>Keep Calculated Properties</sci:member>
+						<sci:value>__sidebar is defined and __sidebar</sci:value>
+					</sci:arg>
+					<sci:arg name="Initial Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
+						<sci:help>&lt;p&gt;
+An expression evaluated only when the component
+is first initialized (when the first data record enters).
+&lt;p/&gt;
+Since there is no data available at initialization time, only expressions referencing local or global properties are allowed.
+&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Final Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
+						<sci:help>&lt;p&gt;
+An expression evaluated only when the
+component is finalized (once the last data
+record has passed).
+&lt;p/&gt;
+Since there is no data available at finalization time, only expressions referencing local or global properties are allowed.
+&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Keep Calculated Properties" type="BoolType" required="true" visibility="visible" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
+						<sci:help>Allows any properties that were calculated in
+&quot;Expression&quot; to be included with the exiting
+record.
+Otherwise, these properties are removed after
+the evaluation is complete.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:help>When an expected data type is not found during processing:  
+  Halt: Terminate the execution of the network
+  Fail: Continue execution of the network, passing data out the Fail(red) port
+  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:help>When an recoverable error occurs during processing:  
+  Halt: Terminate the execution of the network
+  Fail: Continue execution of the network, passing data out the Fail(red) port
+  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Custom Error Message</sci:help>
+					</sci:arg>
+					<sci:arg name="ExpressionVersion" type="LongType" required="false" visibility="nevershow" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
+						<sci:help>Version of expression parser to use.</sci:help>
+						<sci:value>2</sci:value>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/generic</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Mon Jan 21 09:57:16 2008</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentAutoDisplayName" type="ExpressionType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Automatically update the component display name when the &quot;Expression&quot; property is changed. This feature is turned off after the user manually changes the display name of the component in Protocol workspace.</sci:help>
+						<sci:value>#displayName := trim(Parameter(&apos;Expression&apos;, 2));
+if(strlength(#displayName) &gt; 0) then	
+	/* Find the first line break */
+	#nl := FindSubstring(#displayName, &quot;\r&quot;);
+	if #nl &lt;= 0 then
+		#nl := FindSubstring(#displayName, &quot;\n&quot;);
+	end if;
+
+	/* Keep the first line only */
+	if (#nl &gt; 0) then
+		StrErase(#displayName, #nl);
+	end if;
+	
+	#displayName;
+else
+	&quot;&quot;;
+end if;</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>FILTERNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Custom Filter (PilotScript)</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{DD58ECD1-516F-48FE-A5DB-8328AED680F2}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -620</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Passes data records for which a PilotScript expression evaluates to True
+
+</sci:value>
+						<sci:value>&lt;p&gt;For each incoming data record, the PilotScript statements in &lt;i&gt;Expression&lt;/i&gt; are evaluated. If the last statement in the expression evaluates to True or non-zero, the record is sent out the Pass port. Otherwise it is sent out the Fail port.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;To initialize global variables such as counters, use &lt;i&gt;Initial Expression&lt;/i&gt;.&lt;/li&gt; 
+&lt;li&gt;To clean up global variables or calculate final results use &lt;i&gt;Final Expression&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;Parameters on Custom Manipulators do not become global variables that can be accessed via &lt;i&gt;@ParameterName&lt;/i&gt; syntax.  They must be accessed by using the &lt;i&gt;Parameter(&apos;ParameterName&apos;)&lt;/i&gt; function or by using token substitution via &lt;i&gt;$(ParameterName)&lt;/i&gt; syntax.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Data records for which the final expression in the PilotScript evaluates to True or non-zero</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value>Data records for which the final expression in the PilotScript evaluates to False or zero</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>75</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Data Access and Manipulation\Filters\Custom Filter (PilotScript)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:proplist>
+					<sci:propval name="RegistrationVersion">7.0.0.35</sci:propval>
+				</sci:proplist>
 			</sci:data>
 			<sci:data object="SciTegic.Protocol.1">
 				<sci:component name="Segment (Semantic UI)" version="2">
@@ -3143,7 +3290,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:value>{50AA3464-23DE-4DB1-B92E-2382849BF616}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>378 -570</sci:value>
+						<sci:value>666 -795</sci:value>
 					</sci:arg>
 					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>By Ref</sci:help>
@@ -3166,7 +3313,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>338 -370 300 134</sci:value>
+						<sci:value>938 -820 300 134</sci:value>
 						<sci:value>245 245 245</sci:value>
 						<sci:value>padding</sci:value>
 					</sci:arg>
@@ -3214,7 +3361,9 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:value>Components\Semantic UI\Page\Segment (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
-				<sci:protocol/>
+				<sci:protocol>
+					<sci:version iVal="4"/>
+				</sci:protocol>
 			</sci:data>
 			<sci:data object="SciTegic.EvaluateExpression.1">
 				<sci:component name="Custom Filter (PilotScript)" version="2">
@@ -3316,7 +3465,7 @@ end if;</sci:value>
 						<sci:value>{DD58ECD1-516F-48FE-A5DB-8328AED680F2}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>90 -945</sci:value>
+						<sci:value>90 -1070</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -3499,7 +3648,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:value>{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>378 -945</sci:value>
+						<sci:value>378 -1070</sci:value>
 					</sci:arg>
 					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>By Ref</sci:help>
@@ -3873,7 +4022,7 @@ end if;</sci:value>
 						<sci:value>{DD58ECD1-516F-48FE-A5DB-8328AED680F2}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>90 -1395</sci:value>
+						<sci:value>90 -1520</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -4091,7 +4240,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:value>{D257B36C-6670-4D92-8489-8A5E09C04D4D}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>378 -1395</sci:value>
+						<sci:value>378 -1520</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -4110,7 +4259,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>698 -1395 436 177</sci:value>
+						<sci:value>698 -1520 436 177</sci:value>
 						<sci:value>245 245 245</sci:value>
 						<sci:value>Animate Link Underlines?</sci:value>
 					</sci:arg>
@@ -4291,7 +4440,7 @@ Parameter(&apos;DelimitUsing&apos;) eq &apos;DelimitText&apos;</sci:enabledscrip
 						<sci:value>Text Reader</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>90 -1795</sci:value>
+						<sci:value>90 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 						<sci:value>DOCUMENTNODE</sci:value>
@@ -4438,7 +4587,7 @@ end if;</sci:value>
 						<sci:value>{DD58ECD1-516F-48FE-A5DB-8328AED680F2}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>378 -1795</sci:value>
+						<sci:value>378 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -4577,7 +4726,7 @@ each data record by evaluating the final expression
 						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>1002 -1795</sci:value>
+						<sci:value>1002 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -4734,7 +4883,7 @@ end if;</sci:value>
 						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>1266 -1795</sci:value>
+						<sci:value>1266 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -4905,7 +5054,7 @@ end if;</sci:value>
 						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>1530 -1795</sci:value>
+						<sci:value>1530 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -5096,7 +5245,7 @@ end if;</sci:value>
 						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>1794 -1795</sci:value>
+						<sci:value>1794 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -5297,7 +5446,7 @@ Set this value to define the line ending character(s) in the output file. The de
 						<sci:value>{63DD362C-76B3-49A7-9CEF-2C45D21F90CB}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>2058 -1795</sci:value>
+						<sci:value>2058 -1920</sci:value>
 					</sci:arg>
 					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The component this component is based upon.</sci:help>
@@ -5353,7 +5502,7 @@ use the &lt;a href=&quot;javascript:DoLink(&apos;{BF2A2E90-418A-4C0B-8550-B2C4D5
 						<sci:member>Initial Expression</sci:member>
 						<sci:member>Final Expression</sci:member>
 						<sci:member>Keep Calculated Properties</sci:member>
-						<sci:value>if findSubstring(Text, &apos;israwhtmlcode=&quot;true&quot;&apos;) &gt; 0 or findSubstring(Text, &apos;israwhtmlcode=&quot;True&quot;&apos;) &gt; 0 then
+						<sci:value>if findSubstring(Text, &apos;israwhtmlcode=&quot;True&quot;&apos;) &gt; 0 or findSubstring(Text, &apos;israwhtmlcode=&quot;true&quot;&apos;) &gt; 0 then
 	error(&apos;Generally speaking, Bootstrap and Semantic UI components should not be used together. If you must, set the &quot;Accept Bootstrap&quot; parameter to True in the Implementation tab of the HTML Report Viewer (Semantic UI) component.&apos;);
 end if;</sci:value>
 					</sci:arg>
@@ -5450,7 +5599,7 @@ end if;</sci:value>
 						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>714 -1970</sci:value>
+						<sci:value>714 -2095</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
@@ -5614,7 +5763,7 @@ being displayed. &apos;Show&apos; displays the console window for program output
 						<sci:value>0</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>90 -2170</sci:value>
+						<sci:value>90 -2295</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 						<sci:value>ComponentNode</sci:value>
@@ -5666,7 +5815,9 @@ Command-line Integration Guide&lt;/a&gt;&lt;/p&gt;
 			</sci:data>
 			<sci:connectid from="70" to="30" type="true"/>
 			<sci:connectid from="67" to="30" type="true"/>
-			<sci:connectid from="67" to="66" type="false"/>
+			<sci:connectid from="67" to="75" type="false"/>
+			<sci:connectid from="75" to="30" type="true"/>
+			<sci:connectid from="75" to="66" type="false"/>
 			<sci:connectid from="66" to="30" type="true"/>
 			<sci:connectid from="61" to="60" type="true"/>
 			<sci:connectid from="60" to="30" type="true"/>
