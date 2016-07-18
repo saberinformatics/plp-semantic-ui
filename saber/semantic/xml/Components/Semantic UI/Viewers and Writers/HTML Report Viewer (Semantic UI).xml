@@ -116,7 +116,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sun Jul 17 12:03:57 2016</sci:value>
+				<sci:value>Mon Jul 18 12:00:48 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -143,12 +143,12 @@ and so are accessible from all protocols.</sci:help>
 				<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>1578 -570</sci:value>
+				<sci:value>450 -495</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
 				<sci:value>Displays the results of a reporting protocol in HTML5 format</sci:value>
-				<sci:value/>
+				<sci:value>&lt;p&gt;This component accepts reporting objects as input (e.g., tables, text and images), and displays the output as an HTML file in Internet Explorer.&lt;/p&gt;</sci:value>
 				<sci:value>Generic</sci:value>
 				<sci:value>This component accepts reporting objects as input.</sci:value>
 				<sci:value>None</sci:value>
@@ -174,7 +174,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>1</sci:value>
+				<sci:value>2</sci:value>
 			</sci:arg>
 			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>OriginalPackage</sci:help>
@@ -3313,7 +3313,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>746 -970 300 134</sci:value>
+						<sci:value>745 -970 301 134</sci:value>
 						<sci:value>245 245 245</sci:value>
 						<sci:value>padding</sci:value>
 					</sci:arg>
