@@ -27,7 +27,10 @@
 &lt;/ul&gt;</sci:help>
 			</sci:arg>
 			<sci:arg name="Show Entries Choices" type="StringType" required="true" visibility="visible" multi="false">
-				<sci:help>Choices on the &quot;Show ... entries&quot; pulldown menu above the table. The first choice is used to initially display the table. Use a comma to separate the choices.</sci:help>
+				<sci:help>&lt;p&gt;Choices on the &quot;Show ... entries&quot; pulldown menu above the table. The first choice is used to initially display the table. Use a comma to separate the choices.&lt;/p&gt;
+&lt;p&gt;Note: When used with a Data Connector component, all rows will be shown and this parameter setting will be ignored.&lt;/p&gt;</sci:help>
+				<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Data Connector / Publisher Subscriber Model to &quot;None&quot;&apos;);
+	Parameter(&apos;Publisher Subscriber Model&apos;) eq &apos;None&apos;;</sci:enabledscript>
 				<sci:value>10,25,50</sci:value>
 			</sci:arg>
 			<sci:arg name="Array Value Display" type="StringType" required="true" visibility="visible" multi="false">
@@ -61,10 +64,10 @@
 					</sci:mpropval>
 				</sci:metaproplist>
 				<sci:help>Whether the component is a publisher, subscriber or both. Setting to &apos;None&apos; bypasses any Data Connector node.</sci:help>
-				<sci:legalval selected="true">Publisher and Subscriber</sci:legalval>
+				<sci:legalval>Publisher and Subscriber</sci:legalval>
 				<sci:legalval>Publisher</sci:legalval>
 				<sci:legalval>Subscriber</sci:legalval>
-				<sci:legalval>None</sci:legalval>
+				<sci:legalval selected="true">None</sci:legalval>
 			</sci:arg>
 			<sci:arg name="Subscriber Event Handling" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
 				<sci:metaproplist>
@@ -253,7 +256,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{E77A1652-6E9C-4995-A388-087355A11D06}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>666 -470</sci:value>
+				<sci:value>1098 -770</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -262,7 +265,8 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
 				<sci:value>DataTable (Semantic UI).</sci:value>
-				<sci:value>DataTable implements interactive HTML table display using code copied from http://datatables.net.</sci:value>
+				<sci:value>&lt;p&gt;DataTable implements interactive HTML table display using code copied from http://datatables.net.&lt;/p&gt;
+&lt;p&gt;Note: When used with a Data Connector component, all rows will be shown and the &quot;Show Entries Choices&quot; parameter setting will be ignored.&lt;/p&gt;</sci:value>
 				<sci:value>Generic</sci:value>
 				<sci:value/>
 				<sci:value>Generic</sci:value>
@@ -272,7 +276,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>9.2.0.484</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -292,11 +296,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+				<sci:value>Tue Jul 19 09:50:00 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>11</sci:value>
+				<sci:value>0</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -308,18 +312,12 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The original path within the database of this component.</sci:help>
-				<sci:value>Protocols\Quick Hits\semantic\Components\Semantic UI\Tables\DataTable (Semantic UI)</sci:value>
+				<sci:value>Components\Semantic UI\Tables\DataTable (Semantic UI)</sci:value>
 			</sci:arg>
 		</sci:component>
 		<sci:protocol>
 			<sci:data object="SciTegic.Protocol.1">
 				<sci:component name="GUID" version="2">
-					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
-					</sci:arg>
-					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
-					</sci:arg>
 					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
 						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
 &lt;p&gt;
@@ -418,15 +416,11 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval selected="true">True</sci:legalval>
 						<sci:legalval>False</sci:legalval>
 					</sci:arg>
-					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
 					</sci:arg>
-					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
 					</sci:arg>
 					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 						<sci:help>Component Attributes</sci:help>
@@ -435,6 +429,17 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval>ComponentReturnsFail</sci:legalval>
 						<sci:legalval>ComponentRunsLocal</sci:legalval>
 					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>GUID</sci:value>
 					</sci:arg>
@@ -445,7 +450,6 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:value>0</sci:value>
 					</sci:arg>
-					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 						<sci:value>SUBPROTOCOLNODE</sci:value>
 					</sci:arg>
@@ -466,17 +470,17 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value/>
-						<sci:value>Generic</sci:value>
-						<sci:value/>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -496,7 +500,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Mar 15 09:39:07 2016</sci:value>
+						<sci:value>Mon Jul 18 11:59:53 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -512,7 +516,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Protocols\Quick Hits\semantic\Components\Semantic UI\Utilities\Internals\GUID</sci:value>
+						<sci:value>Components\Semantic UI\Utilities\Internals\GUID</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -859,7 +863,7 @@ this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false" expanded="true">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>362 -320 717 177</sci:value>
+						<sci:value>361 -320 718 177</sci:value>
 						<sci:value>255 255 0</sci:value>
 						<sci:value>Will include remove JS and CSS in the Viewer</sci:value>
 					</sci:arg>
@@ -939,11 +943,20 @@ $(&apos;#$(guid)s&apos;).remove();
 
 &lt;script type=&quot;text/javascript&quot;&gt;
 $(document).ready(function() {
-  $(&apos;#$(guid)&apos;).DataTable({
-		/* Disable initial sort */
-        &quot;aaSorting&quot;: [],
-        &quot;lengthMenu&quot;: [[$(Show Entries Choices), -1], [$(Show Entries Choices), &quot;All&quot;]]
-    });
+  if ($(&apos;#$(guid)&apos;).attr(&apos;ppdcid&apos;)) {	// data connector
+    $(&apos;#$(guid)&apos;).DataTable({
+  		/* Disable initial sort */
+          &quot;aaSorting&quot;: [],
+          &quot;lengthMenu&quot;: [[-1], [&quot;All&quot;]]
+      });
+  } else {								// no data connector
+    $(&apos;#$(guid)&apos;).DataTable({
+  		/* Disable initial sort */
+          &quot;aaSorting&quot;: [],
+          &quot;lengthMenu&quot;: [[$(Show Entries Choices), -1], [$(Show Entries Choices), &quot;All&quot;]]
+      });
+
+  }
 } );
 &lt;/script&gt;
 </sci:value>
@@ -1047,16 +1060,6 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval selected="true">True</sci:legalval>
 						<sci:legalval>False</sci:legalval>
 					</sci:arg>
-					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
-					</sci:arg>
-					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
-					</sci:arg>
 					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 						<sci:help>Component Attributes</sci:help>
 						<sci:legalval>ComponentTakesInput</sci:legalval>
@@ -1064,6 +1067,17 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval>ComponentReturnsFail</sci:legalval>
 						<sci:legalval>ComponentRunsLocal</sci:legalval>
 					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>Raw HTML (Semantic UI)</sci:value>
 					</sci:arg>
@@ -1074,7 +1088,6 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:value>0</sci:value>
 					</sci:arg>
-					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 						<sci:value>ReportSubProtocolNode</sci:value>
 					</sci:arg>
@@ -1101,7 +1114,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -1121,11 +1134,11 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Thu Mar 17 14:32:50 2016</sci:value>
+						<sci:value>Tue Jun 14 10:59:21 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
-						<sci:value>7</sci:value>
+						<sci:value>8</sci:value>
 					</sci:arg>
 					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Processing Order</sci:help>
@@ -1135,13 +1148,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Subprotocol Modified</sci:help>
-						<sci:value>0</sci:value>
-					</sci:arg>
 					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
@@ -1149,7 +1162,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Protocols\Quick Hits\semantic\Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
+						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
