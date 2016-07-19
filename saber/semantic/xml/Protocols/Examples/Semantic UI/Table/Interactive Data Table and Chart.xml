@@ -128,11 +128,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Tue Jun 14 10:31:33 2016</sci:value>
+				<sci:value>Tue Jul 19 10:09:03 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>16.1.0.1140</sci:value>
+				<sci:value>9.2.0.484</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Interactive Data Table</sci:value>
@@ -202,7 +202,7 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 				<sci:component name="Text Header (Semantic UI)" version="2">
 					<sci:arg name="Header Text" type="StringType" required="true" visibility="visible" multi="false">
 						<sci:help>The text in the header.</sci:help>
-						<sci:value>Interactive data table. Select items in the table to view the selection highlighted on the chart.</sci:value>
+						<sci:value>Interactive data table linked with a chart. Select items to highlight them.</sci:value>
 					</sci:arg>
 					<sci:arg name="Appearance" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
 						<sci:member>Colored</sci:member>
@@ -532,7 +532,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -552,7 +552,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+						<sci:value>Tue Jun 14 10:56:02 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -1089,7 +1089,7 @@ this parameter include Font, Font Size, Bold, Italic, Underline, and Color.  You
 Parameter() &gt;= 0.0 AND Parameter() &lt;= 1.0</sci:validscript>
 						<sci:value>1.0</sci:value>
 					</sci:arg>
-					<sci:arg name="Chart Options Links and Actions" type="GroupType" required="false" visibility="visible" multi="false">
+					<sci:arg name="Chart Options Links and Actions" type="GroupType" required="false" visibility="visible" multi="false" expanded="true">
 						<sci:member>Chart Options Links and Actions Link</sci:member>
 						<sci:member>Chart Options Links and Actions Link Target</sci:member>
 						<sci:member>Chart Options Links and Actions HTML Attributes</sci:member>
@@ -1160,9 +1160,9 @@ Applies only if &lt;i&gt;Link&lt;/i&gt; or &lt;i&gt;Protocol Link&lt;/i&gt; are 
 					</sci:arg>
 					<sci:arg name="Chart Options Links and Actions Data Connector Publisher Subscriber Model" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
 						<sci:help>Whether the component is a publisher, subscriber or both. Setting to &apos;None&apos; bypasses any Data Connector node.</sci:help>
-						<sci:legalval>Publisher and Subscriber</sci:legalval>
+						<sci:legalval selected="true">Publisher and Subscriber</sci:legalval>
 						<sci:legalval>Publisher</sci:legalval>
-						<sci:legalval selected="true">Subscriber</sci:legalval>
+						<sci:legalval>Subscriber</sci:legalval>
 						<sci:legalval>None</sci:legalval>
 					</sci:arg>
 					<sci:arg name="Chart Options Links and Actions Data Connector Subscriber Event Handling" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
@@ -2694,7 +2694,7 @@ and so are accessible from all protocols.</sci:help>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Fri Apr 08 15:19:56 2016</sci:value>
+						<sci:value>Mon Jul 18 12:00:48 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -2726,7 +2726,7 @@ and so are accessible from all protocols.</sci:help>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>Displays the results of a reporting protocol in HTML5 format</sci:value>
-						<sci:value/>
+						<sci:value>&lt;p&gt;This component accepts reporting objects as input (e.g., tables, text and images), and displays the output as an HTML file in Internet Explorer.&lt;/p&gt;</sci:value>
 						<sci:value>Generic</sci:value>
 						<sci:value>This component accepts reporting objects as input.</sci:value>
 						<sci:value>None</sci:value>
@@ -2800,7 +2800,10 @@ and so are accessible from all protocols.</sci:help>
 &lt;/ul&gt;</sci:help>
 					</sci:arg>
 					<sci:arg name="Show Entries Choices" type="StringType" required="true" visibility="visible" multi="false">
-						<sci:help>Choices on the &quot;Show ... entries&quot; pulldown menu above the table. The first choice is used to initially display the table. Use a comma to separate the choices.</sci:help>
+						<sci:help>&lt;p&gt;Choices on the &quot;Show ... entries&quot; pulldown menu above the table. The first choice is used to initially display the table. Use a comma to separate the choices.&lt;/p&gt;
+&lt;p&gt;Note: When used with a Data Connector component, all rows will be shown and this parameter setting will be ignored.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Data Connector / Publisher Subscriber Model to &quot;None&quot;&apos;);
+	Parameter(&apos;Publisher Subscriber Model&apos;) eq &apos;None&apos;;</sci:enabledscript>
 						<sci:value>10,25,50</sci:value>
 					</sci:arg>
 					<sci:arg name="Array Value Display" type="StringType" required="true" visibility="visible" multi="false">
@@ -2834,8 +2837,8 @@ and so are accessible from all protocols.</sci:help>
 							</sci:mpropval>
 						</sci:metaproplist>
 						<sci:help>Whether the component is a publisher, subscriber or both. Setting to &apos;None&apos; bypasses any Data Connector node.</sci:help>
-						<sci:legalval>Publisher and Subscriber</sci:legalval>
-						<sci:legalval selected="true">Publisher</sci:legalval>
+						<sci:legalval selected="true">Publisher and Subscriber</sci:legalval>
+						<sci:legalval>Publisher</sci:legalval>
 						<sci:legalval>Subscriber</sci:legalval>
 						<sci:legalval>None</sci:legalval>
 					</sci:arg>
@@ -3035,7 +3038,8 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>DataTable (Semantic UI).</sci:value>
-						<sci:value>DataTable implements interactive HTML table display using code copied from http://datatables.net.</sci:value>
+						<sci:value>&lt;p&gt;DataTable implements interactive HTML table display using code copied from http://datatables.net.&lt;/p&gt;
+&lt;p&gt;Note: When used with a Data Connector component, all rows will be shown and the &quot;Show Entries Choices&quot; parameter setting will be ignored.&lt;/p&gt;</sci:value>
 						<sci:value>Generic</sci:value>
 						<sci:value/>
 						<sci:value>Generic</sci:value>
@@ -3045,7 +3049,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -3065,7 +3069,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+						<sci:value>Tue Jul 19 09:50:00 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
