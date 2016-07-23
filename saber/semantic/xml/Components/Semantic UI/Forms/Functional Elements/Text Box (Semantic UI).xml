@@ -203,14 +203,15 @@ enabled;</sci:enabledscript>
 				<sci:help>&lt;p&gt;(Optional parameter) Provide a protocol which can generate a list of values to pre-populate this text box when the web page loads. This protocol must produce a text file containing a JSON-encoded array:&lt;/p&gt;
 &lt;code&gt;[&quot;BAS-0000001&quot;, &quot;BAS-00000002&quot;]&lt;/code&gt;</sci:help>
 			</sci:arg>
-			<sci:arg name="Remote" type="URLType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+			<sci:arg name="Remote" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
 				<sci:help>&lt;p&gt;(Optional parameter) As the user types into the text box, with each change fetch an updated list of suggestions. Provide an HTTP or HTTPS URL to a web service which returns a JSON-formatted array like this:&lt;/p&gt;
 [&quot;timtrueman&quot;, &quot;JakeHarding&quot;, &quot;vskarich&quot;]
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; User input in the text box can be sent to the remote service as a URL parameter %QUERY, so do include %QUERY in your URL.&lt;/p&gt;
 
 &lt;code&gt;https://twitter.com/accounts?q=%QUERY&lt;/code&gt;
 
-&lt;p&gt;Note: to use a Pipeline Pilot protocol that will process the text box value typed in by the user, enter the url below with the protocol GUID and the %QUERY in it:&lt;/p&gt;&lt;p&gt;&lt;code&gt;http://&amp;lt;yourserver&amp;gt;:&amp;lt;yourport&amp;gt;/auth/launchjob?_compat=1&amp;_protocol=123456&amp;myparameter=%QUERY&lt;/code&gt;&lt;/p&gt;(do not change the word %QUERY).</sci:help>
+&lt;p&gt;Note: to use a Pipeline Pilot protocol that will process the text box value typed in by the user, enter the url below with the protocol GUID and the %QUERY in it. You can omit servername and port:&lt;/p&gt;&lt;p&gt;&lt;code&gt;/auth/launchjob?_compat=1&amp;_protocol={123456}&amp;myparameter=%QUERY&lt;/code&gt;&lt;/p&gt;(do not change the word %QUERY). To help you, we created an example: &lt;code&gt;Protocols\Examples\Semantic UI\Form\Auto-suggest in a Text Box\Search Compounds&lt;/code&gt;.
+&lt;p&gt;When using remote typeahead with a Pipeline Pilot protocol, the user must already logged in to Pipeline Pilot via a web client, otherwise typeahead won&apos;t work. If your test isn&apos;t working check that you already logged into webport in your web browser.&lt;/p&gt;</sci:help>
 			</sci:arg>
 			<sci:arg name="Limit" type="LongType" required="false" visibility="visible" multi="false">
 				<sci:help>Limit</sci:help>
@@ -494,7 +495,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 				<sci:value>{9F37F5CB-5B08-4AE7-BAC5-FA0394004CD8}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>546 -645</sci:value>
+				<sci:value>522 -270</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -530,11 +531,11 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Wed Jun 29 23:44:34 2016</sci:value>
+				<sci:value>Sat Jul 23 17:59:02 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>0</sci:value>
+				<sci:value>2</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -694,12 +695,6 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
 			</sci:data>
 			<sci:data object="SciTegic.Protocol.1">
 				<sci:component name="GUID" version="2">
-					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
-					</sci:arg>
-					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
-					</sci:arg>
 					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
 						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
 &lt;p&gt;
@@ -798,6 +793,12 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval selected="true">True</sci:legalval>
 						<sci:legalval>False</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+					</sci:arg>
 					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 						<sci:help>Component Attributes</sci:help>
 						<sci:legalval>ComponentTakesInput</sci:legalval>
@@ -846,17 +847,17 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value/>
-						<sci:value>Generic</sci:value>
-						<sci:value/>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -876,7 +877,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+						<sci:value>Mon Jul 18 11:59:53 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -5406,12 +5407,14 @@ else
 	// auth/launchjob service is moved (e.g. Science Cloud - where the location is
 	// pp/auth/launchjob. Therefore, it may be worth having this location declared
 	// by a package variable.
-	#prot := &apos;$(ServerRoot)$(/saber/labspace/LaunchJobURLPath)?_compat=1&amp;_protocol=&apos; . RSubst(@Prefetch, &apos;\\&apos;, &apos;/&apos;, &apos;g&apos;);
+	#prot := &apos;$(ServerRoot)$(/saber/semantic/LaunchJobURLPath)?_compat=1&amp;_protocol=&apos; . urlencode(RSubst(@Prefetch, &apos;\\&apos;, &apos;/&apos;, &apos;g&apos;));
 	@a2 := &quot;prefetch: &apos;&quot; . #prot . &quot;&apos;,&quot;.&quot;\n&quot;;
 end if;
 
 if @Remote eq &apos;&apos; then
 	@a3 := &apos;&apos;;
+elsif @Remote like &apos;http%&apos; then
+	@a3 := &quot;remote: &apos;$(Remote)&apos;,&quot;.&quot;\n&quot;;
 else
 	@a3 := &quot;remote: &apos;$(ServerRoot)$(Remote)&apos;,&quot;.&quot;\n&quot;;
 end if;
@@ -5554,10 +5557,9 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
     $(a3)
     name: &apos;$(guid)&apos;,
     limit: $(Limit)
-  });
+  }).css(&apos;display&apos;, &apos;&apos;);
 
-  $(&apos;.typeahead.input-sm&apos;).siblings(&apos;input.tt-hint&apos;).addClass(&apos;hint-small&apos;);
-  $(&apos;.typeahead.input-lg&apos;).siblings(&apos;input.tt-hint&apos;).addClass(&apos;hint-large&apos;);
+  $(&apos;.twitter-typeahead&apos;).css(&apos;display&apos;, &apos;&apos;); // fix box sizing
 &lt;/script&gt;
 </sci:value>
 					</sci:arg>
@@ -6040,24 +6042,6 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
     line-height: 1.428571429;
     border: 1px solid transparent;
     border-radius:4px;
-}
-
-.twitter-typeahead .hint-small
-{
-    height: 30px;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 3px;
-    line-height: 1.5;
-}
-
-.twitter-typeahead .hint-large
-{
-    height: 45px;
-    padding: 10px 16px;
-    font-size: 18px;
-    border-radius: 6px;
-    line-height: 1.33;
 }
 
 .tt-dropdown-menu {

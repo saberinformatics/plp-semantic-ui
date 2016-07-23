@@ -128,11 +128,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Tue Jul 19 10:09:03 2016</sci:value>
+				<sci:value>Sat Jul 23 18:17:32 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>9.2.0.484</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Interactive Data Table</sci:value>
@@ -2597,17 +2597,26 @@ Set the ports and icon as appropriate.</sci:value>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
-					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false">
+					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Advanced Options</sci:help>
 						<sci:member>Include Format and Position CSS</sci:member>
 						<sci:member>Animate Link Underlines</sci:member>
 						<sci:member>Theme</sci:member>
 					</sci:arg>
 					<sci:arg name="Theme" type="StringType" required="true" visibility="visible" multi="false">
 						<sci:help>&lt;p&gt;Choose a visual theme for the content.&lt;/p&gt;
-To add a new theme: do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
-						<sci:legalvalscript>SetLegalValues(&apos;Default&apos;);
-//SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-						<sci:value>Default</sci:value>
+&lt;p&gt;&lt;ul&gt;
+&lt;li&gt;2.2.1: released 06/2016&lt;/li&gt;
+&lt;li&gt;Default (v 2.1.8): released 02/2016&lt;/li&gt;
+&lt;/ul&gt;
+Semantic UI release history with detailed notes:
+&lt;a href=&quot;https://github.com/Semantic-Org/Semantic-UI/releases&quot;&gt;https://github.com/Semantic-Org/Semantic-UI/releases&lt;a&gt;
+&lt;/p&gt;
+&lt;p&gt;When the component collection is updated with a new Semantic UI release, the components in unmodified existing protocols will continue to point to a set release version. You can also point this parameter to a newer release if you wish by right-clicking the component and Replace with Latest Version then selecting a newer semantic theme release.&lt;/p&gt;
+To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
+						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
+SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
+						<sci:value>2.2.1</sci:value>
 					</sci:arg>
 					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
@@ -2761,10 +2770,6 @@ and so are accessible from all protocols.</sci:help>
 					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
-					</sci:arg>
-					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Subprotocol Made Link Into Copy</sci:help>
-						<sci:value>0</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
@@ -3082,10 +3087,6 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
-					</sci:arg>
-					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Subprotocol Made Link Into Copy</sci:help>
-						<sci:value>0</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
