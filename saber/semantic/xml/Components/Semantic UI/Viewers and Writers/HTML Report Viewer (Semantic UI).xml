@@ -116,7 +116,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sun Sep 11 15:37:40 2016</sci:value>
+				<sci:value>Tue Nov 08 21:26:37 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -143,7 +143,7 @@ and so are accessible from all protocols.</sci:help>
 				<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>282 -745</sci:value>
+				<sci:value>1722 -320</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -174,7 +174,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>0</sci:value>
+				<sci:value>4</sci:value>
 			</sci:arg>
 			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>OriginalPackage</sci:help>
@@ -186,7 +186,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The original path within the database of this component.</sci:help>
-				<sci:value>Unknown</sci:value>
+				<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
 			</sci:arg>
 		</sci:component>
 		<sci:protocol>
@@ -996,11 +996,27 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 								</sci:component>
 								<sci:protocol>
 									<sci:data object="SciTegic.TextReader.1">
-										<sci:component name="Binary Reader" version="2">
+										<sci:component name="Text Reader" version="2">
 											<sci:arg name="Source" type="URLType" required="true" visibility="visible" multi="false" expanded="true">
-												<sci:help>The file or URL source to read</sci:help>
+												<sci:help>&lt;p&gt;
+The name or path name for the source data. The source can be a file, a network resource, a data record property, or a global property.
+&lt;/p&gt; 
+&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a file path name for files&lt;/li&gt;
+&lt;li&gt;Use a network URL for network resources&lt;/li&gt;
+&lt;li&gt;Use &quot;global://property-name&quot; for global properties&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+												<sci:member>Maximum</sci:member>
 												<sci:member>SourceTag</sci:member>
-												<sci:value>$(PathPrefix)/assets/jquery.validate/jquery.validate.min.js</sci:value>
+												<sci:member>Keep Properties</sci:member>
+												<sci:member>UTF-8 Auto Detect</sci:member>
+												<sci:value>$(PathPrefix)/assets/jquery/license.txt</sci:value>
+											</sci:arg>
+											<sci:arg name="Maximum" type="LongType" required="false" visibility="visible" multi="false">
+												<sci:help>The maximum number of data records to read (all if value is empty)</sci:help>
+												<sci:value>1</sci:value>
 											</sci:arg>
 											<sci:arg name="SourceTag" type="StringType" required="true" visibility="visible" multi="false">
 												<sci:help>The type of tag to create to identify the source of data records. A property called &quot;SourceTag&quot; is created and holds the value indicated.
@@ -1030,22 +1046,59 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 												<sci:legalval>Letter</sci:legalval>
 												<sci:legalval>KeepCurrent</sci:legalval>
 											</sci:arg>
-											<sci:arg name="Additional Options" type="GroupType" required="false" visibility="visible" multi="false">
-												<sci:member>Put Binary Data in Property</sci:member>
-											</sci:arg>
-											<sci:arg name="Put Binary Data in Property" type="StringType" required="false" visibility="visible" multi="false">
-												<sci:help>Name of property to hold file contents</sci:help>
-												<sci:value>Binary</sci:value>
-											</sci:arg>
-											<sci:arg name="Binary" type="BoolType" required="true" visibility="visible" multi="false" uimpl="true">
-												<sci:help>Whether to read the file as binary bytes or as text. The entire file is read into a single property, as given by PutTextInProperty. The parameters DelimitUsing, BeginningText, and EndingText are ignored if this is set True.
+											<sci:arg name="Keep Properties" type="PropertyPreviewType" required="false" visibility="visible" multi="false">
+												<sci:help>A list of properties the reader should retain for each data record that is output. If a value is not defined, retains all properties. If the parameter contains the value &quot;-&quot; (minus sign), properties are not retained.
 </sci:help>
-												<sci:legalval selected="true">True</sci:legalval>
-												<sci:legalval>False</sci:legalval>
 											</sci:arg>
-											<sci:arg name="PutTextInProperty" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-												<sci:help>Name of property to hold file contents. (Alias of &lt;i&gt;Put Binary Data in Property&lt;/i&gt;.)</sci:help>
-												<sci:value>$(Put Binary Data in Property)</sci:value>
+											<sci:arg name="UTF-8 Auto Detect" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+												<sci:help>&lt;p&gt;UTF-8 is a type of character encoding used to represent international characters with multiple bytes whereas basic Latin characters remain as a single byte.  Files can be stored with a Byte Order Mark (BOM) to indicate that the type of character encoding.&lt;/p&gt;
+&lt;p&gt;When reading files that do not have a BOM, this parameter allows the reader to attempt to automatically detect UTF-8 encodings and convert as needed.  However, be aware that automatic detection is not always reliable.  In some cases, valid text stored in different character encodings can appear to be valid UTF-8.  In these cases, the automatic detection will result in garbled text.  When this occurs, you can consider using the &lt;a href=&quot;javascript:DoLink(&apos;{B0B1B56C-3DF6-444C-BB78-B43211188F63}&apos;)&quot;&gt;Binary Reader&lt;/a&gt; to read the file, then converting using the Pilotscript function &lt;b&gt;ConvertBytesToString&lt;/b&gt;&lt;/p&gt;</sci:help>
+												<sci:legalval>True</sci:legalval>
+												<sci:legalval selected="true">False</sci:legalval>
+											</sci:arg>
+											<sci:arg name="DelimitUsing" type="StringType" required="true" visibility="visible" multi="false">
+												<sci:help>&lt;p&gt;Specifies which delimiting mechanism to use:&lt;/p&gt;
+
+ - EndOfFile: All text is one record.
+
+ - EndOfParagraph: Each paragraph becomes a separate record.
+
+ - EndOfLine: Each line becomes a separate record.
+
+ - DelimitText: Uses the parameters BeginningText and/or EndingText.
+
+&lt;p&gt;If delimiter text is specified, it must be identical to that of the text in the file. For instance, if the text in the file has five whitespaces before the alphanumeric text, the delimiting text string must also have five whitespaces.&lt;/p&gt;
+</sci:help>
+												<sci:member>BeginningText</sci:member>
+												<sci:member>EndingText</sci:member>
+												<sci:legalval>EndOfFile</sci:legalval>
+												<sci:legalval>EndOfParagraph</sci:legalval>
+												<sci:legalval selected="true">EndOfLine</sci:legalval>
+												<sci:legalval>DelimitText</sci:legalval>
+											</sci:arg>
+											<sci:arg name="BeginningText" type="StringType" required="false" visibility="visible" multi="false">
+												<sci:help>The character indicating the beginning of a new record (only used when DelimitUsing set to &quot;DelimitText&quot;)</sci:help>
+												<sci:enabledscript>SetDisabledDetails(&apos;To enable, set DelimitUsing to DelimitText&apos;);
+Parameter(&apos;DelimitUsing&apos;) eq &apos;DelimitText&apos;</sci:enabledscript>
+											</sci:arg>
+											<sci:arg name="EndingText" type="StringType" required="false" visibility="visible" multi="false">
+												<sci:help>The character indicating the end of a new record (only used when DelimitUsing is set to &quot;DelimitText&quot;)</sci:help>
+												<sci:enabledscript>SetDisabledDetails(&apos;To enable, set DelimitUsing to DelimitText&apos;);
+Parameter(&apos;DelimitUsing&apos;) eq &apos;DelimitText&apos;</sci:enabledscript>
+											</sci:arg>
+											<sci:arg name="Additional Options" type="GroupType" required="false" visibility="visible" multi="false">
+												<sci:help>Contains less commonly used parameters</sci:help>
+												<sci:member>KeepEndOfLine</sci:member>
+												<sci:member>PutTextInProperty</sci:member>
+											</sci:arg>
+											<sci:arg name="PutTextInProperty" type="StringType" required="false" visibility="visible" multi="false">
+												<sci:help>Name of property to hold the block of text</sci:help>
+												<sci:value>Text</sci:value>
+											</sci:arg>
+											<sci:arg name="KeepEndOfLine" type="BoolType" required="false" visibility="visible" multi="false">
+												<sci:help>Whether to keep the end of line character in the data when delimiting using end of line.</sci:help>
+												<sci:legalval>True</sci:legalval>
+												<sci:legalval selected="true">False</sci:legalval>
 											</sci:arg>
 											<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 												<sci:help>Component Attributes</sci:help>
@@ -1071,10 +1124,10 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 											</sci:arg>
 											<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The date this component was registered.</sci:help>
-												<sci:value>Thu Mar 15 08:00:58 2007</sci:value>
+												<sci:value>Mon Jul 23 10:51:52 2012</sci:value>
 											</sci:arg>
 											<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
-												<sci:value>Binary Reader</sci:value>
+												<sci:value>Text Reader</sci:value>
 											</sci:arg>
 											<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:value>90 -95</sci:value>
@@ -1083,7 +1136,7 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 												<sci:value>DOCUMENTNODE</sci:value>
 											</sci:arg>
 											<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
-												<sci:value>{B0B1B56C-3DF6-444C-BB78-B43211188F63}</sci:value>
+												<sci:value>{8056E8AD-33EA-42BB-9099-EAB24C3D08E6}</sci:value>
 											</sci:arg>
 											<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The component this component is based upon.</sci:help>
@@ -1094,8 +1147,13 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 											</sci:arg>
 											<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 												<sci:value>100</sci:value>
-												<sci:value>Reads binary data from files</sci:value>
-												<sci:value>&lt;p&gt;This component reads the binary file(s) specified by &lt;i&gt;Source&lt;/i&gt; and creates a data record for each file, with a single property (by default, named &lt;b&gt;Binary&lt;/b&gt;) containing the data.&lt;/p&gt;
+												<sci:value>Reads data from text files delimited by end of line, paragraph, or file</sci:value>
+												<sci:value>&lt;p&gt;Reads data from the file or files specified by &lt;i&gt;Source&lt;/i&gt;, creating a data record for each block of text. &lt;i&gt;DelimitUsing&lt;/i&gt; determines how the text in the file is split into blocks. &lt;i&gt;PutTextInProperty&lt;/i&gt; specifies the name of the property in which the text blocks will be stored (the default is &lt;b&gt;Text&lt;/b&gt;).&lt;/p&gt;
+
+&lt;b&gt;See Also:&lt;/b&gt;
+&lt;ul&gt;
+  &lt;li&gt;For text files with one record per line and properties separated by a known delimiter (e.g., Excel CSV files), use &lt;a href=&quot;javascript:DoLink(&apos;{7D2AF7C7-A077-4201-B10B-8E8283A5EADD}&apos;)&quot;&gt;Delimited Text Reader&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 </sci:value>
 												<sci:value>None</sci:value>
 												<sci:value/>
@@ -1107,15 +1165,15 @@ Tip: Any component can be made into a shortcut, so that the latest version is al
 											<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 											<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The server version when this component was registered</sci:help>
-												<sci:value>6.1.0.10</sci:value>
+												<sci:value>9.0.0.2</sci:value>
 											</sci:arg>
 											<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 												<sci:help>Local Component Identifier</sci:help>
-												<sci:value>0</sci:value>
+												<sci:value>1</sci:value>
 											</sci:arg>
 											<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The original path within the database of this component.</sci:help>
-												<sci:value>Components\Data Access and Manipulation\File Readers\Binary Reader</sci:value>
+												<sci:value>Components\Data Access and Manipulation\File Readers\Text Reader</sci:value>
 											</sci:arg>
 										</sci:component>
 									</sci:data>
@@ -1626,9 +1684,46 @@ this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/
 											</sci:arg>
 											<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false">
 												<sci:member>Include Format and Position CSS</sci:member>
+												<sci:member>Use Default Browser</sci:member>
+												<sci:member>Set IE Compatibility</sci:member>
 											</sci:arg>
 											<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false">
 												<sci:help>If set to &lt;strong&gt;False&lt;/strong&gt;, all format and position settings will be omitted from the output document, allowing them to be set using an external stylesheet specified with an &lt;a href=&quot;javascript:DoLink(&apos;{6DF7D4FA-28BC-453b-8882-DE55C7CFFBF9}&apos;)&quot;&gt;Include&lt;/a&gt;.</sci:help>
+												<sci:legalval selected="true">True</sci:legalval>
+												<sci:legalval>False</sci:legalval>
+											</sci:arg>
+											<sci:arg name="Set IE Compatibility" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+												<sci:metaproplist>
+													<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+														<sci:value>Set IE Compatibility</sci:value>
+													</sci:mpropval>
+													<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+												</sci:metaproplist>
+												<sci:help>&lt;p&gt;When this flag is set to True (default), IE compatibility in the report is set to IE 10 (the minimum support level for Pipeline Pilot). For most users of IE, this should provide a stable environment to view Pipeline Pilot reports.
+&lt;/p&gt;
+&lt;/p&gt;Switch off this setting, if necessary, to allow Internet Explorer to display content in the highest mode available. This is only required for users who view the report in Internet Explorer 11 or above and who need to enable facilities not available in IE 10 mode, such as WebGL and some HTML5/CSS features.
+&lt;/p&gt;
+&lt;p&gt;Note that even if you are viewing the report in another browser, other users may subsequently run the protocol or view the report in Internet Explorer, and so you may still need to set this IE Compatibility setting - but only in the rare case that your report requires something beyond the default IE 10 compatibility.
+&lt;/p&gt;</sci:help>
+												<sci:legalval selected="true">True</sci:legalval>
+												<sci:legalval>False</sci:legalval>
+											</sci:arg>
+											<sci:arg name="Use Default Browser" type="BoolType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="false">
+												<sci:metaproplist>
+													<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+													<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+														<sci:value>Browser</sci:value>
+													</sci:mpropval>
+												</sci:metaproplist>
+												<sci:help>&lt;p&gt;
+This parameter is only relevant when running the protocol in the Pipeline Pilot Professional Client.
+&lt;/p&gt;
+&lt;p&gt;
+The value specifies whether to use your default desktop web browser to view the report. When set to False, Internet Explorer is used as a standard fallback option. If IE is your default browser, it is used in either case.
+&lt;/p&gt;
+&lt;p&gt;
+If you use Internet Explorer, note that its behavior can be modified by switching off the &lt;i&gt;Set IE Compatibility&lt;/i&gt; parameter. This is only relevant if you are working with more recently-supported web technologies, such as WebGL, that require at least IE 11 compatibility (and also require that IE 11 is installed, of course).
+&lt;/p&gt;</sci:help>
 												<sci:legalval selected="true">True</sci:legalval>
 												<sci:legalval>False</sci:legalval>
 											</sci:arg>
@@ -1663,6 +1758,18 @@ and so are accessible from all protocols.</sci:help>
 												<sci:legalval>True</sci:legalval>
 												<sci:legalval selected="true">False</sci:legalval>
 											</sci:arg>
+											<sci:arg name="Internet Explorer" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+												<sci:help>The location for Internet Explorer</sci:help>
+												<sci:value>internetexplorer.application</sci:value>
+											</sci:arg>
+											<sci:arg name="Chrome" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+												<sci:help>The location for Chrome</sci:help>
+												<sci:value>&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot;</sci:value>
+											</sci:arg>
+											<sci:arg name="Firefox" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+												<sci:help>The location for Firefox</sci:help>
+												<sci:value>&quot;C:\Program Files (x86)\Mozilla Firefox\firefox.exe&quot;</sci:value>
+											</sci:arg>
 											<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 												<sci:help>Component Attributes</sci:help>
 												<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
@@ -1681,9 +1788,6 @@ and so are accessible from all protocols.</sci:help>
 												<sci:legalval>Pass</sci:legalval>
 											</sci:arg>
 											<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
-											<sci:arg name="IE Compatibility" type="StringType" required="false" visibility="nevershow" multi="false">
-												<sci:help>Output contains default meta header &amp;lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&amp;gt;. This parameter can set different IE version. Valid value could be major version number of IE like &quot;7&quot;, &quot;9&quot; or &quot;EmulateIE7&quot;, &quot;EmulateIE8&quot;, etc.</sci:help>
-											</sci:arg>
 											<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:value>DrainTopDown</sci:value>
 											</sci:arg>
@@ -1698,7 +1802,7 @@ and so are accessible from all protocols.</sci:help>
 											</sci:arg>
 											<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The date this component was registered.</sci:help>
-												<sci:value>Thu Aug 09 14:42:37 2012</sci:value>
+												<sci:value>Thu Oct 22 23:43:53 2015</sci:value>
 											</sci:arg>
 											<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:value>HTML Report Viewer</sci:value>
@@ -1763,7 +1867,7 @@ and so are accessible from all protocols.</sci:help>
 											</sci:arg>
 											<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The server version when this component was registered</sci:help>
-												<sci:value>9.0.0.6</sci:value>
+												<sci:value>16.1.0.1089</sci:value>
 											</sci:arg>
 											<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
 												<sci:help>Protocol Scale</sci:help>
@@ -1780,6 +1884,9 @@ and so are accessible from all protocols.</sci:help>
 											<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 												<sci:help>Subprotocol Made Link Into Copy</sci:help>
 												<sci:value>0</sci:value>
+											</sci:arg>
+											<sci:arg name="IE Compatibility" type="StringType" required="false" visibility="nevershow" multi="false">
+												<sci:help>Output contains default meta header &amp;lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&amp;gt;. This parameter can set different IE version. Valid value could be major version number of IE like &quot;7&quot;, &quot;9&quot; or &quot;EmulateIE7&quot;, &quot;EmulateIE8&quot;, etc.</sci:help>
 											</sci:arg>
 											<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 												<sci:help>The original path within the database of this component.</sci:help>
@@ -2512,7 +2619,9 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 								<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
 							</sci:arg>
 						</sci:component>
-						<sci:protocol/>
+						<sci:protocol>
+							<sci:version iVal="7"/>
+						</sci:protocol>
 					</sci:data>
 					<sci:version iVal="1"/>
 				</sci:protocol>
@@ -3358,7 +3467,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Unknown</sci:value>
+						<sci:value>Components\Semantic UI\Page\Segment (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -4306,7 +4415,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Unknown</sci:value>
+						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -5103,197 +5212,6 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
 					</sci:arg>
 				</sci:component>
 			</sci:data>
-			<sci:data object="SciTegic.EvaluateExpression.1">
-				<sci:component name="Custom Manipulator (PilotScript)" version="2">
-					<sci:arg name="Expression" type="ExpressionType" required="true" visibility="visible" multi="false" expanded="true" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>Expression (or list of expressions separated by semi-colons) to evaluate.</sci:help>
-						<sci:member>Initial Expression</sci:member>
-						<sci:member>Final Expression</sci:member>
-						<sci:member>Keep Calculated Properties</sci:member>
-						<sci:value>// Find relative image URLs and make them absolute
-
-#rurls := rMatch(text, &apos;src=&quot;(.*?)&quot;&apos;, &apos;igs&apos;);
-rurls := #rurls;
-resize(#ss, 0);
-
-for #i in 1 .. numvalues(#rurls) loop
-	#u := #rurls[#i];
-	if findSubstring(#u, &apos;//&apos;) == 0 then // relative
-		append(#ss, strReplace(strReplace(#u, &apos;src=&quot;&apos;, &apos;&apos;), &apos;&quot;&apos;, &apos;&apos;));
-	end if;
-end loop;
-
-#prefix := @ServerRoot.&apos;/jobs/&apos;.@username.&apos;/&apos;.@RunID;
-for #i in 1 .. numvalues(#ss) loop
-	#u := #ss[#i];
-	if #u ne &apos;&apos; then
-		if substring(#u, 1) eq &apos;/&apos; then
-			// add http://server:port
-			text := strReplace(text, #u, #prefix.urlencode(#u, true));
-		else
-			// add http://server:port/
-			text := strReplace(text, #u, #prefix.&apos;/&apos;.urlencode(#u, true));
-		end if;
-	end if;
-end loop;
-</sci:value>
-					</sci:arg>
-					<sci:arg name="Initial Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>&lt;p&gt;
-This expression is executed only the first time data passes into the component.
-&lt;p/&gt; 
-Since there is no data available at initialization time, only expressions referencing local or global properties are allowed.
-&lt;/p&gt;</sci:help>
-					</sci:arg>
-					<sci:arg name="Final Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>&lt;p&gt;
-This expression is executed only at finalization (after the last data passes out of the component).
-&lt;p/&gt; 
-Since there is no data available at finalization time, only expressions referencing local or global properties are allowed.
-&lt;/p&gt;</sci:help>
-					</sci:arg>
-					<sci:arg name="Keep Calculated Properties" type="BoolType" required="true" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>Adds any properties calculated in this component to a data record&apos;s property list.</sci:help>
-						<sci:legalval selected="true">True</sci:legalval>
-						<sci:legalval>False</sci:legalval>
-					</sci:arg>
-					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
-						<sci:help>Component Attributes</sci:help>
-						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
-						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
-						<sci:legalval>ComponentReturnsFail</sci:legalval>
-						<sci:legalval>ComponentRunsLocal</sci:legalval>
-					</sci:arg>
-					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:help>When an expected data type is not found during processing:  
-  Halt: Terminate the execution of the network
-  Fail: Continue execution of the network, passing data out the Fail(red) port
-  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
-					</sci:arg>
-					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
-						<sci:help>When an recoverable error occurs during processing:  
-  Halt: Terminate the execution of the network
-  Fail: Continue execution of the network, passing data out the Fail(red) port
-  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
-						<sci:legalval selected="true">Halt</sci:legalval>
-						<sci:legalval>Fail</sci:legalval>
-						<sci:legalval>Pass</sci:legalval>
-					</sci:arg>
-					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Custom Error Message</sci:help>
-					</sci:arg>
-					<sci:arg name="Do Screen" type="BoolType" required="false" visibility="nevershow" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>When TRUE, controls which exit port is used for
-each data record by evaluating the final expression
-(or only one) listed in the &quot;Expression&quot; parameter.
-   -Pass (green) port when expression true
-   -Fail (red) port when expression false</sci:help>
-						<sci:legalval>True</sci:legalval>
-						<sci:legalval selected="true">False</sci:legalval>
-					</sci:arg>
-					<sci:arg name="ExpressionVersion" type="LongType" required="false" visibility="nevershow" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
-						<sci:help>Version of expression parser to use.</sci:help>
-						<sci:value>2</sci:value>
-					</sci:arg>
-					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The user who registered this component.</sci:help>
-						<sci:value>scitegic/generic</sci:value>
-					</sci:arg>
-					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Mon Jan 21 09:55:43 2008</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>relative URLs to absolute</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentAutoDisplayName" type="ExpressionType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Automatically update the component display name when the &quot;Expression&quot; property is changed. This feature is turned off after the user manually changes the display name of the component in Protocol workspace.</sci:help>
-						<sci:value>#displayName := trim(Parameter(&apos;Expression&apos;, 2));
-if(strlength(#displayName) &gt; 0) then	
-	/* Find the first line break */
-	#nl := FindSubstring(#displayName, &quot;\r&quot;);
-	if #nl &lt;= 0 then
-		#nl := FindSubstring(#displayName, &quot;\n&quot;);
-	end if;
-
-	/* Keep the first line only */
-	if (#nl &gt; 0) then
-		StrErase(#displayName, #nl);
-	end if;
-	
-	#displayName;
-else
-	&quot;&quot;;
-end if;</sci:value>
-					</sci:arg>
-					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The component this component is based upon.</sci:help>
-						<sci:value>Custom Manipulator (PilotScript)</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
-						<sci:value>EXPRESSIONNODE</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
-						<sci:value>0</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>1794 -2220</sci:value>
-					</sci:arg>
-					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
-						<sci:value>100</sci:value>
-						<sci:value>Applies a PilotScript expression to each data record
-</sci:value>
-						<sci:value>&lt;p&gt;PilotScript is the native scripting language in Pipeline Pilot.  It is based on PL/SQL and allows you to query or alter the properties on data records.  For example, the expression:
-
-&lt;blockquote&gt;
-&lt;code&gt;A := 10;&lt;/code&gt;
-&lt;/blockquote&gt;
-creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;/p&gt;
-
-&lt;p&gt;For each incoming data record the PilotScript statements in &lt;i&gt;Expression&lt;/i&gt; are evaluated.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;
-&lt;ul&gt;
-&lt;li&gt;To initialize global variables such as counters, use &lt;i&gt;Initial Expression&lt;/i&gt;.&lt;/li&gt; 
-&lt;li&gt;To clean up global variables or calculate final results use &lt;i&gt;Final Expression&lt;/i&gt;.&lt;/li&gt;
-&lt;li&gt;Parameters on Custom Manipulators do not become global variables that can be accessed via &lt;i&gt;@ParameterName&lt;/i&gt; syntax.  They must be accessed by using the &lt;i&gt;Parameter(&apos;ParameterName&apos;)&lt;/i&gt; function or by using token substitution via &lt;i&gt;$(ParameterName)&lt;/i&gt; syntax.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;For more information on PilotScript, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/pscript/pscript_overview.htm&apos;)&quot;&gt;PilotScript Overview&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;To use PilotScript to filter data records use &lt;a href=&quot;javascript:DoLink(&apos;{DD58ECD1-516F-48FE-A5DB-8328AED680F2}&apos;)&quot;&gt;Custom Filter (PilotScript)&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-</sci:value>
-						<sci:value>Generic</sci:value>
-						<sci:value/>
-						<sci:value>Generic</sci:value>
-						<sci:value/>
-						<sci:value>None</sci:value>
-						<sci:value/>
-					</sci:arg>
-					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>7.0.0.35</sci:value>
-					</sci:arg>
-					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
-					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Local Component Identifier</sci:help>
-						<sci:value>74</sci:value>
-					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Data Access and Manipulation\Manipulators\Custom Manipulator (PilotScript)</sci:value>
-					</sci:arg>
-				</sci:component>
-			</sci:data>
 			<sci:data object="SciTegic.TextWriter.1">
 				<sci:component name="Text Writer" version="2">
 					<sci:arg name="Destination" type="DestinationURLType" required="true" visibility="visible" multi="false" expanded="true">
@@ -5444,7 +5362,7 @@ Set this value to define the line ending character(s) in the output file. The de
 						<sci:value>{63DD362C-76B3-49A7-9CEF-2C45D21F90CB}</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:value>2058 -2220</sci:value>
+						<sci:value>1794 -2220</sci:value>
 					</sci:arg>
 					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The component this component is based upon.</sci:help>
@@ -5991,8 +5909,7 @@ Command-line Integration Guide&lt;/a&gt;&lt;/p&gt;
 			<sci:connectid from="64" to="65" type="false"/>
 			<sci:connectid from="38" to="59" type="true"/>
 			<sci:connectid from="59" to="73" type="true"/>
-			<sci:connectid from="73" to="74" type="true"/>
-			<sci:connectid from="74" to="39" type="true"/>
+			<sci:connectid from="73" to="39" type="true"/>
 			<sci:connectid from="65" to="38" type="true"/>
 			<sci:version iVal="2"/>
 		</sci:protocol>
