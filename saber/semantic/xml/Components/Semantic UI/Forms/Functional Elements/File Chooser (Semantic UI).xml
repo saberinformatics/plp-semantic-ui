@@ -10,6 +10,13 @@
 				<sci:legalval selected="true">Single File</sci:legalval>
 				<sci:legalval>Multiple Files</sci:legalval>
 			</sci:arg>
+			<sci:arg name="Submit File Names Only" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+				<sci:help>&lt;p&gt;If set to True, display and submit to the working protocol just the file name(s) (in the user&apos;s folder on the Pipeline Pilot server).&lt;/p&gt;
+&lt;p&gt;If set to False, display and submit to the working protocol the absolute file path(s) on the Pipeline Pilot server.&lt;/p&gt;
+&lt;p&gt;In either case the file(s) will be stored on the server and only the string with their name(s) or path(s) will be passed to the working protocol.&lt;/p&gt;</sci:help>
+				<sci:legalval>True</sci:legalval>
+				<sci:legalval selected="true">False</sci:legalval>
+			</sci:arg>
 			<sci:arg name="Width" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
 				<sci:help>Width of the text box including the button, in columns. Full screen is 16 columns. Leave blank to auto-size up to the widest available space.</sci:help>
 				<sci:legalval/>
@@ -308,7 +315,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{57CA96D8-9EC7-424E-915A-CF8E6DA8EFAA}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>906 -570</sci:value>
+				<sci:value>90 -95</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -344,11 +351,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sun Jul 03 22:26:58 2016</sci:value>
+				<sci:value>Thu Nov 17 11:19:19 2016</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>0</sci:value>
+				<sci:value>2</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -370,12 +377,6 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 		<sci:protocol>
 			<sci:data object="SciTegic.Protocol.1">
 				<sci:component name="GUID" version="2">
-					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
-					</sci:arg>
-					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
-						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
-					</sci:arg>
 					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
 						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
 &lt;p&gt;
@@ -474,6 +475,12 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:legalval selected="true">True</sci:legalval>
 						<sci:legalval>False</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+					</sci:arg>
 					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 						<sci:help>Component Attributes</sci:help>
 						<sci:legalval>ComponentTakesInput</sci:legalval>
@@ -522,17 +529,17 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>Set an internal component ID.</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value/>
-						<sci:value>Generic</sci:value>
-						<sci:value/>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
-						<sci:value>Generic</sci:value>
+						<sci:value>None</sci:value>
 						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
 					</sci:arg>
 					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The server version when this component was registered</sci:help>
-						<sci:value>9.2.0.484</sci:value>
+						<sci:value>16.1.0.1140</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
@@ -552,7 +559,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Fri Apr 22 16:48:21 2016</sci:value>
+						<sci:value>Mon Jul 18 11:59:53 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -1453,13 +1460,17 @@ function send$(guid)(f, n, el) {
       }
     })
     .success(function(r) {
+	  if (&apos;$(Submit File Names Only)&apos; == &apos;True&apos;) { r = r.replace(/^.*[\\\/]/, &apos;&apos;); }
       try {
         var box = $(&apos;#$(guid)t&apos;, $(el.target).parent());
         if (box.val() == &apos;&apos;) { box.val(r); } else { box.val(box.val() + &apos;,&apos; + r); }
-          $(&apos;#$(guid)c&apos;).html( $(&apos;#$(guid)c&apos;).html() - 1 );
+		  if( $(&apos;#$(guid)c&apos;).html() &gt; 0 ) {
+			$(&apos;#$(guid)c&apos;).html( $(&apos;#$(guid)c&apos;).html() - 1 );
+		  }
           if( $(&apos;#$(guid)c&apos;).html() == 0 ) {
             // last proc sets count
             $(&apos;#$(guid)b&apos;).find(&quot;&gt;:first-child&quot;).replaceWith(&apos;&lt;code&gt;&apos;+el.target.files.length+&apos;&lt;/code&gt;&apos;);
+
             $(&apos;#$(guid)t&apos;).closest(&apos;form&apos;).find(&quot;input[type=submit]&quot;).removeAttr(&apos;disabled&apos;);
             clear();
           }
