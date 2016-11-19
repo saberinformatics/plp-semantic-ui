@@ -1,0 +1,2099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sci:data xmlns:sci="http://www.SciTegic.com/" object="SciTegic.Protocol.1" format="8.0.0">
+	<sci:dbitem>
+		<sci:component name="Dynamic Content Container Example" version="2">
+			<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;/p&gt;
+
+&lt;p&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Form" type="ProtocolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;The path to a protocol that will render an HTML user interface for this protocol.  This optional parameter is used by Web Port to provide a custom user interface for a protocol.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="true">
+				<sci:member>__PoolID</sci:member>
+				<sci:member>Http Cookie Handling</sci:member>
+				<sci:member>__NotificationProtocol</sci:member>
+			</sci:arg>
+			<sci:arg name="__PoolID" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; is a case insensitive string that can optionally be set to optimize the speed of execution for quick running protocols.  Multiple protocols with the same value for &lt;i&gt;__PoolID&lt;/i&gt; can share expensive resources such as database connections, Java VMs, memory, etc. reducing the execution time by 1 to 2 seconds per run.  This can give a large speed improvement to protocols that run in a few seconds such as web applications and interactive reports.  Longer running protocols will not see much benefit.  Generally, it is a good idea to use the same &lt;i&gt;__PoolID&lt;/i&gt; for all protocols within a single application such as an interactive report since many of the components, databases, and data structures will be similar.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; can also be specified by the client when the protocol is launched.  If &lt;i&gt;__PoolID&lt;/i&gt; is specified both as a parameter by the client and as a parameter stored within the protocol, the client&apos;s value overrides the stored value.&lt;/p&gt;
+
+&lt;p&gt;To disable pooling entirely for this particular protocol, set &lt;i&gt;__PoolID&lt;/i&gt; to &lt;b&gt;&amp;lt;Disable&amp;gt;&lt;/b&gt;&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Http Cookie Handling" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;Http Cookie Handling&lt;/i&gt; provides a mechanism to control the handling of Http cookies within components that access remote resources via Http and Https.  These include the &lt;a href=&quot;javascript:DoLink(&apos;{8A25024A-C274-485B-BB99-8570DCC4C075}&apos;)&quot;&gt;HTTP Connector&lt;/a&gt;, Data readers such as &lt;a href=&quot;javascript:DoLink(&apos;{8056E8AD-33EA-42BB-9099-EAB24C3D08E6}&apos;)&quot;&gt;Text Reader&lt;/a&gt;, &lt;a href=&quot;javascript:DoLink(&apos;{93C4D73F-0B4D-03F4-B0E3-D82C4FE04C6F}&apos;)&quot;&gt;XML Reader (Generic)&lt;/a&gt;, etc., and custom Java, Perl, and .Net components that use the available APIs for accessing remote servers.  By default, New Protocols will have this setting enabled and set to &quot;Protocol Scope&quot;.  This means that Http cookies obtained from a remote server within any component in the protocol or any of its subprotocols will be parsed and appropriately sent back on subsequent requests from the same component or any other component.   The handling of the cookies is based on the IETF standard as specified in &lt;a href=&quot;javascript:DoLink(&apos;http://tools.ietf.org/html/rfc6265&apos;)&quot;&gt;http://tools.ietf.org/html/rfc6265&lt;/a&gt;.  Setting the parameter to Disabled will prevent components from parsing and returning cookies to the remote servers.&lt;/p&gt;
+
+&lt;p&gt;Persistence of cookies is not supported, so scoping of Http cookies is entirely within the context of a single protocol execution.&lt;/p&gt;
+
+&lt;p&gt;Older protocols that do not have the &lt;i&gt;Http Cookie Handling&lt;/i&gt; parameter will behave as though it had been set to &quot;Disabled&quot;.  To enable cookie handling in these protocols, copy this parameter from a New Protocol to the older protocol and set the parameter as desired.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">Protocol Scoped</sci:legalval>
+				<sci:legalval>Disabled</sci:legalval>
+			</sci:arg>
+			<sci:arg name="__NotificationProtocol" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;__NotificationProtocol&lt;/i&gt; specifies the name or component ID (guid) of a protocol stored in the server&apos;s protocol database that will be executed when the current job completes. If your administrator has enabled notification protocols and depending on his or her preference, the notify protocol will either run as the anonymous user or as an admin specified user. The notification protocol receives several parameters that contain information about the original job:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;Notify_JobID&lt;/i&gt;: The job id of the execution
+&lt;li&gt;&lt;i&gt;Notify_JobStatus&lt;/i&gt;: 
+A description of the result of the job execution
+&lt;li&gt;&lt;i&gt;Notify_JobStatusCode&lt;/i&gt;: The 
+status code that for the result of the job execution.
+	&lt;ul style=&quot;list-style-type:circle&quot;&gt;
+	
+&lt;li&gt;&lt;i&gt;5&lt;/i&gt;: Job was stopped by the client or administrator.
+	&lt;li&gt;&lt;i&gt;6&lt;/i&gt;: 
+Job completed normally with success.
+	&lt;li&gt;&lt;i&gt;7&lt;/i&gt;: Job completed with an error.
+	&lt;li&gt;&lt;i&gt;8&lt;/i&gt;: 
+The process ID associated with the running job crashed or otherwise disappeared.
+	&lt;li&gt;&lt;i&gt;9&lt;/i&gt;: 
+Job failed to start.
+	&lt;/ul&gt;
+&lt;li&gt;&lt;i&gt;Notify_ProtocolName&lt;/i&gt;: The name of the protocol
+&lt;li&gt;&lt;i&gt;Notify_ProtocolPath&lt;/i&gt;: 
+The path of the protocol in the DB.  This field can be blank for protocols that were launched without 
+saving to the database.
+&lt;li&gt;&lt;i&gt;Notify_ProtocolLogName&lt;/i&gt;: The log name of the protocol.  
+Is usually the same as ProtocolName, however this can be set by the client to a different name than the 
+protocol.
+&lt;li&gt;&lt;i&gt;Notify_RunHost&lt;/i&gt;: The name of the node where the protocol executed.
+&lt;li&gt;&lt;i&gt;Notify_Username&lt;/i&gt;: 
+The user that ran the job
+&lt;/ul&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Reporting" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>This group contains parameters specific to protocols containing Reporting components.</sci:help>
+				<sci:member>Reporting Stylesheet</sci:member>
+			</sci:arg>
+			<sci:arg name="Reporting Stylesheet" type="StylesheetType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>Specifies the name of a Stylesheet to be used by this protocol if any of the Reporting components have a Style selected in the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.</sci:help>
+				<sci:value>{44C6ECA7-D7C8-4BD8-A0C6-450FF605F58B}</sci:value>
+			</sci:arg>
+			<sci:arg name="Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>The Run On Grid parameter tells the server to run the protocol on the grid engine if the Pipeline Pilot server is configured to run with grid integration.</sci:help>
+				<sci:member>Queue Name</sci:member>
+				<sci:member>Grid Options</sci:member>
+				<sci:legalval>True</sci:legalval>
+				<sci:legalval selected="true">False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>The Queue Name allows you to specify the name of the queue on the grid engine to submit the job to. Leave blank to specify the default queue.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Grid Options" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>Grid Options allows you to specify options to the grid engine submit command. Leave blank to specify the default options.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+				<sci:help>Component Attributes</sci:help>
+				<sci:legalval>ComponentTakesInput</sci:legalval>
+				<sci:legalval>ComponentReturnsPass</sci:legalval>
+				<sci:legalval>ComponentReturnsFail</sci:legalval>
+				<sci:legalval>ComponentRunsLocal</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="WebExports" type="StringType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties which will be automatically 
+exported if this protocol is published as a web service.&lt;/p&gt;
+
+&lt;p&gt;Each global property in the list is created with an empty value at the start of the protocol run.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Keep Alive" type="BoolType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;Specifies if the process where this protocol is run should stay around for later use.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">True</sci:legalval>
+				<sci:legalval>False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The user who registered this component.</sci:help>
+				<sci:value>dbondarev</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The date this component was registered.</sci:help>
+				<sci:value>Fri Nov 18 19:10:44 2016</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The server version when this component was registered</sci:help>
+				<sci:value>16.1.0.1140</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>testSemanticUICaller</sci:value>
+			</sci:arg>
+			<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol AutoLayout</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+				<sci:value>PROTOCOLNODE</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+				<sci:help>Component Revision</sci:help>
+				<sci:value>790</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>{FFC1E27E-D91F-4F7E-81A7-CE3539C3CB19}</sci:value>
+			</sci:arg>
+			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>By Ref</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+				<sci:value>100</sci:value>
+				<sci:value>An interactive page with content that is replaced on demand.</sci:value>
+				<sci:value>In this example the content in a container replaced with the results of a Pipeline Pilot protocol when the user clicks &quot;Submit&quot;. Note that the content may contain interactive elements (e.g. Accordion, pulldown lists, etc.) which will work.</sci:value>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+			</sci:arg>
+			<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Scale</sci:help>
+				<sci:value>100</sci:value>
+			</sci:arg>
+			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Sticky Notes</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Options</sci:help>
+				<sci:legalval>Owner Access Only</sci:legalval>
+			</sci:arg>
+			<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Local Component Identifier</sci:help>
+				<sci:value>-1</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>50 -50</sci:value>
+			</sci:arg>
+			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>OriginalPackage</sci:help>
+				<sci:value>scitegic/coreutils</sci:value>
+			</sci:arg>
+			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The original path within the database of this component.</sci:help>
+				<sci:value>Protocols\Examples\Semantic UI\Interactive\Dynamic Content Container Example</sci:value>
+			</sci:arg>
+		</sci:component>
+		<sci:protocol>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="Text Header (Semantic UI)" version="2">
+					<sci:arg name="Header Text" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>The text in the header.</sci:help>
+						<sci:value>A dynamic content container example</sci:value>
+					</sci:arg>
+					<sci:arg name="Appearance" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+						<sci:help>Appearance</sci:help>
+						<sci:member>Colored</sci:member>
+						<sci:member>Block</sci:member>
+						<sci:member>Inverted</sci:member>
+						<sci:member>Dividing</sci:member>
+						<sci:member>Size</sci:member>
+					</sci:arg>
+					<sci:arg name="Size" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>A header can have small or large font.</sci:help>
+						<sci:legalval selected="true">h1</sci:legalval>
+						<sci:legalval>h2</sci:legalval>
+						<sci:legalval>h3</sci:legalval>
+						<sci:legalval>h4</sci:legalval>
+						<sci:legalval>h5</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Dividing" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A header can be formatted to divide itself from the content below it.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Colored" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A header can be given a color to distinguish it from other headers. &lt;p&gt;These colors can be Inverted to become background colors.&lt;/p&gt;</sci:help>
+						<sci:legalval/>
+						<sci:legalval>red</sci:legalval>
+						<sci:legalval>orange</sci:legalval>
+						<sci:legalval>yellow</sci:legalval>
+						<sci:legalval>olive</sci:legalval>
+						<sci:legalval>green</sci:legalval>
+						<sci:legalval>teal</sci:legalval>
+						<sci:legalval>blue</sci:legalval>
+						<sci:legalval>violet</sci:legalval>
+						<sci:legalval>purple</sci:legalval>
+						<sci:legalval>pink</sci:legalval>
+						<sci:legalval>brown</sci:legalval>
+						<sci:legalval selected="true">grey</sci:legalval>
+						<sci:legalval>black</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Block" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A header can be formatted to appear inside a content block.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Inverted" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A header&apos;s colors can be inverted.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Block to &quot;True&quot;&apos;);
+Parameter(&apos;Block&apos;);</sci:enabledscript>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+						<sci:value>classes_, h_</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid Grid Options</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Grid Options" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Use this to specify grid engine specific command line parameters to the job submission command. Leave blank to use defaults.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Popup" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+							<sci:propval name="SCI_InitializeUsingOrigType" ishidden="true">GroupType</sci:propval>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup displays additional information in a temporary message.</sci:help>
+						<sci:member>Popup Content</sci:member>
+						<sci:member>Basic Popup</sci:member>
+						<sci:member>Popup Appearance</sci:member>
+						<sci:member>Behavior</sci:member>
+					</sci:arg>
+					<sci:arg name="Popup Content" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Popup Content</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Popup content. (HTML is allowed).</sci:help>
+					</sci:arg>
+					<sci:arg name="Basic Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Basic Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can provide basic or extended formatting.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Popup Appearance" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Popup Appearance</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Appearance</sci:help>
+						<sci:member>Popup Width</sci:member>
+						<sci:member>Fluid Popup</sci:member>
+						<sci:member>Popup Size</sci:member>
+						<sci:member>Flowing Popup</sci:member>
+						<sci:member>Inverted Popup</sci:member>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Basic Popup to False&apos;);
+not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Popup Width" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Popup Width</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can be wide or very wide to allow for longer content.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>wide</sci:legalval>
+						<sci:legalval>very wide</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Fluid Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Fluid Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A fluid popup will take up the entire width of its  container.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Popup Size" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Popup Size</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can vary in font size.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>mini</sci:legalval>
+						<sci:legalval>tiny</sci:legalval>
+						<sci:legalval>small</sci:legalval>
+						<sci:legalval>large</sci:legalval>
+						<sci:legalval>huge</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Flowing Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Flowing Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can have no maximum width and continue to flow to fit its content.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Inverted Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Inverted Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can have its colors inverted.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Behavior" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Behavior</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Behavior</sci:help>
+						<sci:member>Show On</sci:member>
+					</sci:arg>
+					<sci:arg name="Show On" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Show On</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>When to show the popup. Hover (mouseover), click, focus (when a form element such as a text box is in focus).</sci:help>
+						<sci:legalval selected="true">hover</sci:legalval>
+						<sci:legalval>click</sci:legalval>
+						<sci:legalval>focus</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Text Header (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportTextNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{E3C33187-BDCE-4E6B-A065-7AC26F529BE3}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Text Header (Semantic UI).</sci:value>
+						<sci:value>&lt;p&gt;A header provides a short summary of content. You may use HTML in the header text if you wish.&lt;/p&gt;</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Tue Jun 14 10:56:02 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>2</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalComponentGUID</sci:help>
+						<sci:value>{7DB736DB-2B9F-43E6-9B58-2DDD938BF8D3}</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Text Header (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="Message (Semantic UI)" version="2">
+					<sci:arg name="Basic" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A basic message displays only a header and some text.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Header" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Message header.</sci:help>
+						<sci:value>Container</sci:value>
+					</sci:arg>
+					<sci:arg name="Text" type="TextType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Mesage text. HTML is allowed.</sci:help>
+						<sci:value>Click the Submit button.</sci:value>
+					</sci:arg>
+					<sci:arg name="Appearance" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Appearance</sci:help>
+						<sci:member>Dismissable</sci:member>
+						<sci:member>Message Color</sci:member>
+						<sci:member>Size</sci:member>
+						<sci:member>Visibility</sci:member>
+						<sci:member>Icon</sci:member>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Basic to False&apos;);
+NOT Parameter(&apos;Basic&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed on the left side of the message. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Visibility" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A message can optionally be set to visible to force itself to be shown or be hidden. &lt;p&gt;&lt;strong&gt;Leave blank to make the message visible.&lt;/strong&gt;&lt;/p&gt;</sci:help>
+						<sci:legalval/>
+						<sci:legalval>hidden</sci:legalval>
+						<sci:legalval>visible</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Dismissable" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A message that the user can choose to hide.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Message Color" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A message can be formatted to display information, be positive, be negative, or display a warning. A message can be formatted with a specific color.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>info</sci:legalval>
+						<sci:legalval>warning</sci:legalval>
+						<sci:legalval>positive</sci:legalval>
+						<sci:legalval>negative</sci:legalval>
+						<sci:legalval>red</sci:legalval>
+						<sci:legalval>orange</sci:legalval>
+						<sci:legalval>yellow</sci:legalval>
+						<sci:legalval>olive</sci:legalval>
+						<sci:legalval>green</sci:legalval>
+						<sci:legalval>teal</sci:legalval>
+						<sci:legalval>blue</sci:legalval>
+						<sci:legalval>violet</sci:legalval>
+						<sci:legalval>purple</sci:legalval>
+						<sci:legalval>pink</sci:legalval>
+						<sci:legalval>brown</sci:legalval>
+						<sci:legalval>black</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Size" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A message can have different sizes.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>small</sci:legalval>
+						<sci:legalval>large</sci:legalval>
+						<sci:legalval>huge</sci:legalval>
+						<sci:legalval>massive</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ID" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>An optional message ID. Provided for convenience, if you wish to manipulate message state (visible/hidden) yourself with JavaScript later. In that case also make sure each message has a unique ID.</sci:help>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+						<sci:value>guid, header__, icon__, icon1__, iconclass__, closeicon__, closescript__, id__</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid Grid Options</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Grid Options" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Use this to specify grid engine specific command line parameters to the job submission command. Leave blank to use defaults.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Message (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportTextNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{9AD1DBC9-4FCF-4A39-86D5-E731B91DE0F7}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>90 -470</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Message (Semantic UI).</sci:value>
+						<sci:value>A message displays information that explains nearby content.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Tue Jun 14 11:05:15 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>11</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Message (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.ComponentJavaPlugin.1">
+				<sci:component name="Dynamic Content Container" version="2">
+					<sci:arg name="Container ID" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The ID specified here should be referenced in any &lt;a href=&quot;javascript:DoLink(&apos;{5D0F8E8E-290C-4e9c-81D1-223ACA806544}&apos;)&quot;&gt;Protocol Function&lt;/a&gt; components that will automatically insert content into this container.&lt;/p&gt;
+
+&lt;p&gt;To guarantee interoperability among browsers, IDs should start with a letter and consist only of letters, numbers, hyphens, underscores, colons, and periods.&lt;/p&gt;</sci:help>
+						<sci:value>myContainer</sci:value>
+					</sci:arg>
+					<sci:arg name="Format" type="FormatType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Specifies formatting to be applied to this element. Editing this parameter opens the Format Dialog.&lt;/p&gt;
+
+&lt;p&gt;Depending on what this Format is being applied to, options may include:
+&lt;ul&gt;&lt;li&gt;Font settings (e.g., Color, Size, Bold, Italic, Underline)&lt;/li&gt;
+&lt;li&gt;Border settings (e.g., Color, Style, Width)&lt;/li&gt;
+&lt;li&gt;Background settings (Color, Image)&lt;/li&gt;
+&lt;li&gt;Alignment settings&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Only options that are relevant for this specific Format parameter will be displayed.&lt;/li&gt;
+&lt;li&gt;Background Image: Allows you to select a background image for the reporting element. This image must be accessible to the Pipeline Pilot server. For example, there are some example images in the apps\scitegic\generic\dataroot\data\Images folder in your Pipeline Pilot installation (shortcut is &quot;generic\Images&quot; folder). To use your own images, you need to upload them to a location such as your userdir or jobdir. An easy way to do this is to use the Binary Reader component to read the file, and the Binary Writer component to save it to the chosen location. Supported image types include .gif, .jpg, .png, and .bmp.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:value>700</sci:value>
+					</sci:arg>
+					<sci:arg name="Position" type="PositionType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Specifies how this element is positioned. Editing this parameter opens the Position dialog, which enables you to change margins, paddings, width, and height.&lt;/p&gt;
+
+&lt;p&gt;If the Overflow Behavior is set to &quot;Resize Container&quot;, any width and height information will be ignored, as the container will resize itself to its contents.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Overflow Behavior" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;How the container should treat oversized content inserted into the container:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;Show scrollbars as necessary&lt;/i&gt;: If the content placed inside the container is larger than the size of the container (if an exact width or height are specified), then scrollbars will be shown to allow the user to scroll through all content.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Clipped&lt;/i&gt;: If the content placed inside the container is larger than the size of the container (if an exact width and height are specified), then any content overflowing the container will be clipped off, and no scrollbars will appear.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Resize to Content&lt;/i&gt;: Resizes the container to tightly fit the current content (also applies to initial content). Any width and height information specified in the Position parameter will be ignored.&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval>Show Scrollbars as Necessary</sci:legalval>
+						<sci:legalval>Clipped</sci:legalval>
+						<sci:legalval selected="true">Resize to Content</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Links and Actions" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Links and actions to be applied to the report element produced by this component.</sci:help>
+						<sci:member>Link Target</sci:member>
+						<sci:member>HTML Attributes</sci:member>
+						<sci:member>Tooltip</sci:member>
+					</sci:arg>
+					<sci:arg name="Link Target" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Sets this element as the destination for links from other elements in the report. The value of &lt;i&gt;Link Target&lt;/i&gt; can be text or a property name, and should match the value of &lt;i&gt;Link&lt;/i&gt; in another report component.  In the resulting report, when the element with &lt;i&gt;Link&lt;/i&gt; is clicked, the element with the matching &lt;i&gt;Link Target&lt;/i&gt; is brought to the top of the report page.</sci:help>
+					</sci:arg>
+					<sci:arg name="Tooltip" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>An optional tooltip for this reporting element.</sci:help>
+					</sci:arg>
+					<sci:arg name="HTML Attributes" type="HTMLAttributesType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Defines attributes for the reporting element. These attributes can be used by JavaScript code that is &lt;a href=&quot;javascript:DoLink(&apos;{262A8E5D-BB8E-4dc4-A6F5-A61FC6047EC8}&apos;)&quot;&gt;embedded in&lt;/a&gt; or &lt;a href=&quot;javascript:DoLink(&apos;{6DF7D4FA-28BC-453b-8882-DE55C7CFFBF9}&apos;)&quot;&gt;included by&lt;/a&gt; the HTML report. One very common attribute is &quot;id&quot; which allows access to the element using the document.getElementById(id) method. Event handlers such as &quot;onclick&quot; and &quot;onmouseover&quot; are also common attributes.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Column settings control how the element appears when it is used inside a table.</sci:help>
+						<sci:member>Column Settings Header Text</sci:member>
+						<sci:member>Column Settings Header Format</sci:member>
+						<sci:member>Column Settings Header Position</sci:member>
+						<sci:member>Column Settings Cell Format</sci:member>
+						<sci:member>Column Settings Cell Position</sci:member>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Text" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the text displayed at the top of its column.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;When used in a table, this parameter sets the format of the text displayed 
+at the top of its column.
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>700</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the text displayed at the top of its column.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When used in a table, this parameter sets the format of the cells in the column.
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>700</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the cells in the column.</sci:help>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>8.0.0.14</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="JavaClass" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>com.scitegic.report.component.DynamicContainerComponent</sci:value>
+					</sci:arg>
+					<sci:arg name="CaptureStdoutStderr" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:help>CaptureStdoutStderr</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/reportadv</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Thu Mar 11 10:51:04 2010</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Dynamic Content Container</sci:value>
+					</sci:arg>
+					<sci:arg name="Link Options Mapping" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Mapping of the Format parameter name to the Link Options parameter name.</sci:help>
+						<sci:value>Format</sci:value>
+						<sci:value>Link Options</sci:value>
+					</sci:arg>
+					<sci:arg name="Use Package" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>3</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -470</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>REPORTTEXTNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{557CDA43-AC9E-44BC-AB02-FD126CC82B7C}</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Plug In</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Adds a container (&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; tag) that can be updated with content generated by another protocol, using AJAX</sci:value>
+						<sci:value>&lt;p&gt;Use this component to create an area in a report (a &quot;container&quot;) where any existing content can be replaced with the results of another protocol without refreshing the rest of the report.  Use this component in conjunction with the &lt;a href=&quot;javascript:DoLink(&apos;{5D0F8E8E-290C-4e9c-81D1-223ACA806544}&apos;)&quot;&gt;Protocol Function&lt;/a&gt; component to provide &lt;a href=&quot;javascript:DoLink(&apos;http://en.wikipedia.org/wiki/Ajax_%28programming%29&apos;)&quot;&gt;AJAX&lt;/a&gt; functionality in reports.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, use the container to generate &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; elements in a report that can be manipulated via JavaScript.&lt;/p&gt;
+
+&lt;p&gt;The Protocol Function component specifies a protocol to run when the user takes an action such as clicking a button in the original report.  When that action happens, the results of that protocol (a table, a chart, etc.) will be placed into the container defined by the Dynamic Content Container, replacing anything that is currently present.  To link a Protocol Function component to this one, set its &lt;i&gt;Dynamic Content Container ID&lt;/i&gt; to match the &lt;i&gt;Container ID&lt;/i&gt; on this component.  Multiple Protocol Function components may update the same container, and multiple pairs of Dynamic Content Container and Protocol Function components can be used in a single report.&lt;/p&gt;
+
+&lt;p&gt;When a protocol containing a Dynamic Content Container is run to generate a report, the container initially functions very much like a paragraph component. Any reporting content on data records piped in will be displayed inside the container.  This content can then be updated using the AJAX functionality.&lt;/p&gt;
+
+&lt;p&gt;The container can also be used as a general box for content, as it supports the specification of fixed width and height and provides a means to specify how oversized content is handled.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;This component is for use in HTML reports only.&lt;/li&gt;
+	&lt;li&gt;The value of the &lt;i&gt;Container ID&lt;/i&gt; is output as an ID attribute. ID values should be unique within a report.&lt;/li&gt;
+	&lt;li&gt;Dynamic Content Containers can be nested.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/report/docs/reporting_basic.pdf&apos;)&quot;&gt;Report Design Essentials&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/reportadv/docs/reportadv_interactive.pdf&apos;)&quot;&gt;Interactive Reporting and Form Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value>One or more data records containing reporting objects</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value>A data record representing the container is sent to the pass port.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Reporting and Visualization\Web Application Development\HTML Elements\Dynamic Content Container</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="HTML Report Viewer (Semantic UI)" version="2">
+					<sci:arg name="Title" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The optional title of the HTML document. The title is also used as part of the report&apos;s file name.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Permanent URL" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Display this protocol&apos;s starter URL in the browser address bar. Users will be able to bookmark the start protocol page that way. &lt;p&gt;&lt;strong&gt;Note: the protocol must be saved in Pipeline Pilot for this to work.&lt;/strong&gt;&lt;/p&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Advanced Options</sci:help>
+						<sci:member>Include Format and Position CSS</sci:member>
+						<sci:member>Animate Link Underlines</sci:member>
+						<sci:member>Theme</sci:member>
+					</sci:arg>
+					<sci:arg name="Theme" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Choose a visual theme for the content.&lt;/p&gt;
+&lt;p&gt;&lt;ul&gt;
+&lt;li&gt;2.2.1: released 06/2016&lt;/li&gt;
+&lt;li&gt;Default (v 2.1.8): released 02/2016&lt;/li&gt;
+&lt;/ul&gt;
+Semantic UI release history with detailed notes:
+&lt;a href=&quot;https://github.com/Semantic-Org/Semantic-UI/releases&quot;&gt;https://github.com/Semantic-Org/Semantic-UI/releases&lt;a&gt;
+&lt;/p&gt;
+&lt;p&gt;When the component collection is updated with a new Semantic UI release, the components in unmodified existing protocols will continue to point to a set release version. You can also point this parameter to a newer release if you wish by right-clicking the component and Replace with Latest Version then selecting a newer semantic theme release.&lt;/p&gt;
+To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
+						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
+SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
+						<sci:value>2.2.1</sci:value>
+					</sci:arg>
+					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
+						<sci:member>Add Page Margins</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Add Page Margins" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>When not using native Scitegic CSS, add page margins. This will add small margins on each side of the page. Scitegic styles already include this.</sci:help>
+						<sci:enabledscript>not Parameter(&apos;Include Format and Position CSS&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Animate Link Underlines" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>When hovering over a link, the link&apos;s underline is revealed by animating it out from the center.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Output Mode" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Allows some alternative formatting and position settings to be used that may cause the HTML report output to behave and look more like the HTML generated with previous versions of Pipeline Pilot. This parameter is intended to be set on writers in protocols developed with previous versions of Pipeline Pilot where the output looks or behaves differently when run with the current version.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Always use the value of &quot;Default&quot; for new protocols or protocols under active development. The latest Reporting components may not behave correctly in HTML reports written with a non-default mode.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When set to &quot;Pipeline Pilot 7.5&quot;, this parameter rolls back some of the improvements made in the name of standards compliance and formatting consistency, including:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;The report will not include the HTML 4.01 Doctype declaration, which will cause Internet Explorer to render the report using quirks mode.&lt;/li&gt;
+	&lt;li&gt;Position rules will not be strictly enforced, so Internet Explorer 6 will render borders and padding outside the specified width.&lt;/li&gt;
+	&lt;li&gt;Horizontal alignment of block objects will not be supported, so you will not be able to, for example, center-align a table.&lt;/li&gt;
+	&lt;li&gt;The page margins will not be set.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:legalval selected="true">Default</sci:legalval>
+						<sci:legalval>Pipeline Pilot 7.5</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists the set of temporary files which will be converted by the network to true temporary file names</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists a set of properties (without the @) to be created on the property list for this protocol.
+Other properties are created on the global property list
+and so are accessible from all protocols.</sci:help>
+						<sci:value>ServerFilePath, ServerFilePathZIP, ServerFilePathForwardSlashes</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="BoolType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>When the network is run, whether we process once or until done for each process call</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Accept Bootstrap" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Allow the use of Web Design (Bootstrap) collection components with the Semantic UI viewer? Generally speaking, this parameter should always be set to False to prevent the inadvertent mixing of the two frameworks.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval>ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval selected="true">Make Shortcut by Default</sci:legalval>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>dbondarev</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Tue Nov 08 21:26:37 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportViewerNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>SubProtocol</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>762 -470</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Displays the results of a reporting protocol in HTML5 format</sci:value>
+						<sci:value>&lt;p&gt;This component accepts reporting objects as input (e.g., tables, text and images), and displays the output as an HTML file in Internet Explorer.&lt;/p&gt;</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value>This component accepts reporting objects as input.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="Raw HTML (Semantic UI)" version="2">
+					<sci:arg name="HTML" type="TextType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Raw HTML text.</sci:help>
+						<sci:value>&lt;script&gt;
+
+function fetchContent(container_id, url) {
+  $(&apos;#&apos;+container_id)
+    .html(&apos;&lt;p&gt;&lt;i class=&quot;ui loading grey inline spinner icon&quot;&gt;&lt;/i&gt;&lt;/p&gt;&apos;)
+    .load(url, function() {
+      //alert(&quot;loading has completed&quot;);
+    }
+  );
+}
+
+&lt;/script&gt;
+</sci:value>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="true">
+						<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Raw HTML (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportTextNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{D257B36C-6670-4D92-8489-8A5E09C04D4D}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -845</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Raw HTML (Semantic UI).</sci:value>
+						<sci:value>Type raw HTML code into this component. It will be inserted unchanged and unwrapped into the final Semantic UI HTML report. Any tags are allowed. Pipeline Pilot global variables in the $() notation are allowed.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Tue Jun 14 10:59:21 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>10</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="JavaScript Button (Semantic UI)" version="2">
+					<sci:arg name="On Click" type="JavaScriptType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>JavaScript code to be executed on button click.
+&lt;p&gt;To use this button as a link, type 
+&lt;code&gt;window.location.href = &quot;http://mywebsite.com&quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To use this button as a protocol link, type 
+&lt;code&gt;window.location.href = &quot;/auth/launchjob?_compat=1&amp;_protocol=myprotocolguid&quot;;&lt;/code&gt;&lt;br&gt;where myprotocolguid is your protocol&apos;s GUID.&lt;/p&gt;
+&lt;p&gt;Note: to open the link url in a new window, use &lt;code&gt;window.open&lt;/code&gt; instead of &lt;code&gt;window.location.href&lt;/code&gt;&lt;/p&gt;</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;On Click and Is Modal Button cannot be set at the same time. Either clear On Click or set Is Modal Button to False.&apos;);
+	not (Parameter(&apos;Is Modal Button&apos;) and Parameter(&apos;On Click&apos;) ne &apos;&apos;)</sci:validscript>
+						<sci:value>fetchContent(&apos;myContainer&apos;, &apos;$(ServerRoot)/protocols/Examples/Semantic%20UI/Interactive/Utilities/Dynamic%20Content%20(worker%20protocol)?$streamfile=&apos;);</sci:value>
+					</sci:arg>
+					<sci:arg name="Text" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>The text to be displayed on the button. &lt;strong&gt;HTML is allowed (e.g. an icon alongside text).&lt;/strong&gt;</sci:help>
+						<sci:member>Left Icon</sci:member>
+						<sci:member>Right Icon</sci:member>
+						<sci:value>Click me</sci:value>
+					</sci:arg>
+					<sci:arg name="Left Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed on the left side of the button. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Right Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed on the right side of the button. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Type" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Type</sci:help>
+						<sci:member>Animated</sci:member>
+						<sci:member>Labeled</sci:member>
+						<sci:member>Icon-Labeled</sci:member>
+						<sci:member>Basic</sci:member>
+						<sci:member>Inverted</sci:member>
+					</sci:arg>
+					<sci:arg name="Animated" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>An animated button will show a different text on mouse hover.</sci:help>
+						<sci:member>Hidden Content</sci:member>
+						<sci:legalval/>
+						<sci:legalval>animated</sci:legalval>
+						<sci:legalval>vertical animated</sci:legalval>
+						<sci:legalval>animated fade</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Hidden Content" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The button will be automatically sized according to the visible content size. Make sure there is enough room for the hidden content to show.&lt;/p&gt;&lt;strong&gt;HTML is allowed.&lt;/strong&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Labeled" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>A button can appear alongside a label. Choose whether this button is labeled and on which side.</sci:help>
+						<sci:member>Label Text</sci:member>
+						<sci:member>Basic Label</sci:member>
+						<sci:member>Label On Click</sci:member>
+						<sci:legalval/>
+						<sci:legalval>right labeled</sci:legalval>
+						<sci:legalval>left labeled</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Label Text" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Text</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>The text to be displayed on the label. &lt;strong&gt;HTML is allowed (e.g. an icon alongside text).&lt;/strong&gt;</sci:help>
+						<sci:member>Label Text Left Icon</sci:member>
+						<sci:member>Label Text Right Icon</sci:member>
+						<sci:member>Label Text Detail</sci:member>
+						<sci:enabledscript>SetDisabledDetails(
+	       &apos;To enable &apos;.ParameterName().&apos;, set Labeled.&apos;);
+	Parameter(&apos;Labeled&apos;) ne &apos;&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Label Text Left Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Left Icon</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed on the left side of the button. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Label Text Right Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Right Icon</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed on the right side of the button. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Label Text Detail" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Detail</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A label can contain a detail.</sci:help>
+					</sci:arg>
+					<sci:arg name="Basic Label" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Basic</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>A basic label is less pronounced. Just an outline and text inside it are visible.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Label On Click" type="JavaScriptType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>On Click</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>JavaScript code to be executed on label click.&lt;p&gt;To use this label as a link, type 
+&lt;code&gt;window.location.href = &quot;http://mywebsite.com&quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To use this label as a protocol link, type 
+&lt;code&gt;window.location.href = &quot;/auth/launchjob?_compat=1&amp;_protocol=myprotocolguid&quot;;&lt;/code&gt;&lt;br&gt;where myprotocolguid is your protocol&apos;s GUID.&lt;/p&gt;
+&lt;p&gt;Note: to open the link url in a new window, use &lt;code&gt;window.open&lt;/code&gt; instead of &lt;code&gt;window.location.href&lt;/code&gt;&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Icon-Labeled" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>A button can use an icon as a label.</sci:help>
+						<sci:member>Icon</sci:member>
+						<sci:legalval/>
+						<sci:legalval>left labeled icon</sci:legalval>
+						<sci:legalval>right labeled icon</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Icon" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>An &lt;strong&gt;optional&lt;/strong&gt; icon can be displayed. &lt;p&gt;Type in an icon name, e.g. Alarm or alarm or Phone Square or phone square. A complete list is available here: &lt;a href=&quot;javascript:DoLink(&apos;http://semantic-ui.com/elements/icon.html&apos;)&quot;&gt;http://semantic-ui.com/elements/icon.html&lt;/a&gt;&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Icon-Labeled to left or right labeled.&apos;);
+Parameter(&apos;Icon-Labeled&apos;) ne &apos;&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Basic" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A basic button is less pronounced. Just an outline and text inside it are visible.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Inverted" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can be formatted to appear on dark backgrounds.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="State" type="LongType" required="false" visibility="visible" multi="false">
+						<sci:help>State</sci:help>
+						<sci:member>Active</sci:member>
+						<sci:member>Disabled</sci:member>
+						<sci:member>Loading</sci:member>
+					</sci:arg>
+					<sci:arg name="Active" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can show it is currently the active user selection.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Disabled" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can show it is currently unable to be interacted with.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Loading" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can show a loading indicator.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Variation" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Variation</sci:help>
+						<sci:member>Size</sci:member>
+						<sci:member>Floated</sci:member>
+						<sci:member>Color</sci:member>
+						<sci:member>Compact</sci:member>
+						<sci:member>Shape</sci:member>
+						<sci:member>Fluid</sci:member>
+						<sci:member>Circular</sci:member>
+					</sci:arg>
+					<sci:arg name="Size" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>Size</sci:help>
+						<sci:legalval/>
+						<sci:legalval>mini</sci:legalval>
+						<sci:legalval>tiny</sci:legalval>
+						<sci:legalval>small</sci:legalval>
+						<sci:legalval>medium</sci:legalval>
+						<sci:legalval>large</sci:legalval>
+						<sci:legalval>big</sci:legalval>
+						<sci:legalval>huge</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Floated" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>A button can be aligned to the left or right of its container.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>left floated</sci:legalval>
+						<sci:legalval>right floated</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Color" type="StringType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:help>Default color is gray.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>positive</sci:legalval>
+						<sci:legalval>negative</sci:legalval>
+						<sci:legalval>primary</sci:legalval>
+						<sci:legalval>secondary</sci:legalval>
+						<sci:legalval>black</sci:legalval>
+						<sci:legalval>grey</sci:legalval>
+						<sci:legalval>red</sci:legalval>
+						<sci:legalval>orange</sci:legalval>
+						<sci:legalval>yellow</sci:legalval>
+						<sci:legalval>olive</sci:legalval>
+						<sci:legalval>green</sci:legalval>
+						<sci:legalval>teal</sci:legalval>
+						<sci:legalval>blue</sci:legalval>
+						<sci:legalval>violet</sci:legalval>
+						<sci:legalval>purple</sci:legalval>
+						<sci:legalval>pink</sci:legalval>
+						<sci:legalval>brown</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Compact" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can reduce its padding to fit into tighter spaces.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Shape" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>Shape</sci:help>
+						<sci:legalval/>
+						<sci:legalval>circular</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Fluid" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can take the width of its container.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Circular" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>A button can be circular.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Constant GUID" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>If set, this will be the ID of the HTML element. If left blank, an ID will be assigned automatically. Only alphanumeric characters are allowed, no spaces or special characters.</sci:help>
+						<sci:validscript>SetInvalidDetails(ParameterName() . &apos; must be alphanumeric. Spaces or special characters are not allowed.&apos;);
+numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;</sci:validscript>
+					</sci:arg>
+					<sci:arg name="Is Modal Button" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:help>Is this to be a button to display a hidden modal panel?</sci:help>
+						<sci:member>Modal ID</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;On Click and Is Modal Button cannot be set at the same time. Either clear On Click or set Is Modal Button to False.&apos;);
+	not (Parameter(&apos;Is Modal Button&apos;) and Parameter(&apos;On Click&apos;) ne &apos;&apos;)</sci:validscript>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Modal ID" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;The unique ID of the modal that will be shown on a button click. It must match the ID on the modal.&lt;/p&gt;
+
+&lt;p&gt;The default value can be left in when there is only one modal on the page. For multiple modals, use different IDs.&lt;/p&gt;
+</sci:help>
+						<sci:validscript>SetInvalidDetails(ParameterName() . &apos; must be alphanumeric. Spaces or special characters are not allowed.&apos;);
+numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Is Modal Button to True.&apos;);
+	Parameter(&apos;Is Modal Button&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Popup" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+							<sci:propval name="SCI_InitializeUsingOrigType">GroupType</sci:propval>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup displays additional information in a temporary message.</sci:help>
+						<sci:member>Popup Content</sci:member>
+						<sci:member>Basic Popup</sci:member>
+						<sci:member>Popup Appearance</sci:member>
+						<sci:member>Behavior</sci:member>
+					</sci:arg>
+					<sci:arg name="Popup Content" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Popup Content</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Popup content. (HTML is allowed).</sci:help>
+					</sci:arg>
+					<sci:arg name="Basic Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Basic Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can provide basic or extended formatting.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Popup Appearance" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Popup Appearance</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Appearance</sci:help>
+						<sci:member>Popup Width</sci:member>
+						<sci:member>Fluid Popup</sci:member>
+						<sci:member>Popup Size</sci:member>
+						<sci:member>Flowing Popup</sci:member>
+						<sci:member>Inverted Popup</sci:member>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set Basic Popup to False&apos;);
+not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Popup Width" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Popup Width</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can be wide or very wide to allow for longer content.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>wide</sci:legalval>
+						<sci:legalval>very wide</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Fluid Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Fluid Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A fluid popup will take up the entire width of its  container.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Popup Size" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Popup Size</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can vary in font size.</sci:help>
+						<sci:legalval/>
+						<sci:legalval>mini</sci:legalval>
+						<sci:legalval>tiny</sci:legalval>
+						<sci:legalval>small</sci:legalval>
+						<sci:legalval>large</sci:legalval>
+						<sci:legalval>huge</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Flowing Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Flowing Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can have no maximum width and continue to flow to fit its content.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Inverted Popup" type="BoolType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Inverted Popup</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>A popup can have its colors inverted.</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Behavior" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Behavior</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>Behavior</sci:help>
+						<sci:member>Show On</sci:member>
+					</sci:arg>
+					<sci:arg name="Show On" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Show On</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>When to show the popup. Hover (mouseover), click, focus (when a form element such as a text box is in focus).</sci:help>
+						<sci:legalval selected="true">hover</sci:legalval>
+						<sci:legalval>click</sci:legalval>
+						<sci:legalval>focus</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
+&lt;p&gt;
+When set to &quot;True - For Each Category&quot;, the data records are divided into categories based on the value of the Categorize Using parameter and then the subprotocol is re-initialized and executed in its entirety for each category of data records. When used in conjunction with &lt;i&gt;Parallel Processing Options&lt;/i&gt;, each category of data records will be sent to the remote server as part of one single batch.</sci:help>
+						<sci:member>RunToCompletion Categorize Using</sci:member>
+						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval>True - For Each Data Record</sci:legalval>
+						<sci:legalval>True - For Each Category</sci:legalval>
+					</sci:arg>
+					<sci:arg name="RunToCompletion Categorize Using" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Required when RunToCompletion is set to &lt;i&gt;True - For Each Category&lt;/i&gt;, this parameter specifies the property or properties used to define the categories.</sci:help>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required when RunToCompletion is set to True - For Each Category&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&apos;To Enable, Set RunToCompletion to True - For Each Category&apos;);
+Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;
+When set to True, this set of options allow the subprotocol to execute in parallel on one or more independent Pipeline Pilot servers, running local or remote.  Additional parameters control the number of data records to send in each process batch, the list of Pipeline Pilot servers to use, the number of protocol processes that can be executed on each server, and whether to preserve the order of the processed data records.
+&lt;/p&gt;&lt;p&gt;
+Use this option judiciously, since it will not increase throughput in all circumstances. In general, it will yield improved performance when the parallelization benefits outweigh the data transfer overhead for the specified batch size.  As a rough guide, performance can be improved when each individual batch requires at least 10 seconds to execute, although this can be affected by the size of each data record.
+&lt;/p&gt;&lt;p&gt;
+When running the protocol with debugging, the subprotocol will provide debugging messages to detail each of the various steps of execution.  Also, components located within the parallel subprotocol will display their debugging messages as well.
+&lt;/p&gt;&lt;p&gt;
+For more information on the parallel subprotocol options, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/subprots/subprot_parallel_processing.htm&apos;)&quot;&gt;Parallel Processing Subprotocols&lt;/a&gt;.
+&lt;/p&gt;
+</sci:help>
+						<sci:member>Parallel Processing Options Batch Size</sci:member>
+						<sci:member>Parallel Processing Options Server</sci:member>
+						<sci:member>Parallel Processing Options Preserve Order</sci:member>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Batch Size" type="LongType" required="true" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;The number of records to send to the remote server(s) for each subprotocol execution.  In general, performance is optimized when the amount of time required to process each batch is at least 10 seconds (note that this can vary depending on the characteristics of the remote server&apos;s hardware).  Use a batch size of -1 to pass all data in a single batch.&lt;/p&gt;
+&lt;p&gt;When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - for each category&quot;, the batch sizes will be determined by the number of records in each individual category.  Therefore, the &lt;i&gt;Batch Size&lt;/i&gt; parameter is not applicable.</sci:help>
+						<sci:enabledscript>#parallel := Parameter(&apos;Parallel Processing Options&apos;);
+#rtcForEachCategory := (Parameter(&apos;RunToCompletion&apos;) eq &apos;True - For Each Category&apos;);
+if (not #parallel) then
+	SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+elsif (#rtcForEachCategory) then
+	SetDisabledDetails(&quot;This parameter is not applicable when &apos;RunToCompletion&apos; is set to &apos;True - For Each Category&apos;&quot;);
+end if;
+#parallel and not #rtcForEachCategory;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server" type="StringType" required="false" visibility="visible" multi="true" expanded="true" legalvalsenforced="false" uimpl="false">
+						<sci:help>&lt;p&gt;
+Comma separated list of Pipeline Pilot servers on which to execute the parallel subprotocol.  The server names should be in the same format as the Pipeline Pilot Client&apos;s change server dialog (server-name:port-number).
+&lt;/p&gt;&lt;p&gt;
+Specifying &lt;b&gt;localhost&lt;/b&gt; as a server will cause the subprotocol to use its own Pipeline Pilot server.  This can be helpful on multi-CPU/multi-core systems (where the subprotocol jobs are spawned on the same machine) and Pipeline Pilot Linux clusters (where &apos;localhost&apos; requests spawning the subprotocol jobs on the same cluster).
+&lt;/p&gt;</sci:help>
+						<sci:member>Parallel Processing Options Server Processes</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid</sci:member>
+						<sci:validscript>SetInvalidDetails(&apos;This parameter is required.&apos;);
+Parameter() ne &apos;&apos;;</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Processes" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Comma separated list of maximum number of batches that can be simultaneously executed on each remote server.  The number of entries in this parameter must equal the number of servers. If &apos;*&apos; is specified as the number of processes, then that server will only launch as many batches as the administrator of the remote server has permitted.</sci:help>
+						<sci:validscript>/* Server Processes must have the same number of comma separated entries as the Server parameter and must have a value*/
+#processes := parameter();
+expand(&apos;,&apos;, #processes);
+#servers := parameter(&apos;Parallel Processing Options Server&apos;);
+expand(&apos;,&apos;, #servers);
+
+if (numvalues(#processes) == 0) then
+	SetInvalidDetails(&apos;This parameter is required.&apos;);
+else
+	SetInvalidDetails(&apos;The number of server processes (&apos; . numvalues(#processes) . &apos;) must equal the number of servers (&apos; . numvalues(#servers) . &apos;).&apos;);
+end if;
+numvalues(#processes) &gt; 0 and numvalues(#processes) == numvalues(#servers);</sci:validscript>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Run subprotocol on grid engine if available.</sci:help>
+						<sci:member>Parallel Processing Options Server Run On Grid Queue Name</sci:member>
+						<sci:member>Parallel Processing Options Server Run On Grid Grid Options</sci:member>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:help>Select the queue name on the grid to submit jobs to. Leave blank to use default queue name.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Server Run On Grid Grid Options" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Use this to specify grid engine specific command line parameters to the job submission command. Leave blank to use defaults.</sci:help>
+						<sci:enabledscript>parameter(&apos;Parallel Processing Options Server Run On Grid&apos;);</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Parallel Processing Options Preserve Order" type="BoolType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Whether to preserve the order of the data as it enters and leaves the remote subprotocol.</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&quot;This parameter is only applicable if &apos;Parallel Processing Options&apos; is &apos;True&apos;&quot;);
+Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+						<sci:value>html_, guid</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>JavaScript Button (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>790</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{3F6E28F5-DC98-45C5-B6A7-64C35A10CD02}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -1195</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>JavaScript Button (Semantic UI).</sci:value>
+						<sci:value>A button indicates a possible user action such as opening a URL or triggering JavaScript code. It is possible to use this button to run protocols via a protocol link, however: &lt;p style=&quot;color:&apos;red&apos;&quot;&gt;Note: This button should not be piped into an input form. To drive Forms, use Submit Button instead.&lt;/p&gt;</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value>Records passing out of any unconnected pass ports of components inside the subprotocol</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value>Records passing out of any unconnected fail ports of components inside the subprotocol</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1140</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>bondadx2</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Sun Jul 03 18:30:16 2016</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>12</sci:value>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Processing Order</sci:help>
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalPackage</sci:help>
+						<sci:value>scitegic/coreutils</sci:value>
+					</sci:arg>
+					<sci:arg name="OriginalComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>OriginalComponentGUID</sci:help>
+						<sci:value>{0AAC888A-BB35-43D5-B709-7143085ACB7F}</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Fancy Buttons\JavaScript Button (Semantic UI)</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:connectid from="2" to="1" type="true"/>
+			<sci:connectid from="11" to="3" type="true"/>
+			<sci:connectid from="3" to="1" type="true"/>
+			<sci:connectid from="10" to="1" type="true"/>
+			<sci:connectid from="12" to="1" type="true"/>
+			<sci:version iVal="3"/>
+		</sci:protocol>
+	</sci:dbitem>
+<!-- Exported protocol -->
+<sci:component name="8.0 Protocol Warning" version="2">
+<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+<sci:help>Component Icon</sci:help>
+<sci:value>PROTOCOLNODE</sci:value>
+</sci:arg>
+<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+<sci:help>Protocol Sticky Notes</sci:help>
+<sci:value>%VERSION 3%</sci:value>
+<sci:value>400 -219 1222 221</sci:value>
+<sci:value>250 120 20</sci:value>
+<sci:value>WARNING! This is a Pipeline Pilot protocol written in version 8.0 or later. It contains features that are not supported in earlier versions of Pipeline Pilot.</sci:value>
+</sci:arg>
+</sci:component>
+</sci:data>
