@@ -76,11 +76,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sat Jul 23 18:11:01 2016</sci:value>
+				<sci:value>Thu Mar 23 15:13:40 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>16.1.0.1140</sci:value>
+				<sci:value>17.1.0.115</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Semantic form test</sci:value>
@@ -122,7 +122,7 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Protocol Sticky Notes</sci:help>
 				<sci:value>%VERSION 3%</sci:value>
-				<sci:value>1561 -95 1177 177</sci:value>
+				<sci:value>1561 -95 1177 176</sci:value>
 				<sci:value>255 255 0</sci:value>
 				<sci:value>Reproduced from
 http://semantic-ui.com/collections/form.html</sci:value>
@@ -1567,6 +1567,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
 			</sci:data>
@@ -2387,6 +2391,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
 			</sci:data>
@@ -2944,6 +2952,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -3765,6 +3777,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -5786,7 +5802,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
-					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
+					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Advanced Options</sci:help>
 						<sci:member>Include Format and Position CSS</sci:member>
 						<sci:member>Animate Link Underlines</sci:member>
@@ -5805,7 +5821,7 @@ Semantic UI release history with detailed notes:
 To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
 						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
 SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-						<sci:value>2.2.1</sci:value>
+						<sci:value>2.2.9</sci:value>
 					</sci:arg>
 					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
@@ -5892,7 +5908,7 @@ and so are accessible from all protocols.</sci:help>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Mon Jul 18 12:00:48 2016</sci:value>
+						<sci:value>Tue Nov 08 21:26:37 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -5963,6 +5979,10 @@ and so are accessible from all protocols.</sci:help>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -7133,6 +7153,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
 			</sci:data>
@@ -7954,6 +7978,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -9124,6 +9152,10 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
