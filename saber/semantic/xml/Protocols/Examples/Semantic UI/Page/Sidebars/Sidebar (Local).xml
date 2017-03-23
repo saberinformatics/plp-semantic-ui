@@ -80,11 +80,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sun Jul 17 11:58:24 2016</sci:value>
+				<sci:value>Thu Mar 23 15:16:04 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>16.1.0.1140</sci:value>
+				<sci:value>17.1.0.115</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Search Compounds</sci:value>
@@ -416,13 +416,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Message (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Message (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -653,13 +653,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -863,13 +863,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -1276,13 +1276,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Segment (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Segment (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -1850,7 +1850,7 @@ A local sidebar displays additional clickable content beside a group of content.
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Sun Jul 17 01:07:21 2016</sci:value>
+						<sci:value>Sun Jul 17 01:09:26 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -1864,10 +1864,6 @@ A local sidebar displays additional clickable content beside a group of content.
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
-						<sci:help>Subprotocol Modified</sci:help>
-						<sci:value>0</sci:value>
-					</sci:arg>
 					<sci:arg name="OriginalComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>OriginalComponentGUID</sci:help>
 						<sci:value>{AD07D2EC-B804-47C7-A8CC-8B113AA74EC6}</sci:value>
@@ -1875,6 +1871,10 @@ A local sidebar displays additional clickable content beside a group of content.
 					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
 					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
@@ -2113,13 +2113,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -2365,13 +2365,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Grid (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Grid (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -2405,7 +2405,7 @@ Semantic UI release history with detailed notes:
 To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
 						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
 SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-						<sci:value>2.2.1</sci:value>
+						<sci:value>2.2.9</sci:value>
 					</sci:arg>
 					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
@@ -2492,7 +2492,7 @@ and so are accessible from all protocols.</sci:help>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Thu Jul 07 15:14:54 2016</sci:value>
+						<sci:value>Tue Nov 08 21:26:37 2016</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -2524,7 +2524,7 @@ and so are accessible from all protocols.</sci:help>
 					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 						<sci:value>100</sci:value>
 						<sci:value>Displays the results of a reporting protocol in HTML5 format</sci:value>
-						<sci:value/>
+						<sci:value>&lt;p&gt;This component accepts reporting objects as input (e.g., tables, text and images), and displays the output as an HTML file in Internet Explorer.&lt;/p&gt;</sci:value>
 						<sci:value>Generic</sci:value>
 						<sci:value>This component accepts reporting objects as input.</sci:value>
 						<sci:value>None</sci:value>
@@ -2560,13 +2560,13 @@ and so are accessible from all protocols.</sci:help>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -2837,13 +2837,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Message (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Message (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -3074,13 +3074,13 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>OriginalPackage</sci:help>
 						<sci:value>scitegic/coreutils</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Page\Grid of Rows and Columns\Column (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
