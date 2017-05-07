@@ -117,7 +117,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Mar 23 15:02:46 2017</sci:value>
+				<sci:value>Sun May 07 16:47:41 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -144,7 +144,7 @@ and so are accessible from all protocols.</sci:help>
 				<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>690 -620</sci:value>
+				<sci:value>738 -495</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -163,7 +163,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>17.1.0.115</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Protocol Scale</sci:help>
@@ -175,7 +175,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>5</sci:value>
+				<sci:value>0</sci:value>
 			</sci:arg>
 			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>OriginalPackage</sci:help>
@@ -187,7 +187,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The original path within the database of this component.</sci:help>
-				<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
+				<sci:value>Unknown</sci:value>
 			</sci:arg>
 		</sci:component>
 		<sci:protocol>
@@ -527,7 +527,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>763 -95 671 176</sci:value>
+						<sci:value>763 -95 671 177</sci:value>
 						<sci:value>245 245 245</sci:value>
 						<sci:value>must be at the top to make jQuery available for all in-body JS.</sci:value>
 					</sci:arg>
@@ -2901,7 +2901,7 @@ end if;</sci:value>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Reporting and Visualization\Reporting\Writers\HTML Report Writer</sci:value>
+						<sci:value>Components\Reporting and Visualization\Basic Reporting\Writers\HTML Report Writer</sci:value>
 					</sci:arg>
 				</sci:component>
 			</sci:data>
@@ -3468,7 +3468,7 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Page\Segment (Semantic UI)</sci:value>
+						<sci:value>Unknown</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -3617,6 +3617,7 @@ end if;</sci:value>
 					</sci:arg>
 					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
 						<sci:help>&lt;p&gt;Lists a set of properties (without the @) to create on the global property list for this subprotocol. Such properties can only be accessed within the scope of this subprotocol and its descendent subprotocols.&lt;p/&gt;Any global property not declared in this way is created on the top level global property list and is accessible from all protocols, but may collide with another property of the same name.&lt;/p&gt;&lt;p&gt;Scoping global properties to the subprotocol where they are used is highly recommended.&lt;/p&gt;</sci:help>
+						<sci:value>theProtocolPath__</sci:value>
 					</sci:arg>
 					<sci:arg name="RunToCompletion" type="StringType" required="false" visibility="visible" multi="false" uimpl="false">
 						<sci:help>When &lt;i&gt;RunToCompletion&lt;/i&gt; is set to &quot;True - For Each Data Record&quot;, the subprotocol is re-initialized and executed in its entirety for each individual data record it processes.
@@ -3799,7 +3800,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
-						<sci:value>60</sci:value>
+						<sci:value>77</sci:value>
 					</sci:arg>
 					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Processing Order</sci:help>
@@ -3811,13 +3812,176 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol>
+					<sci:data object="SciTegic.EvaluateExpression.1">
+						<sci:component name="Custom Manipulator (PilotScript)" version="2">
+							<sci:arg name="Expression" type="ExpressionType" required="true" visibility="visible" multi="false" expanded="true" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>Expression (or list of expressions separated by semi-colons) to evaluate.</sci:help>
+								<sci:member>Initial Expression</sci:member>
+								<sci:member>Final Expression</sci:member>
+								<sci:member>Keep Calculated Properties</sci:member>
+								<sci:value>@theProtocolPath__ := urlencode(@ProtocolPath)</sci:value>
+							</sci:arg>
+							<sci:arg name="Initial Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>&lt;p&gt;
+This expression is executed only the first time data passes into the component.
+&lt;p/&gt; 
+Since there is no data available at initialization time, only expressions referencing local or global properties are allowed.
+&lt;/p&gt;</sci:help>
+							</sci:arg>
+							<sci:arg name="Final Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>&lt;p&gt;
+This expression is executed only at finalization (after the last data passes out of the component).
+&lt;p/&gt; 
+Since there is no data available at finalization time, only expressions referencing local or global properties are allowed.
+&lt;/p&gt;</sci:help>
+							</sci:arg>
+							<sci:arg name="Keep Calculated Properties" type="BoolType" required="true" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>Adds any properties calculated in this component to a data record&apos;s property list.</sci:help>
+								<sci:legalval selected="true">True</sci:legalval>
+								<sci:legalval>False</sci:legalval>
+							</sci:arg>
+							<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+								<sci:help>Component Attributes</sci:help>
+								<sci:legalval>ComponentTakesInput</sci:legalval>
+								<sci:legalval>ComponentReturnsPass</sci:legalval>
+								<sci:legalval>ComponentReturnsFail</sci:legalval>
+								<sci:legalval>ComponentRunsLocal</sci:legalval>
+							</sci:arg>
+							<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:help>When an expected data type is not found during processing:  
+  Halt: Terminate the execution of the network
+  Fail: Continue execution of the network, passing data out the Fail(red) port
+  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:help>When an recoverable error occurs during processing:  
+  Halt: Terminate the execution of the network
+  Fail: Continue execution of the network, passing data out the Fail(red) port
+  Pass: Continue execution of the network, passing data out the Pass(green) port</sci:help>
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>Custom Error Message</sci:help>
+							</sci:arg>
+							<sci:arg name="Do Screen" type="BoolType" required="false" visibility="nevershow" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>When TRUE, controls which exit port is used for
+each data record by evaluating the final expression
+(or only one) listed in the &quot;Expression&quot; parameter.
+   -Pass (green) port when expression true
+   -Fail (red) port when expression false</sci:help>
+								<sci:legalval>True</sci:legalval>
+								<sci:legalval selected="true">False</sci:legalval>
+							</sci:arg>
+							<sci:arg name="ExpressionVersion" type="LongType" required="false" visibility="nevershow" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
+								<sci:help>Version of expression parser to use.</sci:help>
+								<sci:value>2</sci:value>
+							</sci:arg>
+							<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>The user who registered this component.</sci:help>
+								<sci:value>scitegic/generic</sci:value>
+							</sci:arg>
+							<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>The date this component was registered.</sci:help>
+								<sci:value>Mon Jan 21 09:55:43 2008</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false"/>
+							<sci:arg name="ComponentAutoDisplayName" type="ExpressionType" required="false" visibility="nevershow" multi="false">
+								<sci:help>Automatically update the component display name when the &quot;Expression&quot; property is changed. This feature is turned off after the user manually changes the display name of the component in Protocol workspace.</sci:help>
+								<sci:value>#displayName := trim(Parameter(&apos;Expression&apos;, 2));
+if(strlength(#displayName) &gt; 0) then	
+	/* Find the first line break */
+	#nl := FindSubstring(#displayName, &quot;\r&quot;);
+	if #nl &lt;= 0 then
+		#nl := FindSubstring(#displayName, &quot;\n&quot;);
+	end if;
+
+	/* Keep the first line only */
+	if (#nl &gt; 0) then
+		StrErase(#displayName, #nl);
+	end if;
+	
+	#displayName;
+else
+	&quot;&quot;;
+end if;</sci:value>
+							</sci:arg>
+							<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>The component this component is based upon.</sci:help>
+								<sci:value>Custom Manipulator (PilotScript)</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+								<sci:value>EXPRESSIONNODE</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+								<sci:value>0</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:value>{0995D675-7EE2-432C-95DF-E91C14052B22}</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:value>90 -95</sci:value>
+							</sci:arg>
+							<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+								<sci:value>100</sci:value>
+								<sci:value>Applies a PilotScript expression to each data record
+</sci:value>
+								<sci:value>&lt;p&gt;PilotScript is the native scripting language in Pipeline Pilot.  It is based on PL/SQL and allows you to query or alter the properties on data records.  For example, the expression:
+
+&lt;blockquote&gt;
+&lt;code&gt;A := 10;&lt;/code&gt;
+&lt;/blockquote&gt;
+creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;/p&gt;
+
+&lt;p&gt;For each incoming data record the PilotScript statements in &lt;i&gt;Expression&lt;/i&gt; are evaluated.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;To initialize global variables such as counters, use &lt;i&gt;Initial Expression&lt;/i&gt;.&lt;/li&gt; 
+&lt;li&gt;To clean up global variables or calculate final results use &lt;i&gt;Final Expression&lt;/i&gt;.&lt;/li&gt;
+&lt;li&gt;Parameters on Custom Manipulators do not become global variables that can be accessed via &lt;i&gt;@ParameterName&lt;/i&gt; syntax.  They must be accessed by using the &lt;i&gt;Parameter(&apos;ParameterName&apos;)&lt;/i&gt; function or by using token substitution via &lt;i&gt;$(ParameterName)&lt;/i&gt; syntax.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For more information on PilotScript, see &lt;a href=&quot;javascript:DoLink(&apos;scihelpdocs/user/pscript/pscript_overview.htm&apos;)&quot;&gt;PilotScript Overview&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;To use PilotScript to filter data records use &lt;a href=&quot;javascript:DoLink(&apos;{DD58ECD1-516F-48FE-A5DB-8328AED680F2}&apos;)&quot;&gt;Custom Filter (PilotScript)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+</sci:value>
+								<sci:value>Generic</sci:value>
+								<sci:value/>
+								<sci:value>Generic</sci:value>
+								<sci:value/>
+								<sci:value>None</sci:value>
+								<sci:value/>
+							</sci:arg>
+							<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>The server version when this component was registered</sci:help>
+								<sci:value>7.0.0.35</sci:value>
+							</sci:arg>
+							<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+							<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+								<sci:help>Local Component Identifier</sci:help>
+								<sci:value>1</sci:value>
+							</sci:arg>
+							<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+								<sci:help>The original path within the database of this component.</sci:help>
+								<sci:value>Components\Data Access and Manipulation\Manipulators\Custom Manipulator (PilotScript)</sci:value>
+							</sci:arg>
+						</sci:component>
+					</sci:data>
 					<sci:data object="SciTegic.Protocol.1">
 						<sci:component name="Raw HTML (Semantic UI)" version="2">
 							<sci:arg name="HTML" type="TextType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
 								<sci:value>&lt;script&gt;
   // Display my URL in the browser address bar
   $(document).ready(function() {
-    history.replaceState({}, &apos;&apos;, &apos;$(ServerRoot)$(/saber/semantic/LaunchJobURLPath)?_compat=1&amp;_protocol=$(ProtocolName)&apos;);
+    history.replaceState({}, &apos;&apos;, &apos;$(ServerRoot)$(/saber/semantic/LaunchJobURLPath)?_compat=1&amp;_protocol=$(theProtocolPath__)&apos;);
   });
 &lt;/script&gt;
 </sci:value>
@@ -3960,7 +4124,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 								<sci:value>{D257B36C-6670-4D92-8489-8A5E09C04D4D}</sci:value>
 							</sci:arg>
 							<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-								<sci:value>90 -95</sci:value>
+								<sci:value>90 -470</sci:value>
 							</sci:arg>
 							<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 								<sci:value>100</sci:value>
@@ -4023,7 +4187,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 							</sci:arg>
 							<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 								<sci:help>The original path within the database of this component.</sci:help>
-								<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
+								<sci:value>Unknown</sci:value>
 							</sci:arg>
 						</sci:component>
 						<sci:protocol/>
@@ -4367,7 +4531,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>698 -1770 436 176</sci:value>
+						<sci:value>698 -1770 436 177</sci:value>
 						<sci:value>245 245 245</sci:value>
 						<sci:value>Animate Link Underlines?</sci:value>
 					</sci:arg>
@@ -4416,7 +4580,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
+						<sci:value>Unknown</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -5901,8 +6065,8 @@ Command-line Integration Guide&lt;/a&gt;&lt;/p&gt;
 			<sci:connectid from="75" to="30" type="true"/>
 			<sci:connectid from="75" to="66" type="false"/>
 			<sci:connectid from="66" to="30" type="true"/>
-			<sci:connectid from="61" to="60" type="true"/>
-			<sci:connectid from="60" to="30" type="true"/>
+			<sci:connectid from="61" to="77" type="true"/>
+			<sci:connectid from="77" to="30" type="true"/>
 			<sci:connectid from="68" to="69" type="true"/>
 			<sci:connectid from="69" to="30" type="true"/>
 			<sci:connectid from="36" to="64" type="true"/>
