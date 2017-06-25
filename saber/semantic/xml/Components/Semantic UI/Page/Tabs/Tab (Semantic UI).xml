@@ -1484,8 +1484,8 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
 &lt;ul&gt;
 &lt;li&gt;If you set &lt;i&gt;Data Are Sorted&lt;/i&gt; to True and the input data are &lt;b&gt;not&lt;/b&gt; sorted, an error is generated.
 &lt;/ul&gt;</sci:help>
-						<sci:legalval>True</sci:legalval>
-						<sci:legalval selected="true">False</sci:legalval>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
 					</sci:arg>
 					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
