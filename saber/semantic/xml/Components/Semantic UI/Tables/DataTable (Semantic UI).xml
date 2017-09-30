@@ -256,7 +256,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{E77A1652-6E9C-4995-A388-087355A11D06}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>1098 -770</sci:value>
+				<sci:value>1746 -95</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -296,11 +296,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Tue Jul 19 09:50:00 2016</sci:value>
+				<sci:value>Sat Sep 30 18:00:13 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>0</sci:value>
+				<sci:value>6</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -958,6 +958,13 @@ $(document).ready(function() {
 
   }
 } );
+
+// Cell color
+$(&apos;#$(guid) div[tdclass]&apos;).each(function( index ) {
+	var thisc = $(this).attr(&apos;tdclass&apos;);
+	$(this).removeClass(thisc);
+	$(this).parent(&apos;td&apos;).addClass(thisc);
+});
 &lt;/script&gt;
 </sci:value>
 					</sci:arg>
