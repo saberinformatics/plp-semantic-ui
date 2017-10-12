@@ -51,7 +51,7 @@
 				<sci:legalval selected="true">Separate by Newlines</sci:legalval>
 				<sci:legalval>One Array Element per Cell</sci:legalval>
 			</sci:arg>
-			<sci:arg name="Data Connector" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+			<sci:arg name="Data Connector" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
 				<sci:metaproplist>
 					<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
 						<sci:value>Data Connector</sci:value>
@@ -262,7 +262,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{E77A1652-6E9C-4995-A388-087355A11D06}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>1050 -820</sci:value>
+				<sci:value>1386 -870</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -302,11 +302,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Oct 05 22:54:19 2017</sci:value>
+				<sci:value>Wed Oct 11 22:13:57 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>18</sci:value>
+				<sci:value>1</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -960,7 +960,10 @@ $(document).ready(function() {
 	          $(this).removeClass(thisc);
               $(this).parent(&apos;td&apos;).addClass(thisc);
             });
-            $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;);
+            $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;).removeClass(&apos;sorting_desc&apos;);
+            $(&apos;#$(guid)&apos;+&apos;_wrapper&apos;).click(function() {
+              $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;).removeClass(&apos;sorting_desc&apos;);
+            });
           }
       });
   } else {								// no data connector
@@ -974,12 +977,22 @@ $(document).ready(function() {
 	          $(this).removeClass(thisc);
               $(this).parent(&apos;td&apos;).addClass(thisc);
             });
-            $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;);
+            $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;).removeClass(&apos;sorting_desc&apos;);
+            $(&apos;#$(guid)&apos;+&apos;_wrapper&apos;).click(function() {
+              $(&apos;#$(guid) thead&gt;tr&gt;th&apos;).removeClass(&apos;sorting&apos;).removeClass(&apos;sorting_asc&apos;).removeClass(&apos;sorting_desc&apos;);
+            });
           }
       });
   }
 } );
 &lt;/script&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+&lt;/style&gt;
 </sci:value>
 					</sci:arg>
 					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
