@@ -262,7 +262,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{E77A1652-6E9C-4995-A388-087355A11D06}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>1386 -870</sci:value>
+				<sci:value>666 -745</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -302,11 +302,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Wed Oct 11 22:13:57 2017</sci:value>
+				<sci:value>Tue Oct 24 20:45:37 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>1</sci:value>
+				<sci:value>0</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -1613,6 +1613,10 @@ td.neutral {
     background: #e9faff !important;
     color: #337b92 !important;
 }&lt;/style&gt;
+
+&lt;script&gt;
+  $(&apos;#$(guid)&apos;).width(&apos;100%&apos;);
+&lt;/script&gt;
 </sci:value>
 					</sci:arg>
 					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
@@ -1772,9 +1776,9 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 					</sci:arg>
 					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>%VERSION 3%</sci:value>
-						<sci:value>434 -1345 436 134</sci:value>
+						<sci:value>434 -1345 436 220</sci:value>
 						<sci:value>255 255 0</sci:value>
-						<sci:value>more colors</sci:value>
+						<sci:value>more colors, 100% width which is important in tabs</sci:value>
 					</sci:arg>
 					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Protocol Sticky Notes</sci:help>
