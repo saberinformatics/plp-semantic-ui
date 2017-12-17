@@ -201,7 +201,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Tue Sep 26 20:41:09 2017</sci:value>
+				<sci:value>Sun Dec 17 13:39:11 2017</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -228,7 +228,7 @@ and so are accessible from all protocols.</sci:help>
 				<sci:value>{185627DA-2D3A-41F3-BC57-ABDB16E41D1A}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>666 -445</sci:value>
+				<sci:value>1242 -520</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
 				<sci:value>100</sci:value>
@@ -259,7 +259,7 @@ and so are accessible from all protocols.</sci:help>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>1</sci:value>
+				<sci:value>7</sci:value>
 			</sci:arg>
 			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>OriginalPackage</sci:help>
@@ -5141,7 +5141,7 @@ creates a property named &quot;A&quot; and sets the value to &quot;10&quot;.&lt;
 						<sci:member>Final Expression</sci:member>
 						<sci:member>Keep Calculated Properties</sci:member>
 						<sci:value>// Initialize dropdowns
-text := strReplace(text, &apos;&lt;/body&gt;&apos;, &quot;&lt;script type=&apos;text/javascript&apos;&gt;$(&apos;.ui.dropdown&apos;).dropdown({fullTextSearch: true});&lt;/script&gt;&quot;.&quot;\n&quot;.&apos;&lt;/body&gt;&apos;);
+text := strReplace(text, &apos;&lt;/body&gt;&apos;, &quot;&lt;script type=&apos;text/javascript&apos;&gt;$(&apos;.ui.dropdown:not(.8601698D9EF14E6AB5C861BA6E5D461D):not(.9D584C588569435EA193BFA2DCFCEAC4)&apos;).dropdown({fullTextSearch: true});$(&apos;.ui.dropdown.8601698D9EF14E6AB5C861BA6E5D461D&apos;).dropdown({fullTextSearch: &apos;exact&apos;});$(&apos;.ui.dropdown.9D584C588569435EA193BFA2DCFCEAC4&apos;).dropdown({fullTextSearch: false});&lt;/script&gt;&quot;.&quot;\n&quot;.&apos;&lt;/body&gt;&apos;);
 </sci:value>
 					</sci:arg>
 					<sci:arg name="Initial Expression" type="ExpressionType" required="false" visibility="visible" multi="false" implbase="{0995D675-7EE2-432C-95DF-E91C14052B22}">
