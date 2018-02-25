@@ -160,7 +160,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 				<sci:value>{68E9DF8A-7E78-4787-B766-56AEA59D4D79}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>378 -95</sci:value>
+				<sci:value>690 -645</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -203,11 +203,11 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Tue Jul 05 14:19:03 2016</sci:value>
+				<sci:value>Sun Feb 25 17:19:29 2018</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>1</sci:value>
+				<sci:value>0</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -4535,7 +4535,13 @@ this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/
 			<sci:data object="SciTegic.Protocol.1">
 				<sci:component name="Raw HTML (Semantic UI)" version="2">
 					<sci:arg name="HTML" type="TextType" required="true" visibility="visible" multi="false" legalvalsenforced="false">
-						<sci:value>&lt;/div&gt;</sci:value>
+						<sci:value>&lt;/div&gt;
+
+&lt;script&gt;
+// https://github.com/mdehoog/Semantic-UI-Calendar/issues/40
+$(&apos;#$(ID)&apos;).modal({observeChanges:true});
+&lt;/script&gt;
+</sci:value>
 					</sci:arg>
 					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
 						<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;p/&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
