@@ -112,11 +112,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Mar 23 15:14:30 2017</sci:value>
+				<sci:value>Sat Apr 07 23:22:02 2018</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>17.1.0.115</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Two linked graphs</sci:value>
@@ -179,7 +179,7 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The original path within the database of this component.</sci:help>
-				<sci:value>Protocols\Examples\Semantic UI\JavaScript Madness\Two Linked Charts</sci:value>
+				<sci:value>dbondarev\Two Linked Charts</sci:value>
 			</sci:arg>
 		</sci:component>
 		<sci:protocol>

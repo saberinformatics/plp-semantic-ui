@@ -44,6 +44,14 @@
 				<sci:legalval>ComponentReturnsFail</sci:legalval>
 				<sci:legalval>ComponentRunsLocal</sci:legalval>
 			</sci:arg>
+			<sci:arg name="Reporting" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>This group contains parameters specific to protocols containing Reporting components.</sci:help>
+				<sci:member>Reporting Stylesheet</sci:member>
+			</sci:arg>
+			<sci:arg name="Reporting Stylesheet" type="StylesheetType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>Specifies the name of a Stylesheet to be used by this protocol if any of the Reporting components have a Style selected in the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.</sci:help>
+				<sci:value>{44C6ECA7-D7C8-4BD8-A0C6-450FF605F58B}</sci:value>
+			</sci:arg>
 			<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 				<sci:legalval selected="true">Halt</sci:legalval>
 				<sci:legalval>Fail</sci:legalval>
@@ -53,14 +61,6 @@
 				<sci:legalval selected="true">Halt</sci:legalval>
 				<sci:legalval>Fail</sci:legalval>
 				<sci:legalval>Pass</sci:legalval>
-			</sci:arg>
-			<sci:arg name="Reporting" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
-				<sci:help>This group contains parameters specific to protocols containing Reporting components.</sci:help>
-				<sci:member>Reporting Stylesheet</sci:member>
-			</sci:arg>
-			<sci:arg name="Reporting Stylesheet" type="StylesheetType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
-				<sci:help>Specifies the name of a Stylesheet to be used by this protocol if any of the Reporting components have a Style selected in the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.</sci:help>
-				<sci:value>{44C6ECA7-D7C8-4BD8-A0C6-450FF605F58B}</sci:value>
 			</sci:arg>
 			<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 			<sci:arg name="WebExports" type="StringType" required="false" visibility="nevershow" multi="false" uimpl="true">
@@ -80,11 +80,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Sun Jul 10 16:07:58 2016</sci:value>
+				<sci:value>Sat Apr 07 23:22:02 2018</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>9.2.0.484</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Fetch a Compound ID List</sci:value>
@@ -758,16 +758,6 @@ the evaluation is complete.</sci:help>
 								<sci:legalval>True</sci:legalval>
 								<sci:legalval selected="true">False</sci:legalval>
 							</sci:arg>
-							<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
-								<sci:legalval selected="true">Halt</sci:legalval>
-								<sci:legalval>Fail</sci:legalval>
-								<sci:legalval>Pass</sci:legalval>
-							</sci:arg>
-							<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
-								<sci:legalval selected="true">Halt</sci:legalval>
-								<sci:legalval>Fail</sci:legalval>
-								<sci:legalval>Pass</sci:legalval>
-							</sci:arg>
 							<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 								<sci:help>Component Attributes</sci:help>
 								<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
@@ -775,6 +765,17 @@ the evaluation is complete.</sci:help>
 								<sci:legalval>ComponentReturnsFail</sci:legalval>
 								<sci:legalval>ComponentRunsLocal</sci:legalval>
 							</sci:arg>
+							<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 							<sci:arg name="ExpressionVersion" type="LongType" required="false" visibility="nevershow" multi="false" implbase="{DD58ECD1-516F-48FE-A5DB-8328AED680F2}">
 								<sci:help>Version of expression parser to use.</sci:help>
 								<sci:value>2</sci:value>
@@ -808,7 +809,6 @@ else
 	&quot;&quot;;
 end if;</sci:value>
 							</sci:arg>
-							<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 							<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 								<sci:value>FILTERNODE</sci:value>
 							</sci:arg>
@@ -868,16 +868,6 @@ end if;</sci:value>
      will pass the first, third, fourth, fifth and so on.</sci:help>
 								<sci:value>1-50</sci:value>
 							</sci:arg>
-							<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
-								<sci:legalval selected="true">Halt</sci:legalval>
-								<sci:legalval>Fail</sci:legalval>
-								<sci:legalval>Pass</sci:legalval>
-							</sci:arg>
-							<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
-								<sci:legalval selected="true">Halt</sci:legalval>
-								<sci:legalval>Fail</sci:legalval>
-								<sci:legalval>Pass</sci:legalval>
-							</sci:arg>
 							<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 								<sci:help>Component Attributes</sci:help>
 								<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
@@ -885,6 +875,17 @@ end if;</sci:value>
 								<sci:legalval>ComponentReturnsFail</sci:legalval>
 								<sci:legalval>ComponentRunsLocal</sci:legalval>
 							</sci:arg>
+							<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+								<sci:legalval selected="true">Halt</sci:legalval>
+								<sci:legalval>Fail</sci:legalval>
+								<sci:legalval>Pass</sci:legalval>
+							</sci:arg>
+							<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 							<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
 								<sci:help>The user who registered this component.</sci:help>
 								<sci:value>scitegic/generic</sci:value>
@@ -902,7 +903,6 @@ else
 	&quot;&quot;;
 end if;</sci:value>
 							</sci:arg>
-							<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
 							<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
 								<sci:value>FILTERNODE</sci:value>
 							</sci:arg>

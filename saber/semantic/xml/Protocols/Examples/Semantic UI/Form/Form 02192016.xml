@@ -76,11 +76,11 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Mar 23 15:13:40 2017</sci:value>
+				<sci:value>Sat Apr 07 23:23:02 2018</sci:value>
 			</sci:arg>
 			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The server version when this component was registered</sci:help>
-				<sci:value>17.1.0.115</sci:value>
+				<sci:value>16.1.0.1140</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:value>Semantic form test</sci:value>
@@ -122,7 +122,7 @@ exported if this protocol is published as a web service.&lt;/p&gt;
 			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Protocol Sticky Notes</sci:help>
 				<sci:value>%VERSION 3%</sci:value>
-				<sci:value>1561 -95 1177 176</sci:value>
+				<sci:value>1561 -95 1177 177</sci:value>
 				<sci:value>255 255 0</sci:value>
 				<sci:value>Reproduced from
 http://semantic-ui.com/collections/form.html</sci:value>
@@ -1563,13 +1563,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -2387,13 +2387,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -2949,13 +2949,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -3774,13 +3774,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -4013,6 +4013,7 @@ Due to inconsistent input value attribute handling by various browsers, it is re
 					</sci:arg>
 					<sci:arg name="Searchable" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Make the list box searchable?</sci:help>
+						<sci:member>Full Text Search</sci:member>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
@@ -4280,6 +4281,22 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:legalval>click</sci:legalval>
 						<sci:legalval>focus</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Full Text Search" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Full Text Search</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Specifying &quot;exact&quot; will force the exact search to be matched somewhere in the string, even in the middle of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &quot;true&quot; will use a fuzzy full text search anywhere in the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt; and &lt;code&gt;bear&lt;/code&gt; and &lt;code&gt;mybear&lt;/code&gt; and &lt;code&gt;myboar&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Specifying &quot;false&quot; will force an exact search only starting at the beginning of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; but not &lt;code&gt;mybarge&lt;/code&gt; and not &lt;code&gt;boar&lt;/code&gt;.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set &quot;Searchable&quot; to True&apos;);
+Parameter(&apos;Searchable&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">exact</sci:legalval>
+						<sci:legalval>true</sci:legalval>
+						<sci:legalval>false</sci:legalval>
+					</sci:arg>
 					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
 						<sci:legalval>Fail</sci:legalval>
@@ -4359,7 +4376,7 @@ You can set the number of rows to be displayed. If the number of rows is less th
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Jun 14 10:48:37 2016</sci:value>
+						<sci:value>Sun Dec 17 13:41:30 2017</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -4882,6 +4899,7 @@ Due to inconsistent input value attribute handling by various browsers, it is re
 					</sci:arg>
 					<sci:arg name="Searchable" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Make the list box searchable?</sci:help>
+						<sci:member>Full Text Search</sci:member>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
@@ -5149,6 +5167,22 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:legalval>click</sci:legalval>
 						<sci:legalval>focus</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Full Text Search" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Full Text Search</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Specifying &quot;exact&quot; will force the exact search to be matched somewhere in the string, even in the middle of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &quot;true&quot; will use a fuzzy full text search anywhere in the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt; and &lt;code&gt;bear&lt;/code&gt; and &lt;code&gt;mybear&lt;/code&gt; and &lt;code&gt;myboar&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Specifying &quot;false&quot; will force an exact search only starting at the beginning of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; but not &lt;code&gt;mybarge&lt;/code&gt; and not &lt;code&gt;boar&lt;/code&gt;.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set &quot;Searchable&quot; to True&apos;);
+Parameter(&apos;Searchable&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">exact</sci:legalval>
+						<sci:legalval>true</sci:legalval>
+						<sci:legalval>false</sci:legalval>
+					</sci:arg>
 					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
 						<sci:legalval>Fail</sci:legalval>
@@ -5228,7 +5262,7 @@ You can set the number of rows to be displayed. If the number of rows is less th
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Jun 14 10:48:37 2016</sci:value>
+						<sci:value>Sun Dec 17 13:41:30 2017</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -5807,6 +5841,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 						<sci:member>Include Format and Position CSS</sci:member>
 						<sci:member>Animate Link Underlines</sci:member>
 						<sci:member>Theme</sci:member>
+						<sci:member>Web Browser</sci:member>
 					</sci:arg>
 					<sci:arg name="Theme" type="StringType" required="true" visibility="visible" multi="false">
 						<sci:help>&lt;p&gt;Choose a visual theme for the content.&lt;/p&gt;
@@ -5821,7 +5856,7 @@ Semantic UI release history with detailed notes:
 To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
 						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
 SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-						<sci:value>2.2.9</sci:value>
+						<sci:value>2.3.1</sci:value>
 					</sci:arg>
 					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
@@ -5839,6 +5874,24 @@ SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));
 						<sci:help>When hovering over a link, the link&apos;s underline is revealed by animating it out from the center.</sci:help>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Web Browser" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Web Browser</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;
+This parameter is only relevant when running the protocol in the Pipeline Pilot Professional Client. When running the protocol from a web hyperlink or a URL the value of this parameter is ignored.
+&lt;/p&gt;
+&lt;p&gt;
+The value specifies which web browser to open on your desktop to view the report.
+&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">Default</sci:legalval>
+						<sci:legalval>Internet Explorer</sci:legalval>
+						<sci:legalval>Chrome</sci:legalval>
+						<sci:legalval>Firefox</sci:legalval>
 					</sci:arg>
 					<sci:arg name="Output Mode" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
 						<sci:help>&lt;p&gt;Allows some alternative formatting and position settings to be used that may cause the HTML report output to behave and look more like the HTML generated with previous versions of Pipeline Pilot. This parameter is intended to be set on writers in protocols developed with previous versions of Pipeline Pilot where the output looks or behaves differently when run with the current version.&lt;/p&gt;
@@ -5876,6 +5929,69 @@ and so are accessible from all protocols.</sci:help>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Web Browsers" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Web Browsers</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:member>Chrome</sci:member>
+						<sci:member>Firefox</sci:member>
+						<sci:member>Internet Explorer</sci:member>
+						<sci:member>Set IE Compatibility</sci:member>
+					</sci:arg>
+					<sci:arg name="Set IE Compatibility" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Set IE Compatibility</sci:value>
+								<sci:value>Set IE Compatibility</sci:value>
+								<sci:value>Set IE Compatibility</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;When this flag is set to True (default), IE compatibility in the report is set to IE 10 (the minimum support level for Pipeline Pilot). For most users of IE, this should provide a stable environment to view Pipeline Pilot reports.
+&lt;/p&gt;
+&lt;/p&gt;Switch off this setting, if necessary, to allow Internet Explorer to display content in the highest mode available. This is only required for users who view the report in Internet Explorer 11 or above and who need to enable facilities not available in IE 10 mode, such as WebGL and some HTML5/CSS features.
+&lt;/p&gt;
+&lt;p&gt;Note that even if you are viewing the report in another browser, other users may subsequently run the protocol or view the report in Internet Explorer, and so you may still need to set this IE Compatibility setting - but only in the rare case that your report requires something beyond the default IE 10 compatibility.
+&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Internet Explorer" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Internet Explorer</sci:value>
+								<sci:value>Internet Explorer</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>The location for Internet Explorer</sci:help>
+						<sci:value>iexplore</sci:value>
+					</sci:arg>
+					<sci:arg name="Chrome" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Chrome</sci:value>
+								<sci:value>Chrome</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>The location for Chrome</sci:help>
+						<sci:value>chrome</sci:value>
+					</sci:arg>
+					<sci:arg name="Firefox" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Firefox</sci:value>
+								<sci:value>Firefox</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>The location for Firefox</sci:help>
+						<sci:value>firefox</sci:value>
+					</sci:arg>
 					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
 						<sci:help>Component Attributes</sci:help>
 						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
@@ -5908,7 +6024,7 @@ and so are accessible from all protocols.</sci:help>
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Nov 08 21:26:37 2016</sci:value>
+						<sci:value>Sat Apr 07 23:20:34 2018</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:value>HTML Report Viewer (Semantic UI)</sci:value>
@@ -5976,13 +6092,13 @@ and so are accessible from all protocols.</sci:help>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Viewers and Writers\HTML Report Viewer (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -6216,6 +6332,7 @@ Due to inconsistent input value attribute handling by various browsers, it is re
 					</sci:arg>
 					<sci:arg name="Searchable" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Make the list box searchable?</sci:help>
+						<sci:member>Full Text Search</sci:member>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
@@ -6483,6 +6600,22 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:legalval>click</sci:legalval>
 						<sci:legalval>focus</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Full Text Search" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Full Text Search</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Specifying &quot;exact&quot; will force the exact search to be matched somewhere in the string, even in the middle of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &quot;true&quot; will use a fuzzy full text search anywhere in the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt; and &lt;code&gt;bear&lt;/code&gt; and &lt;code&gt;mybear&lt;/code&gt; and &lt;code&gt;myboar&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Specifying &quot;false&quot; will force an exact search only starting at the beginning of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; but not &lt;code&gt;mybarge&lt;/code&gt; and not &lt;code&gt;boar&lt;/code&gt;.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set &quot;Searchable&quot; to True&apos;);
+Parameter(&apos;Searchable&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">exact</sci:legalval>
+						<sci:legalval>true</sci:legalval>
+						<sci:legalval>false</sci:legalval>
+					</sci:arg>
 					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
 						<sci:legalval>Fail</sci:legalval>
@@ -6562,7 +6695,7 @@ You can set the number of rows to be displayed. If the number of rows is less th
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Jun 14 10:48:37 2016</sci:value>
+						<sci:value>Sun Dec 17 13:41:30 2017</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -7149,13 +7282,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -7975,13 +8108,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -8217,6 +8350,7 @@ Due to inconsistent input value attribute handling by various browsers, it is re
 					</sci:arg>
 					<sci:arg name="Searchable" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Make the list box searchable?</sci:help>
+						<sci:member>Full Text Search</sci:member>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
@@ -8484,6 +8618,22 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:legalval>click</sci:legalval>
 						<sci:legalval>focus</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Full Text Search" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Full Text Search</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Specifying &quot;exact&quot; will force the exact search to be matched somewhere in the string, even in the middle of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &quot;true&quot; will use a fuzzy full text search anywhere in the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt; and &lt;code&gt;bear&lt;/code&gt; and &lt;code&gt;mybear&lt;/code&gt; and &lt;code&gt;myboar&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Specifying &quot;false&quot; will force an exact search only starting at the beginning of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; but not &lt;code&gt;mybarge&lt;/code&gt; and not &lt;code&gt;boar&lt;/code&gt;.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set &quot;Searchable&quot; to True&apos;);
+Parameter(&apos;Searchable&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">exact</sci:legalval>
+						<sci:legalval>true</sci:legalval>
+						<sci:legalval>false</sci:legalval>
+					</sci:arg>
 					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
 						<sci:legalval>Fail</sci:legalval>
@@ -8563,7 +8713,7 @@ You can set the number of rows to be displayed. If the number of rows is less th
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Jun 14 10:48:37 2016</sci:value>
+						<sci:value>Sun Dec 17 13:41:30 2017</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
@@ -9149,13 +9299,13 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:help>By Ref</sci:help>
 						<sci:value>1</sci:value>
 					</sci:arg>
-					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
-						<sci:help>The original path within the database of this component.</sci:help>
-						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
-					</sci:arg>
 					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Subprotocol Made Link Into Copy</sci:help>
 						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Semantic UI\Forms\Functional Elements\Text Box (Semantic UI)</sci:value>
 					</sci:arg>
 				</sci:component>
 				<sci:protocol/>
@@ -9604,6 +9754,7 @@ Due to inconsistent input value attribute handling by various browsers, it is re
 					</sci:arg>
 					<sci:arg name="Searchable" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false">
 						<sci:help>Make the list box searchable?</sci:help>
+						<sci:member>Full Text Search</sci:member>
 						<sci:legalval>True</sci:legalval>
 						<sci:legalval selected="true">False</sci:legalval>
 					</sci:arg>
@@ -9871,6 +10022,22 @@ not Parameter(&apos;Basic Popup&apos;);</sci:enabledscript>
 						<sci:legalval>click</sci:legalval>
 						<sci:legalval>focus</sci:legalval>
 					</sci:arg>
+					<sci:arg name="Full Text Search" type="StringType" required="true" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Full Text Search</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;Specifying &quot;exact&quot; will force the exact search to be matched somewhere in the string, even in the middle of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &quot;true&quot; will use a fuzzy full text search anywhere in the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; and &lt;code&gt;mybarge&lt;/code&gt; and &lt;code&gt;bear&lt;/code&gt; and &lt;code&gt;mybear&lt;/code&gt; and &lt;code&gt;myboar&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Specifying &quot;false&quot; will force an exact search only starting at the beginning of the string: e.g. typing &lt;code&gt;bar&lt;/code&gt; will match &lt;code&gt;barge&lt;/code&gt; but not &lt;code&gt;mybarge&lt;/code&gt; and not &lt;code&gt;boar&lt;/code&gt;.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>SetDisabledDetails(&apos;To enable &apos;.ParameterName().&apos;, set &quot;Searchable&quot; to True&apos;);
+Parameter(&apos;Searchable&apos;);</sci:enabledscript>
+						<sci:legalval selected="true">exact</sci:legalval>
+						<sci:legalval>true</sci:legalval>
+						<sci:legalval>false</sci:legalval>
+					</sci:arg>
 					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
 						<sci:legalval selected="true">Halt</sci:legalval>
 						<sci:legalval>Fail</sci:legalval>
@@ -9950,7 +10117,7 @@ You can set the number of rows to be displayed. If the number of rows is less th
 					</sci:arg>
 					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 						<sci:help>The date this component was registered.</sci:help>
-						<sci:value>Tue Jun 14 10:48:37 2016</sci:value>
+						<sci:value>Sun Dec 17 13:41:30 2017</sci:value>
 					</sci:arg>
 					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 						<sci:help>Local Component Identifier</sci:help>
