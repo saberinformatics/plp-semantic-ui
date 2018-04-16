@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sci:data xmlns:sci="http://www.SciTegic.com/" object="SciTegic.Protocol.1" format="8.0.0">
+	<sci:dbitem>
+		<sci:component name="PLP Login Pop-Up" version="2">
+			<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties, each of which will automatically hold the name of a file in the job&apos;s temporary folder, whose name is guaranteed to be unique.&lt;/p&gt;
+
+&lt;p&gt;For each global name, an additional global is created (with the suffix &lt;i&gt;_Filename&lt;/i&gt;) that hold just the leaf file name of the temporary file.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Form" type="ProtocolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;The path to a protocol that will render an HTML user interface for this protocol.  This optional parameter is used by Web Port to provide a custom user interface for a protocol.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="true">
+				<sci:member>__PoolID</sci:member>
+				<sci:member>Http Cookie Handling</sci:member>
+				<sci:member>__NotificationProtocol</sci:member>
+			</sci:arg>
+			<sci:arg name="__PoolID" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; is a case insensitive string that can optionally be set to optimize the speed of execution for quick running protocols.  Multiple protocols with the same value for &lt;i&gt;__PoolID&lt;/i&gt; can share expensive resources such as database connections, Java VMs, memory, etc. reducing the execution time by 1 to 2 seconds per run.  This can give a large speed improvement to protocols that run in a few seconds such as web applications and interactive reports.  Longer running protocols will not see much benefit.  Generally, it is a good idea to use the same &lt;i&gt;__PoolID&lt;/i&gt; for all protocols within a single application such as an interactive report since many of the components, databases, and data structures will be similar.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;__PoolID&lt;/i&gt; can also be specified by the client when the protocol is launched.  If &lt;i&gt;__PoolID&lt;/i&gt; is specified both as a parameter by the client and as a parameter stored within the protocol, the client&apos;s value overrides the stored value.&lt;/p&gt;
+
+&lt;p&gt;To disable pooling entirely for this particular protocol, set &lt;i&gt;__PoolID&lt;/i&gt; to &lt;b&gt;&amp;lt;Disable&amp;gt;&lt;/b&gt;&lt;/p&gt;</sci:help>
+				<sci:value>MOL</sci:value>
+			</sci:arg>
+			<sci:arg name="Http Cookie Handling" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;Http Cookie Handling&lt;/i&gt; provides a mechanism to control the handling of Http cookies within components that access remote resources via Http and Https.  These include the &lt;a href=&quot;javascript:DoLink(&apos;{8A25024A-C274-485B-BB99-8570DCC4C075}&apos;)&quot;&gt;HTTP Connector&lt;/a&gt;, Data readers such as &lt;a href=&quot;javascript:DoLink(&apos;{8056E8AD-33EA-42BB-9099-EAB24C3D08E6}&apos;)&quot;&gt;Text Reader&lt;/a&gt;, &lt;a href=&quot;javascript:DoLink(&apos;{93C4D73F-0B4D-03F4-B0E3-D82C4FE04C6F}&apos;)&quot;&gt;XML Reader (Generic)&lt;/a&gt;, etc., and custom Java, Perl, and .Net components that use the available APIs for accessing remote servers.  By default, New Protocols will have this setting enabled and set to &quot;Protocol Scope&quot;.  This means that Http cookies obtained from a remote server within any component in the protocol or any of its subprotocols will be parsed and appropriately sent back on subsequent requests from the same component or any other component.   The handling of the cookies is based on the IETF standard as specified in &lt;a href=&quot;javascript:DoLink(&apos;http://tools.ietf.org/html/rfc6265&apos;)&quot;&gt;http://tools.ietf.org/html/rfc6265&lt;/a&gt;.  Setting the parameter to Disabled will prevent components from parsing and returning cookies to the remote servers.&lt;/p&gt;
+
+&lt;p&gt;Persistence of cookies is not supported, so scoping of Http cookies is entirely within the context of a single protocol execution.&lt;/p&gt;
+
+&lt;p&gt;Older protocols that do not have the &lt;i&gt;Http Cookie Handling&lt;/i&gt; parameter will behave as though it had been set to &quot;Disabled&quot;.  To enable cookie handling in these protocols, copy this parameter from a New Protocol to the older protocol and set the parameter as desired.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">Protocol Scoped</sci:legalval>
+				<sci:legalval>Disabled</sci:legalval>
+			</sci:arg>
+			<sci:arg name="__NotificationProtocol" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;&lt;i&gt;__NotificationProtocol&lt;/i&gt; specifies the name or component ID (guid) of a protocol stored in the server&apos;s protocol database that will be executed when the current job completes. If your administrator has enabled notification protocols and depending on his or her preference, the notify protocol will either run as the anonymous user or as an admin specified user. The notification protocol receives several parameters that contain information about the original job:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;Notify_JobID&lt;/i&gt;: The job id of the execution
+&lt;li&gt;&lt;i&gt;Notify_JobStatus&lt;/i&gt;: 
+A description of the result of the job execution
+&lt;li&gt;&lt;i&gt;Notify_JobStatusCode&lt;/i&gt;: The 
+status code that for the result of the job execution.
+	&lt;ul style=&quot;list-style-type:circle&quot;&gt;
+	
+&lt;li&gt;&lt;i&gt;5&lt;/i&gt;: Job was stopped by the client or administrator.
+	&lt;li&gt;&lt;i&gt;6&lt;/i&gt;: 
+Job completed normally with success.
+	&lt;li&gt;&lt;i&gt;7&lt;/i&gt;: Job completed with an error.
+	&lt;li&gt;&lt;i&gt;8&lt;/i&gt;: 
+The process ID associated with the running job crashed or otherwise disappeared.
+	&lt;li&gt;&lt;i&gt;9&lt;/i&gt;: 
+Job failed to start.
+	&lt;/ul&gt;
+&lt;li&gt;&lt;i&gt;Notify_ProtocolName&lt;/i&gt;: The name of the protocol
+&lt;li&gt;&lt;i&gt;Notify_ProtocolPath&lt;/i&gt;: 
+The path of the protocol in the DB.  This field can be blank for protocols that were launched without 
+saving to the database.
+&lt;li&gt;&lt;i&gt;Notify_ProtocolLogName&lt;/i&gt;: The log name of the protocol.  
+Is usually the same as ProtocolName, however this can be set by the client to a different name than the 
+protocol.
+&lt;li&gt;&lt;i&gt;Notify_RunHost&lt;/i&gt;: The name of the node where the protocol executed.
+&lt;li&gt;&lt;i&gt;Notify_Username&lt;/i&gt;: 
+The user that ran the job
+&lt;/ul&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Run On Grid" type="BoolType" required="false" visibility="visible" multi="false" uimpl="true">
+				<sci:help>The Run On Grid parameter tells the server to run the protocol on the grid engine if the Pipeline Pilot server is configured to run with grid integration.</sci:help>
+				<sci:member>Queue Name</sci:member>
+				<sci:member>Grid Options</sci:member>
+				<sci:legalval>True</sci:legalval>
+				<sci:legalval selected="true">False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Queue Name" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>The Queue Name allows you to specify the name of the queue on the grid engine to submit the job to. Leave blank to specify the default queue.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="Grid Options" type="StringType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="true">
+				<sci:help>Grid Options allows you to specify options to the grid engine submit command. Leave blank to specify the default options.</sci:help>
+				<sci:enabledscript>parameter(&apos;Run On Grid&apos;);</sci:enabledscript>
+			</sci:arg>
+			<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+				<sci:help>Component Attributes</sci:help>
+				<sci:legalval>ComponentTakesInput</sci:legalval>
+				<sci:legalval>ComponentReturnsPass</sci:legalval>
+				<sci:legalval>ComponentReturnsFail</sci:legalval>
+				<sci:legalval>ComponentRunsLocal</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Reporting" type="GroupType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>This group contains parameters specific to protocols containing Reporting components.</sci:help>
+				<sci:member>Reporting Stylesheet</sci:member>
+			</sci:arg>
+			<sci:arg name="Reporting Stylesheet" type="StylesheetType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+				<sci:help>Specifies the name of a Stylesheet to be used by this protocol if any of the Reporting components have a Style selected in the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.</sci:help>
+				<sci:value>{44C6ECA7-D7C8-4BD8-A0C6-450FF605F58B}</sci:value>
+			</sci:arg>
+			<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+				<sci:legalval selected="true">Halt</sci:legalval>
+				<sci:legalval>Fail</sci:legalval>
+				<sci:legalval>Pass</sci:legalval>
+			</sci:arg>
+			<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="WebExports" type="StringType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;A comma delimited list of global properties which will be automatically 
+exported if this protocol is published as a web service.&lt;/p&gt;
+
+&lt;p&gt;Each global property in the list is created with an empty value at the start of the protocol run.&lt;/p&gt;</sci:help>
+			</sci:arg>
+			<sci:arg name="Keep Alive" type="BoolType" required="false" visibility="nevershow" multi="false" uimpl="true">
+				<sci:help>&lt;p&gt;Specifies if the process where this protocol is run should stay around for later use.&lt;/p&gt;</sci:help>
+				<sci:legalval selected="true">True</sci:legalval>
+				<sci:legalval>False</sci:legalval>
+			</sci:arg>
+			<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The user who registered this component.</sci:help>
+				<sci:value>dbondarev</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The date this component was registered.</sci:help>
+				<sci:value>Mon Apr 16 19:51:06 2018</sci:value>
+			</sci:arg>
+			<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The server version when this component was registered</sci:help>
+				<sci:value>16.1.0.1140</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>PLP Login Pop-Up</sci:value>
+			</sci:arg>
+			<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol AutoLayout</sci:help>
+				<sci:value>1</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+				<sci:value>PROTOCOLNODE</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+				<sci:help>Component Revision</sci:help>
+				<sci:value>790</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>{5463A3D1-21EE-4528-8BD0-1B16C7B84B30}</sci:value>
+			</sci:arg>
+			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+				<sci:help>By Ref</sci:help>
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+				<sci:value>100</sci:value>
+				<sci:value>A popup window with a PLP login prompt.</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+				<sci:value>None</sci:value>
+				<sci:value/>
+			</sci:arg>
+			<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+			<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Scale</sci:help>
+				<sci:value>100</sci:value>
+			</sci:arg>
+			<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Sticky Notes</sci:help>
+			</sci:arg>
+			<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Protocol Options</sci:help>
+				<sci:legalval>Owner Access Only</sci:legalval>
+			</sci:arg>
+			<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:value>0</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+				<sci:help>Local Component Identifier</sci:help>
+				<sci:value>-1</sci:value>
+			</sci:arg>
+			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:value>50 -50</sci:value>
+			</sci:arg>
+			<sci:arg name="OriginalPackage" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>OriginalPackage</sci:help>
+				<sci:value>scitegic/coreutils</sci:value>
+			</sci:arg>
+			<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+				<sci:help>The original path within the database of this component.</sci:help>
+				<sci:value>Components\Sisense Widget\Utilities\Internals\PLP Login Pop-Up</sci:value>
+			</sci:arg>
+		</sci:component>
+		<sci:protocol>
+			<sci:data object="SciTegic.ComponentJavaPlugin.1">
+				<sci:component name="Text" version="2">
+					<sci:arg name="Text" type="TextExpressionType" required="true" visibility="visible" multi="false" expanded="true">
+						<sci:help>&lt;p&gt;A PilotScript expression that evaluates to the text to render in this object.  This expression has access to global data and any properties (or calculable properties) on the incoming data record.  Also, you can provide text as static (quoted) strings.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;To specify a property name that includes whitespace characters, use the &lt;code&gt;property()&lt;/code&gt; PilotScript function, e.g., if the property name is &quot;Profit Margin&quot; use:&lt;p&gt;&lt;code&gt;property(&apos;Profit Margin&apos;)&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;When specifying columns for an in-line table, the expression you enter here (often simply a property name), will be the default column header.  To explicitly set the column header, use &lt;i&gt;Column Settings&lt;/i&gt; &amp;gt; &lt;i&gt;Header Text&lt;/i&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:member>Non-breaking Spaces</sci:member>
+						<sci:member>Allow HTML Tags</sci:member>
+						<sci:member>Array Value Display</sci:member>
+						<sci:value>&apos;&lt;script&gt;
+window.open(&quot;&quot;, &quot;_self&quot;, &quot;&quot;);
+window.close();
+e.preventDefault();
+&lt;/script&gt;&apos;</sci:value>
+					</sci:arg>
+					<sci:arg name="Non-breaking Spaces" type="BoolType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;If true, spaces will be output as non-breaking spaces in HTML and Word reports.&lt;/p&gt;</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Allow HTML Tags" type="BoolType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;If true, HTML tags are interpreted as HTML. In HTML reports, all tags are supported. PDF and Word reports support the following tags:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&amp;lt;BR&amp;gt;&lt;/li&gt;
+  &lt;li&gt;&amp;lt;B&amp;gt;&lt;/li&gt;
+  &lt;li&gt;&amp;lt;I&amp;gt;&lt;/li&gt;
+  &lt;li&gt;&amp;lt;U&amp;gt;&lt;/li&gt;
+  &lt;li&gt;&amp;lt;A HREF=&quot;xxx&quot; TITLE=&quot;yyy&quot; NAME=&quot;zzz&quot;&amp;gt;&lt;/li&gt;
+  &lt;li&gt;&amp;lt;FONT STYLE=&quot;BACKGROUND-COLOR: xxx; COLOR: yyy; SIZE: zzz; FACE: vvv&quot;&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Array Value Display" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Determines how array values are separated when they are displayed.&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">Separate by Newlines</sci:legalval>
+						<sci:legalval>Separate by Commas</sci:legalval>
+						<sci:legalval>First Value Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Format" type="FormatType" required="false" visibility="visible" multi="false">
+						<sci:help>&lt;p&gt;Specifies formatting to be applied to this element. Editing this parameter opens the Format Dialog.&lt;/p&gt;
+
+&lt;p&gt;Depending on what this Format is being applied to, options may include:
+&lt;ul&gt;&lt;li&gt;Font settings (e.g., Color, Size, Bold, Italic, Underline)&lt;/li&gt;
+&lt;li&gt;Border settings (e.g., Color, Style, Width)&lt;/li&gt;
+&lt;li&gt;Background settings (Color, Image)&lt;/li&gt;
+&lt;li&gt;Alignment settings&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;Only options that are relevant for this specific Format parameter will be displayed.&lt;/li&gt;
+&lt;li&gt;Background Image: Allows you to select a background image for the reporting element. This image must be accessible to the Pipeline Pilot server. For example, there are some example images in the apps\scitegic\generic\dataroot\data\Images folder in your Pipeline Pilot installation (shortcut is &quot;generic\Images&quot; folder). To use your own images, you need to upload them to a location such as your userdir or jobdir. An easy way to do this is to use the Binary Reader component to read the file, and the Binary Writer component to save it to the chosen location. Supported image types include .gif, .jpg, .png, and .bmp.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Position" type="PositionType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies how this element is positioned. Editing this parameter opens the Position dialog, which enables you to change margins, paddings, width, and height.</sci:help>
+					</sci:arg>
+					<sci:arg name="Links and Actions" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Links and actions to be applied to the report element produced by this component.</sci:help>
+						<sci:member>Link</sci:member>
+						<sci:member>Link Target</sci:member>
+						<sci:member>HTML Attributes</sci:member>
+						<sci:member>Tooltip</sci:member>
+						<sci:member>Protocol Link</sci:member>
+						<sci:member>Link Options</sci:member>
+					</sci:arg>
+					<sci:arg name="Link" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;An optional parameter specifying a link for the reporting element produced by this component. The &lt;i&gt;Link&lt;/i&gt; value can be an internal report link or an external URL.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Internal: A string that points to a &lt;i&gt;Link Target&lt;/i&gt; in the report. Both the &lt;i&gt;Link&lt;/i&gt; and &lt;i&gt;Link Target&lt;/i&gt; values need to match for an internal link to work.&lt;/li&gt;
+&lt;li&gt;External: A string that points to an external URL such as &apos;http://www.sitename.com&apos;, &apos;ftp://www.sitename.com&apos;, or a file URL. A file URL can be in one of these forms:
+&lt;ul&gt;
+&lt;li&gt;&apos;file:///C:/.../scitegic root/.../document.pdf&apos; - when using an absolute path within the Pipeline Pilot installation folder&lt;/li&gt;
+&lt;li&gt;&apos;file://///machine_name/C/.../document.pdf&apos; - when using a Windows UNC path visible to the Pipeline Pilot server&lt;/li&gt;
+&lt;li&gt;&apos;file:///relative_path/document.pdf&apos; - when using a path, relative to &lt;i&gt;@SciTegicRoot&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&apos;file://machine_name.domain_name.com/C/.../document.pdf&apos; - when using a path with a fully qualified machine name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;b&gt;Example:&lt;/b&gt;
+To create a link from a combination of a property and static text, create a valid PilotScript expression. For example, if you have internal web pages linking to research projects that have addresses of the form: &lt;i&gt;http://mydomain.com/ProjectID&lt;/i&gt;, where &lt;i&gt;ProjectID&lt;/i&gt; is the actual project ID, and also a local property on the datastream, you would use:
+&lt;p&gt;&lt;code&gt;&apos;http://mydomain.com&apos; . ProjectID&lt;/code&gt;
+&lt;p&gt;as the value for &lt;i&gt;Link&lt;/i&gt;.</sci:help>
+						<sci:enabledscript>prefixLength := StringLen(&apos;Link&apos;);
+fullLength := StringLen(ParameterName());
+prefix := SubString(ParameterName(), 1, fullLength - prefixLength); 
+protocolLinkParameterName := prefix.&apos;Protocol Link&apos;;
+enabled := true;
+if (parameter(protocolLinkParameterName) is Defined ) then 
+	enabled := Parameter(protocolLinkParameterName) eq &apos;&apos;;
+	if (not enabled) then
+		 SetDisabledDetails(&apos;This parameter is enabled only when Protocol Link is not set&apos;);
+	End if;
+end if;	
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Protocol Link" type="ProtocolLinkType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>&lt;p&gt;Specifies a link that runs a protocol.  Editing this parameter opens up the Protocol Link Dialog.&lt;/p&gt;</sci:help>
+						<sci:enabledscript>prefixLength := StringLen(&apos;Protocol Link&apos;);
+fullLength := StringLen(ParameterName());
+prefix := SubString(ParameterName(), 1, fullLength - prefixLength); 
+linkParameterName := prefix.&apos;Link&apos;;
+enabled := true;
+if (parameter(linkParameterName) is Defined ) then 
+	enabled := Parameter(linkParameterName) eq &apos;&apos;;
+	if (not enabled) then
+		 SetDisabledDetails(&apos;This parameter is enabled only when Link is not set&apos;);
+	End if;
+End if;
+enabled;</sci:enabledscript>
+					</sci:arg>
+					<sci:arg name="Link Options" type="LinkOptionsType" required="false" visibility="visible" multi="false">
+						<sci:help>Specifies how to display pages linked to the reporting element. 
+Applies only if &lt;i&gt;Link&lt;/i&gt; or &lt;i&gt;Protocol Link&lt;/i&gt; are set for the component.</sci:help>
+					</sci:arg>
+					<sci:arg name="Link Target" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Sets this element as the destination for links from other elements in the report. The value of &lt;i&gt;Link Target&lt;/i&gt; can be text or a property name, and should match the value of &lt;i&gt;Link&lt;/i&gt; in another report component.  In the resulting report, when the element with &lt;i&gt;Link&lt;/i&gt; is clicked, the element with the matching &lt;i&gt;Link Target&lt;/i&gt; is brought to the top of the report page.</sci:help>
+					</sci:arg>
+					<sci:arg name="Tooltip" type="ExpressionType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>An optional tooltip for this reporting element.</sci:help>
+					</sci:arg>
+					<sci:arg name="HTML Attributes" type="HTMLAttributesType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Defines attributes for the reporting element. These attributes can be used by JavaScript code that is &lt;a href=&quot;javascript:DoLink(&apos;{262A8E5D-BB8E-4dc4-A6F5-A61FC6047EC8}&apos;)&quot;&gt;embedded in&lt;/a&gt; or &lt;a href=&quot;javascript:DoLink(&apos;{6DF7D4FA-28BC-453b-8882-DE55C7CFFBF9}&apos;)&quot;&gt;included by&lt;/a&gt; the HTML report. One very common attribute is &quot;id&quot; which allows access to the element using the document.getElementById(id) method. Event handlers such as &quot;onclick&quot; and &quot;onmouseover&quot; are also common attributes.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings" type="GroupType" required="false" visibility="visible" multi="false" uimpl="false">
+						<sci:help>Column settings control how the element appears when it is used inside a table.</sci:help>
+						<sci:member>Column Settings Header Format</sci:member>
+						<sci:member>Column Settings Cell Format</sci:member>
+						<sci:member>Column Settings Cell Position</sci:member>
+						<sci:member>Column Settings Header Text</sci:member>
+						<sci:member>Column Settings Header Position</sci:member>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Text" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the text displayed at the top of its column.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>&lt;p&gt;When used in a table, this parameter sets the format of the text displayed 
+at the top of its column.
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Header Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the text displayed at the top of its column.</sci:help>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Format" type="FormatType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When used in a table, this parameter sets the format of the cells in the column.
+&lt;p&gt;Editing this parameter opens the Format Dialog. Options that can be changed by 
+this parameter include Font, Font Size, Bold, Italic, Underline, and Color.&lt;/p&gt;
+
+&lt;b&gt;Notes:&lt;/b&gt;
+&lt;br&gt;Examples of available formatting options:
+&lt;ul&gt;
+&lt;li&gt;Font Size: Sets font size&lt;/li&gt;
+&lt;li&gt;Color: Sets font color&lt;/li&gt;
+&lt;/ul&gt;</sci:help>
+						<sci:value>600</sci:value>
+					</sci:arg>
+					<sci:arg name="Column Settings Cell Position" type="PositionType" required="false" visibility="visible" multi="false" expanded="true" uimpl="false">
+						<sci:help>When the element is used within a Table component, this parameter sets the position of the cells in the column.</sci:help>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval>ComponentTakesInput</sci:legalval>
+						<sci:legalval selected="true">ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Fri Feb 12 10:00:00 2010</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>Text</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>90 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>REPORTTEXTNODE</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{34E6C845-4ACB-4212-BBA3-7422213D458F}</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>Plug In</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Adds text to a report</sci:value>
+						<sci:value>&lt;p&gt;The text can be supplied from any expression, or as a quoted string, and formatted with the &lt;i&gt;Format&lt;/i&gt; and &lt;i&gt;Position&lt;/i&gt; parameters.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;Text&lt;/i&gt; is a PilotScript expression that evaluates to the text to display.  This expression has access to global data and any properties (or calculable properties) on the incoming data record.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/report/docs/reporting_basic.pdf&apos;)&quot;&gt;Report Design Essentials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>Generic</sci:value>
+						<sci:value/>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>8.0.0.14</sci:value>
+					</sci:arg>
+					<sci:arg name="Keep Properties" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>A comma-separated list of properties that are transferred from the input data record to the text object.  These properties can then be used to apply conditional formats in downstream components such as Columns.</sci:help>
+					</sci:arg>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="JavaClass" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>com.scitegic.report.component.TextComponent</sci:value>
+					</sci:arg>
+					<sci:arg name="CaptureStdoutStderr" type="BoolType" required="true" visibility="nevershow" multi="false">
+						<sci:help>CaptureStdoutStderr</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Link Options Mapping" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Mapping of the Format parameter name to the Link Options parameter name.</sci:help>
+						<sci:value>Format</sci:value>
+						<sci:value>Link Options</sci:value>
+					</sci:arg>
+					<sci:arg name="Use Package" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Reporting and Visualization\Reporting\Elements\Text</sci:value>
+					</sci:arg>
+				</sci:component>
+			</sci:data>
+			<sci:data object="SciTegic.Protocol.1">
+				<sci:component name="HTML Report Viewer" version="2">
+					<sci:arg name="Title" type="StringType" required="false" visibility="visible" multi="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Title</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;The optional title of the HTML document. The title is also used as part of the report&apos;s file name.&lt;/p&gt;</sci:help>
+					</sci:arg>
+					<sci:arg name="Advanced Options" type="GroupType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:member>Include Format and Position CSS</sci:member>
+						<sci:member>Use Default Browser</sci:member>
+						<sci:member>Set IE Compatibility</sci:member>
+					</sci:arg>
+					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" expanded="true">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Include Format and Position CSS</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>If set to &lt;strong&gt;False&lt;/strong&gt;, all format and position settings will be omitted from the output document, allowing them to be set using an external stylesheet specified with an &lt;a href=&quot;javascript:DoLink(&apos;{6DF7D4FA-28BC-453b-8882-DE55C7CFFBF9}&apos;)&quot;&gt;Include&lt;/a&gt;.</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Set IE Compatibility" type="BoolType" required="false" visibility="visible" multi="false" legalvalsenforced="false" uimpl="false">
+						<sci:metaproplist>
+							<sci:mpropval name="SCI_PromotedFrom" ishidden="true" type="StringType">
+								<sci:value>Set IE Compatibility</sci:value>
+							</sci:mpropval>
+							<sci:propval name="SCI_PromotionRenameRule" ishidden="true">UsingParent</sci:propval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;When this flag is set to True (default), IE compatibility in the report is set to IE 10 (the minimum support level for Pipeline Pilot). For most users of IE, this should provide a stable environment to view Pipeline Pilot reports.
+&lt;/p&gt;
+&lt;/p&gt;Switch off this setting, if necessary, to allow Internet Explorer to display content in the highest mode available. This is only required for users who view the report in Internet Explorer 11 or above and who need to enable facilities not available in IE 10 mode, such as WebGL and some HTML5/CSS features.
+&lt;/p&gt;
+&lt;p&gt;Note that even if you are viewing the report in another browser, other users may subsequently run the protocol or view the report in Internet Explorer, and so you may still need to set this IE Compatibility setting - but only in the rare case that your report requires something beyond the default IE 10 compatibility.
+&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Use Default Browser" type="BoolType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false" uimpl="false">
+						<sci:metaproplist>
+							<sci:propval name="SCI_PromotionRenameRule">UsingParent</sci:propval>
+							<sci:mpropval name="SCI_PromotedFrom" type="StringType">
+								<sci:value>Browser</sci:value>
+							</sci:mpropval>
+						</sci:metaproplist>
+						<sci:help>&lt;p&gt;
+This parameter is only relevant when running the protocol in the Pipeline Pilot Professional Client.
+&lt;/p&gt;
+&lt;p&gt;
+The value specifies whether to use your default desktop web browser to view the report. When set to False, Internet Explorer is used as a standard fallback option. If IE is your default browser, it is used in either case.
+&lt;/p&gt;
+&lt;p&gt;
+If you use Internet Explorer, note that its behavior can be modified by switching off the &lt;i&gt;Set IE Compatibility&lt;/i&gt; parameter. This is only relevant if you are working with more recently-supported web technologies, such as WebGL, that require at least IE 11 compatibility (and also require that IE 11 is installed, of course).
+&lt;/p&gt;</sci:help>
+						<sci:legalval selected="true">True</sci:legalval>
+						<sci:legalval>False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Output Mode" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>&lt;p&gt;Allows some alternative formatting and position settings to be used that may cause the HTML report output to behave and look more like the HTML generated with previous versions of Pipeline Pilot. This parameter is intended to be set on writers in protocols developed with previous versions of Pipeline Pilot where the output looks or behaves differently when run with the current version.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Always use the value of &quot;Default&quot; for new protocols or protocols under active development. The latest Reporting components may not behave correctly in HTML reports written with a non-default mode.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When set to &quot;Pipeline Pilot 7.5&quot;, this parameter rolls back some of the improvements made in the name of standards compliance and formatting consistency, including:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;The report will not include the HTML 4.01 Doctype declaration, which will cause Internet Explorer to render the report using quirks mode.&lt;/li&gt;
+	&lt;li&gt;Position rules will not be strictly enforced, so Internet Explorer 6 will render borders and padding outside the specified width.&lt;/li&gt;
+	&lt;li&gt;Horizontal alignment of block objects will not be supported, so you will not be able to, for example, center-align a table.&lt;/li&gt;
+	&lt;li&gt;The page margins will not be set.&lt;/li&gt;
+&lt;/ul&gt;
+</sci:help>
+						<sci:legalval selected="true">Default</sci:legalval>
+						<sci:legalval>Pipeline Pilot 7.5</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Tempfiles" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists the set of temporary files which will be converted by the network to true temporary file names</sci:help>
+					</sci:arg>
+					<sci:arg name="DeclareLocal" type="StringType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>Lists a set of properties (without the @) to be created on the property list for this protocol.
+Other properties are created on the global property list
+and so are accessible from all protocols.</sci:help>
+						<sci:value>ServerFilePath</sci:value>
+					</sci:arg>
+					<sci:arg name="RunToCompletion" type="BoolType" required="false" visibility="visible" multi="false" implbase="{17001C74-63CE-4B4B-B37C-F0EAA19CE4AA}" uimpl="true">
+						<sci:help>When the network is run, whether we process once or until done for each process call</sci:help>
+						<sci:legalval>True</sci:legalval>
+						<sci:legalval selected="true">False</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Internet Explorer" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>The location for Internet Explorer</sci:help>
+						<sci:value>internetexplorer.application</sci:value>
+					</sci:arg>
+					<sci:arg name="Chrome" type="StringType" required="false" visibility="visible" multi="false" uimpl="true">
+						<sci:help>The location for Chrome</sci:help>
+						<sci:value>&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot;</sci:value>
+					</sci:arg>
+					<sci:arg name="Firefox" type="StringType" required="false" visibility="visible" multi="false" expanded="true" uimpl="true">
+						<sci:help>The location for Firefox</sci:help>
+						<sci:value>&quot;C:\Program Files (x86)\Mozilla Firefox\firefox.exe&quot;</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentAttributes" type="StringType" required="false" visibility="hidden" multi="true">
+						<sci:help>Component Attributes</sci:help>
+						<sci:legalval selected="true">ComponentTakesInput</sci:legalval>
+						<sci:legalval>ComponentReturnsPass</sci:legalval>
+						<sci:legalval>ComponentReturnsFail</sci:legalval>
+						<sci:legalval>ComponentRunsLocal</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnDataTypeError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="OnGeneralError" type="StringType" required="true" visibility="hidden" multi="false">
+						<sci:legalval selected="true">Halt</sci:legalval>
+						<sci:legalval>Fail</sci:legalval>
+						<sci:legalval>Pass</sci:legalval>
+					</sci:arg>
+					<sci:arg name="CustomErrorText" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>DrainTopDown</sci:value>
+					</sci:arg>
+					<sci:arg name="Protocol Options" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:help>Protocol Options</sci:help>
+						<sci:legalval selected="true">Make Shortcut by Default</sci:legalval>
+						<sci:legalval>Owner Access Only</sci:legalval>
+					</sci:arg>
+					<sci:arg name="Registrant" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The user who registered this component.</sci:help>
+						<sci:value>scitegic/report</sci:value>
+					</sci:arg>
+					<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The date this component was registered.</sci:help>
+						<sci:value>Thu Oct 22 23:43:53 2015</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisplayName" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>HTML Report Viewer</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolAutoLayout" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol AutoLayout</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentDisabled" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+						<sci:value>ReportViewerNode</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentRevision" type="LongType" required="true" visibility="nevershow" multi="false">
+						<sci:help>Component Revision</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="DerivedFrom" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The component this component is based upon.</sci:help>
+						<sci:value>SubProtocol</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentGUID" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>{0952D9DF-F95C-4D43-826F-C70450811DD8}</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:value>378 -95</sci:value>
+					</sci:arg>
+					<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>By Ref</sci:help>
+						<sci:value>1</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentHelp" type="StringType" required="false" visibility="nevershow" multi="true">
+						<sci:value>100</sci:value>
+						<sci:value>Displays the results of a reporting protocol in HTML format</sci:value>
+						<sci:value>&lt;p&gt;This component accepts reporting objects as input (e.g., tables, text and images), and displays the output as an HTML file in Internet Explorer.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Notes:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use the &lt;a href=&quot;javascript:DoLink(&apos;{A28703A7-E701-4D34-9A93-1D24AC2039CC}&apos;)&quot;&gt;Page&lt;/a&gt; component to set the report&apos;s margins, borders, padding, and background formatting, or to specify HTML attributes on the report&apos;s &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; tag.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;b&gt;See Also:&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/report/docs/reporting_basic.pdf&apos;)&quot;&gt;Report Design Essentials&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/report/docs/reporting_charts.pdf&apos;)&quot;&gt;Chart Design&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;javascript:DoLink(&apos;sciapps/scitegic/reportadv/docs/reportadv_interactive.pdf&apos;)&quot;&gt;Interactive Reporting and Form Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</sci:value>
+						<sci:value>Generic</sci:value>
+						<sci:value>This component accepts reporting objects as input.</sci:value>
+						<sci:value>None</sci:value>
+						<sci:value/>
+						<sci:value>None</sci:value>
+						<sci:value/>
+					</sci:arg>
+					<sci:arg name="Component Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false"/>
+					<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Sticky Notes</sci:help>
+					</sci:arg>
+					<sci:arg name="RegistrationVersion" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The server version when this component was registered</sci:help>
+						<sci:value>16.1.0.1089</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale2" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>100</sci:value>
+					</sci:arg>
+					<sci:arg name="ProtocolScale" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Protocol Scale</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Local Component Identifier</sci:help>
+						<sci:value>2</sci:value>
+					</sci:arg>
+					<sci:arg name="SubProtocolMadeLinkIntoCopy" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Made Link Into Copy</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
+					<sci:arg name="Component Path" type="StringType" required="false" visibility="nevershow" multi="false">
+						<sci:help>The original path within the database of this component.</sci:help>
+						<sci:value>Components\Reporting and Visualization\Reporting\Viewers\HTML Report Viewer</sci:value>
+					</sci:arg>
+				</sci:component>
+				<sci:protocol/>
+			</sci:data>
+			<sci:connectid from="0" to="2" type="true"/>
+			<sci:version iVal="1"/>
+		</sci:protocol>
+	</sci:dbitem>
+<!-- Exported protocol -->
+<sci:component name="8.0 Protocol Warning" version="2">
+<sci:arg name="ComponentIcon" type="StringType" required="true" visibility="nevershow" multi="false">
+<sci:help>Component Icon</sci:help>
+<sci:value>PROTOCOLNODE</sci:value>
+</sci:arg>
+<sci:arg name="Protocol Sticky Notes" type="StringType" required="false" visibility="nevershow" multi="false">
+<sci:help>Protocol Sticky Notes</sci:help>
+<sci:value>%VERSION 3%</sci:value>
+<sci:value>400 -219 1222 221</sci:value>
+<sci:value>250 120 20</sci:value>
+<sci:value>WARNING! This is a Pipeline Pilot protocol written in version 8.0 or later. It contains features that are not supported in earlier versions of Pipeline Pilot.</sci:value>
+</sci:arg>
+</sci:component>
+</sci:data>
