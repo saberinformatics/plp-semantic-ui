@@ -22,7 +22,7 @@ When the installation completes, the server must be restarted.
 In the Pro client you will find example protocols in the Protocols tab: `Protocols/Examples/Semantic UI/` and the components in the Components tab: `Components/Semantic UI/`.
 
 ## Note on Widgets
-It's possible to create widgets for other webservers (e.g. Sisense) using Pipeline Pilot. See our other project [sisense-pipelinepilot](/saberinformatics/sisense-pipelinepilot) here on GitHub.
+It's possible to create widgets for other webservers (e.g. Sisense) using Pipeline Pilot. See our other project [sisense-pipelinepilot](https://github.com/saberinformatics/sisense-pipelinepilot) here on GitHub.
 
 ## Package Contents
 ![components screenshot](https://github.com/saberinformatics/plp-semantic-ui/raw/gh-pages/components.png "components")
