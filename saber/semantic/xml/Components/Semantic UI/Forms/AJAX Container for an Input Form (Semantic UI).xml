@@ -173,7 +173,7 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 				<sci:value>{450CCD2E-2B8F-4302-84F9-3AF3384F912D}</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentPoint" type="StringType" required="false" visibility="nevershow" multi="false">
-				<sci:value>858 -495</sci:value>
+				<sci:value>786 -495</sci:value>
 			</sci:arg>
 			<sci:arg name="ByReference" type="BoolType" required="false" visibility="nevershow" multi="false">
 				<sci:help>By Ref</sci:help>
@@ -214,11 +214,11 @@ numValues(rMatch(Parameter(), &apos;[^a-zA-Z0-9]+&apos;, &apos;ig&apos;)) == 0;<
 			</sci:arg>
 			<sci:arg name="RegistrationDate" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>The date this component was registered.</sci:help>
-				<sci:value>Thu Apr 19 22:20:55 2018</sci:value>
+				<sci:value>Thu May 24 11:03:08 2018</sci:value>
 			</sci:arg>
 			<sci:arg name="ComponentLocalID" type="LongType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Local Component Identifier</sci:help>
-				<sci:value>10</sci:value>
+				<sci:value>0</sci:value>
 			</sci:arg>
 			<sci:arg name="ProcessingOrder" type="StringType" required="false" visibility="nevershow" multi="false">
 				<sci:help>Processing Order</sci:help>
@@ -757,7 +757,7 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>Raw HTML text.</sci:help>
 						<sci:value>&lt;script id=&quot;script$(guid)&quot;&gt;
 
-function ajax_submit(fel) {
+function ajax_submit_$(guid)(fel) {
 	// Copyright Saber Informatics
 	$(&apos;#div$(guid)&apos;).children().hide();
 	$(&apos;#div$(guid)&apos;).append(&apos;$(Loading Message)&apos;);
@@ -818,12 +818,12 @@ $(&apos;#div$(guid)&apos;).find(&apos;form&apos;).find(&apos;[type=&quot;submit&
 		if (st.indexOf(&apos;.validate().form()&apos;) != -1) {
 			// no validation groups
 			var v = $f.validate().form();
-			if (v) ajax_submit($f);
+			if (v) ajax_submit_$(guid)($f);
 
 		} else if (st.indexOf(&apos;return validate_&apos;) != -1) {
 			// validation groups
 			var v = eval(&apos;validate_&apos; + $f.attr(&apos;id&apos;) + &apos;()&apos;);
-			if (v) ajax_submit($f);
+			if (v) ajax_submit_$(guid)($f);
 		}
 	}
 });
@@ -1032,8 +1032,14 @@ Parameter(&apos;Parallel Processing Options&apos;);</sci:enabledscript>
 						<sci:help>The original path within the database of this component.</sci:help>
 						<sci:value>Components\Semantic UI\Utilities\Raw HTML (Semantic UI)</sci:value>
 					</sci:arg>
+					<sci:arg name="SubProtocolModified" type="BoolType" required="false" visibility="nevershow" multi="false">
+						<sci:help>Subprotocol Modified</sci:help>
+						<sci:value>0</sci:value>
+					</sci:arg>
 				</sci:component>
-				<sci:protocol/>
+				<sci:protocol>
+					<sci:version iVal="7"/>
+				</sci:protocol>
 			</sci:data>
 			<sci:version iVal="1"/>
 		</sci:protocol>
