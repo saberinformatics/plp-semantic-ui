@@ -2606,7 +2606,7 @@ Semantic UI release history with detailed notes:
 To add a new custom theme (e.g. developed in-house): do not change this component. Just add a new subfolder to the &lt;code&gt;ScitegicRoot\apps\saber\semantic\dataroot\data\assets\semantic\&lt;/code&gt; file folder. The subfolder should contain a compiled customized copy of the Semantic UI distribution. &lt;strong&gt;The name of the subfolder should be alphanumeric and it cannot contain spaces or special characters.&lt;/strong&gt;</sci:help>
 						<sci:legalvalscript>//SetLegalValues(&apos;Default&apos;);
 SetLegalValues(RunProtocol(&apos;{4460A9EB-E8FA-42F0-A0ED-D35964047B39}&apos;));</sci:legalvalscript>
-						<sci:value>2.3.1</sci:value>
+						<sci:value>2.4.1</sci:value>
 					</sci:arg>
 					<sci:arg name="Include Format and Position CSS" type="BoolType" required="false" visibility="visible" multi="false" expanded="true" legalvalsenforced="false">
 						<sci:help>If set to &lt;strong&gt;True&lt;/strong&gt;, all native Pipeline Pilot format and position settings will be included in the output document. Otherwise all native Pipeline Pilot formatting will be ignored.</sci:help>
