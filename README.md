@@ -1,4 +1,4 @@
-![abbvie logo](https://semanticplp.s3.amazonaws.com/abbvie-logo.png?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1610505721&Signature=UOvbxU81dYefxN0yI14%2FKDcTa9o%3D "AbbVie")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![saberinformatics logo](https://semanticplp.s3.amazonaws.com/saber-logo.png?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1610505755&Signature=iLR6yyyhXK7kGDP6lo%2BTWZFWxgs%3D "Saber Informatics")
+![abbvie logo](https://s3.amazonaws.com/semanticplp/abbvie-logo.png "AbbVie")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![saberinformatics logo](https://s3.amazonaws.com/semanticplp/saber-logo.png "Saber Informatics")
 
 # Semantic UI components for Pipeline Pilot
 Build beautiful web reports and web apps. Leverage the power of [Semantic UI](http://semantic-ui.com/kitchen-sink.html) from Pipeline Pilot.
@@ -15,7 +15,7 @@ Browser support: IE10 or later, Chrome, Safari, Firefox.
 Mobile browser support: Chrome for Android 44+, iOS Safari 7+, Microsoft Edge 12+.
 
 ## Installation
-This component collection has been implemented following Biovia/Accelrys' application packaging guidelines and should be installed with PkgUtil or PkgUtil.exe on the Pipeline Pilot server. Follow instructions in this [PDF doc](https://semanticplp.s3.amazonaws.com/Installation%20Instructions%20%28Semantic%29.pdf?AWSAccessKeyId=AKIAIHR7QYSU2SL7H7ZQ&Expires=1554516856&Signature=qhT5dZtYnDiihNX6PyvTxcAZATc%3D).
+This component collection has been implemented following Biovia/Accelrys' application packaging guidelines and should be installed with PkgUtil or PkgUtil.exe on the Pipeline Pilot server. Follow instructions in this [PDF doc](https://s3.amazonaws.com/semanticplp/Installation%20Instructions%20%28Semantic%29.pdf).
 
 When the installation completes, the server must be restarted. 
 
