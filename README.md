@@ -1,4 +1,4 @@
-![abbvie logo](https://delivery-p157365-e1666014.adobeaemcloud.com/adobe/assets/urn:aaid:aem:ed57e8fa-a455-4943-b9c6-3d5f05830f60/as/abbvie-logo-header.svg "AbbVie")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![saberinformatics logo](https://www.saberinformatics.com/sites/default/files/companylogo.png "Saber")
+Sponsored by ABBVIE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Made by SABER INFORMATICS
 
 # Semantic UI components for Pipeline Pilot
 Build beautiful web reports and web apps. Leverage the power of [Semantic UI](http://semantic-ui.com/kitchen-sink.html) from Pipeline Pilot.
